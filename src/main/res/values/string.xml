@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="sdk_app_name">FincodeSDK</string>
+
+    <!--daialog-->
+    <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
+    <string name="dialog_close">閉じる</string>
+
+    <!--text-->
+    <string name="card_number">カード番号</string>
+    <string name="expiration_date">有効期限</string>
+    <string name="security_code">セキュリティコード</string>
+    <string name="label_holder_name">カード名義人</string>
+
+    <!--hint-->
+    <string name="expiration_date_month_hint">月（MM）</string>
+    <string name="expiration_date_year_hint">年（YY）</string>
+    <string name="security_code_hint">001</string>
+    <string name="label_holder_name_hint">TARO YAMADA</string>
+
+    <!--button-->
+    <string name="credit_card_registration">クレジットカードを登録</string>
+
+    <!--error-->
+    <string name="card_number_no_input_message">カード番号が指定されていません</string>
+    <string name="expiration_date_month_no_input_message">有効期限（月）が指定されていません</string>
+    <string name="expiration_date_year_no_input_message">有効期限（年）が指定されていません</string>
+    <string name="security_code_no_input_message">セキュリティコードが指定されていません</string>
+    <string name="label_holder_name_no_input_message">カード名義人が指定されていません</string>
+
+</resources>
