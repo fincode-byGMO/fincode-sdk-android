@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -8,8 +12,13 @@
         android:orientation="vertical">
 
         <!--カード番号-->
-        <include layout="@layout/card_number_input_field_vertical"/>
+<!--        <include layout="@layout/card_number_input_field_vertical"/>-->
         <!--有効期限-->
+        <views.CardNumberInputFieldView
+            android:id="@+id/CardNumberInputField"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <include layout="@layout/expiration_date_input_field_vertical"/>
         <!--セキュリティコード-->
         <include layout="@layout/security_code_input_field_vertical"/>
@@ -20,4 +29,4 @@
 
     </LinearLayout>
 
-</layout>
+</LinearLayout>
