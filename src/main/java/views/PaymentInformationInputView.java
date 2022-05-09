@@ -14,6 +14,7 @@ import jp.gmopg.japanpost.fincodesdk.databinding.CardNumberInputFieldVerticalBin
 public class PaymentInformationInputView extends ConstraintLayout {
 
     public CardNumberInputFieldVerticalBinding cardNumberBinding;
+    public CardNumberInputFieldView cardNumberInputFieldView;
 
     public PaymentInformationInputView(@NonNull Context context) {
         super(context);
@@ -33,16 +34,5 @@ public class PaymentInformationInputView extends ConstraintLayout {
         View.inflate(getContext(), R.layout.payment_information_input_vertical, this);
 
 //        View view = View.inflate(getContext(), R.layout.card_number_input_field_vertical, this);
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        cardNumberBinding = CardNumberInputFieldVerticalBinding.inflate(inflater);
-        OnClickCardNumber();
     }
-
-    public void OnClickCardNumber(){
-        if (cardNumberBinding.cardNumber.getText().length() == 0)
-            cardNumberBinding.cardNumber.setBackgroundResource(R.drawable.shape_input_field_error);
-            cardNumberBinding.cardNumberError.setVisibility(VISIBLE);
-    }
-
-
 }
