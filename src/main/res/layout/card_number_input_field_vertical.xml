@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <EditText
+            <views.CardNumberTextView
                 android:id="@+id/cardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,18 @@
         android:text="@string/card_number_no_input_message"
         android:textSize="12sp"
         android:textColor="#FF0000"
-        android:visibility="invisible"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/cardNumberFormatError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/card_number_no_format_message"
+        android:textSize="12sp"
+        android:textColor="#FF0000"
+        android:visibility="gone"
         tools:ignore="MissingConstraints" />
 
     </LinearLayout>
