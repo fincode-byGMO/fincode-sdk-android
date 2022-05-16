@@ -24,6 +24,7 @@
 
     <!--error-->
     <string name="card_number_no_input_message">カード番号が指定されていません</string>
+    <string name="card_number_no_format_message">カード番号の書式が正しくありません</string>
     <string name="expiration_date_month_no_input_message">有効期限（月）が指定されていません</string>
     <string name="expiration_date_year_no_input_message">有効期限（年）が指定されていません</string>
     <string name="security_code_no_input_message">セキュリティコードが指定されていません</string>
