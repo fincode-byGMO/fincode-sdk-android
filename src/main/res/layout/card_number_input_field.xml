@@ -1,0 +1,87 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="jp.gmopg.japanpost.fincodesdk.util.CardNumber" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:id="@+id/cardNumberItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/card_number"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/cardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/shape_input_field"
+                    android:hint="@string/card_number"
+                    android:inputType="number"
+                    android:text="@{viewModel.cardNumber}"
+                    android:padding="10dp"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/cardImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:layout_alignEnd="@+id/cardNumber"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
+                    android:src="@drawable/jcb" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jcb"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cardNumberError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/card_number_no_input_message"
+            android:textSize="12sp"
+            android:textColor="#FF0000"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/cardNumberFormatError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/card_number_no_format_message"
+            android:textSize="12sp"
+            android:textColor="#FF0000"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</layout>

@@ -1,5 +1,6 @@
 package views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.databinding.CardNumberInputFieldVerticalBinding;
 
+@SuppressLint("AppCompatCustomView")
 public class CardNumberTextView extends EditText {
 
     public CardNumberInputFieldView cardNumberInputFieldView;
@@ -69,45 +71,45 @@ public class CardNumberTextView extends EditText {
         return value.toString().replace(" ", "");
     }
 
-    public String getWithSpace() {
-        Editable value = this.getText();
-
-        if(value == null || value.toString().isEmpty()) { return ""; }
-
-        String noSpaceValue = value.toString().replace(" ", "");
-        // 先頭文字によって画像を変更
-        setImageView(noSpaceValue);
-        focusOutCount();
-
-        if (cardBrandType == CardNumberInputFieldView.CardBrandType.DINERS){
-            CardNumberDiners(noSpaceValue);
-        } else if (cardBrandType == CardNumberInputFieldView.CardBrandType.AMEX){
-            CardNumberAmex(noSpaceValue);
-        } else {
-            CardNumberOther(noSpaceValue);
-        }
-
-        StringJoiner sj = new StringJoiner(" ");
-
-        for (String s : strarray)
-        {
-            sj.add(s);
-        }
-
-        try {
-            // 19桁
-            focusInOut = false;
-            return sj.toString();
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
+//    public String getWithSpace() {
+//        Editable value = this.getText();
+//
+//        if(value == null || value.toString().isEmpty()) { return ""; }
+//
+//        String noSpaceValue = value.toString().replace(" ", "");
+//        // 先頭文字によって画像を変更
+//        setImageView(noSpaceValue);
+//        focusOutCount();
+//
+//        if (cardBrandType == CardNumberInputFieldView.CardBrandType.DINERS){
+//            CardNumberDiners(noSpaceValue);
+//        } else if (cardBrandType == CardNumberInputFieldView.CardBrandType.AMEX){
+//            CardNumberAmex(noSpaceValue);
+//        } else {
+//            CardNumberOther(noSpaceValue);
+//        }
+//
+//        StringJoiner sj = new StringJoiner(" ");
+//
+//        for (String s : strarray)
+//        {
+//            sj.add(s);
+//        }
+//
+//        try {
+//            // 19桁
+//            focusInOut = false;
+//            return sj.toString();
+//        } catch (NumberFormatException e) {
+//            return null;
+//        }
+//    }
 
     @Override
     public void onEditorAction(int actionCode) {
         // ソフトフェアキーボードで入力確定した場合に処理される
         if(actionCode == EditorInfo.IME_ACTION_NEXT) {
-            this.setText(getWithSpace());
+//            this.setText(getWithSpace());
         }
         super.onEditorAction(actionCode);
     }
@@ -118,28 +120,26 @@ public class CardNumberTextView extends EditText {
             // 他Viewから自身にフォーカスが移動した場合のみ処理される
             focusInCount();
             this.setText(getWithoutSpace());
-        } else {
-            focusOutCount();
-            this.setText(getWithSpace());
+//        } else {
+//            focusOutCount();
+//            this.setText(getWithSpace());
         }
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
-        if(!this.hasFocus()) {
-            focusInOut = false;
-            return;
-        }
-
-        String value = this.getWithoutSpace(text);
-        if(sizeCount < value.length()) {
-            StringBuilder sb = new StringBuilder(value);
-            sb.delete(start, start + lengthAfter);
-            setText(sb.toString());
-            setSelection(start);
-        }
-        focusInOut = true;
+//        if(!this.hasFocus()) {
+//            return;
+//        }
+//
+//        String value = this.getWithoutSpace(text);
+//        if(sizeCount < value.length()) {
+//            StringBuilder sb = new StringBuilder(value);
+//            sb.delete(start, start + lengthAfter);
+//            setText(sb.toString());
+//            setSelection(start);
+//        }
     }
 
     private void CardNumberOther(String noSpaceValue) {
