@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="jp.gmopg.japanpost.fincodesdk.util.CardNumber" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/card_number"
-            android:textSize="14sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="14sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <views.CardNumberTextView
+                <EditText
                     android:id="@+id/cardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -41,9 +40,9 @@
                     android:background="@drawable/shape_input_field"
                     android:hint="@string/card_number"
                     android:inputType="number"
+                    android:text="@{viewModel.cardNumber}"
                     android:padding="10dp"
-                    android:textSize="14sp"
-                    tools:ignore="MissingConstraints" />
+                    android:textSize="14sp"/>
 
                 <ImageView
                     android:id="@+id/cardImage"
@@ -72,8 +71,7 @@
             android:text="@string/card_number_no_input_message"
             android:textSize="12sp"
             android:textColor="#FF0000"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints" />
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/cardNumberFormatError"
@@ -83,9 +81,7 @@
             android:text="@string/card_number_no_format_message"
             android:textSize="12sp"
             android:textColor="#FF0000"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints" />
+            android:visibility="gone"/>
 
     </LinearLayout>
-
-</merge >
+</layout>
