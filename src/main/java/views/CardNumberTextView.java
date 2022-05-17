@@ -12,6 +12,7 @@ import android.widget.EditText;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
+import androidx.databinding.InverseMethod;
 import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.databinding.CardNumberInputFieldVerticalBinding;
 
@@ -24,6 +25,8 @@ public class CardNumberTextView extends EditText {
     private boolean focusInOut = true;
 
     public CardNumberInputFieldVerticalBinding cardNumberBinding;
+
+    private String cardNumber;
 
     private String oneCharacters;
     private String twoCharacters;

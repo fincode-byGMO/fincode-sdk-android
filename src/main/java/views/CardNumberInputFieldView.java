@@ -1,29 +1,20 @@
 package views;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.StringJoiner;
-import java.util.regex.Pattern;
-
 import jp.gmopg.japanpost.fincodesdk.R;
-import jp.gmopg.japanpost.fincodesdk.databinding.CardNumberInputFieldVerticalBinding;
+import jp.gmopg.japanpost.fincodesdk.databinding.CardNumberInputFieldBinding;
+import jp.gmopg.japanpost.fincodesdk.util.CardNumberViewModel;
 
 public class CardNumberInputFieldView extends LinearLayout {
 
-//    public CardNumberInputFieldVerticalBinding cardNumberBinding;
+    public CardNumberInputFieldBinding cardNumberBinding;
     private CardNumberTextView cardNumberTextView;
 
     private String cardNumber;
@@ -63,9 +54,9 @@ public class CardNumberInputFieldView extends LinearLayout {
 
         cardNumberTextView = new CardNumberTextView(getContext());
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.card_number_input_field_layout, this, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.card_number_input_field, this, false);
         addView(view);
-//        cardNumberBinding = CardNumberInputFieldVerticalBinding.inflate(LayoutInflater.from(getContext()), this);
+        cardNumberBinding = CardNumberInputFieldBinding.inflate(LayoutInflater.from(getContext()), this);
 
 //        cardNumberBinding.cardNumber.addTextChangedListener(
 //            new TextWatcher() {
@@ -186,24 +177,29 @@ public class CardNumberInputFieldView extends LinearLayout {
 //        );
     }
 
-    public void CardNumberInputView() {
-        this.cardNumber = cardNumber;
+    public void onClick(View view) {
+        cardNumber = view.toString().replace(" ", "");
+    }
+
+    public String getCardNumber() {
+
+        return cardNumber;
     }
 
     private String getWithoutSpace(CharSequence value) {
         return value.toString().replace(" ", "");
     }
 
-    @Override
-    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        if(focused && direction != 0 ) {
-            // 他Viewから自身にフォーカスが移動した場合のみ処理される
-            focusInCount();
-        } else {
-            focusOutCount();
-        }
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
-    }
+//    @Override
+//    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+//        if(focused && direction != 0 ) {
+//            // 他Viewから自身にフォーカスが移動した場合のみ処理される
+//            focusInCount();
+//        } else {
+//            focusOutCount();
+//        }
+//        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+//    }
 
     private void CardNumberOther(String noSpaceValue) {
         oneCharacters = noSpaceValue.substring(0, 4);
