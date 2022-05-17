@@ -12,12 +12,12 @@
         android:orientation="vertical">
 
         <!--カード番号-->
-<!--        <include layout="@layout/card_number_input_field_vertical"/>-->
+        <include layout="@layout/card_number_input_field"/>
         <!--有効期限-->
-        <views.CardNumberInputFieldView
-            android:id="@+id/CardNumberInputField"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
+<!--        <views.CardNumberInputFieldView-->
+<!--            android:id="@+id/CardNumberInputField"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp" />-->
 
         <include layout="@layout/expiration_date_input_field_vertical"/>
         <!--セキュリティコード-->

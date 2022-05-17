@@ -1,8 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
+            name="converter"
+            type="jp.gmopg.japanpost.fincodesdk.util.Converter" />
+
+        <variable
             name="viewModel"
-            type="jp.gmopg.japanpost.fincodesdk.util.CardNumber" />
+            type="jp.gmopg.japanpost.fincodesdk.util.CardNumberViewModel" />
     </data>
 
     <LinearLayout
@@ -40,7 +44,7 @@
                     android:background="@drawable/shape_input_field"
                     android:hint="@string/card_number"
                     android:inputType="number"
-                    android:text="@{viewModel.cardNumber}"
+                    android:text="@={viewModel.dateToString(viewModel.formText)}"
                     android:padding="10dp"
                     android:textSize="14sp"/>
 
