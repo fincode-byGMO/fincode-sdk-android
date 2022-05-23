@@ -12,6 +12,7 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     }
 
     private String cardNumber = "";
+    private String expire = "";
 
     @Bindable
     public String getCardNumber() {
@@ -23,4 +24,13 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
         notifyPropertyChanged(BR.cardNumber);
     }
 
+    @Bindable
+    public String getExpire() {
+        return this.expire;
+    }
+
+    public void setExpire(String value) {
+        this.expire = value;
+        notifyPropertyChanged(BR.expire);
+    }
 }
