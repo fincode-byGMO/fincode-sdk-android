@@ -1,0 +1,33 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <!--カード番号-->
+        <include layout="@layout/fincode_card_no_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
+
+        <!--有効期限-->
+        <!--        <views.CardNumberInputFieldView-->
+        <!--            android:id="@+id/CardNumberInputField"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="100dp" />-->
+
+        <include layout="@layout/expiration_date_input_field_vertical"/>
+        <!--セキュリティコード-->
+        <include layout="@layout/security_code_input_field_vertical"/>
+        <!--カード名義人-->
+        <include layout="@layout/label_holder_name_input_field_vertical"/>
+        <!--クレジットカード登録ボタン-->
+        <include layout="@layout/credit_card_registration_button_vertical" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
+
+    </LinearLayout>
+</layout>

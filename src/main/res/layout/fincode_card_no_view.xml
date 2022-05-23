@@ -1,12 +1,11 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-            name="converter"
-            type="jp.gmopg.japanpost.fincodesdk.util.Converter" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <variable
-            name="viewModel"
-            type="jp.gmopg.japanpost.fincodesdk.util.CardNumberViewModel" />
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.converter.CardNoConverter"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.util.CardBrandType"/>
     </data>
 
     <LinearLayout
@@ -44,7 +43,7 @@
                     android:background="@drawable/shape_input_field"
                     android:hint="@string/card_number"
                     android:inputType="number"
-                    android:text="@={viewModel.dateToString(viewModel.formText)}"
+                    android:text="@={CardNoConverter.withSpace(dataViewModel.cardNumber)}"
                     android:padding="10dp"
                     android:textSize="14sp"/>
 
@@ -53,10 +52,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25sp"
                     android:layout_alignEnd="@+id/cardNumber"
-                    android:layout_marginEnd="5dp"
                     android:layout_centerVertical="true"
-                    android:visibility="invisible"
-                    android:src="@drawable/jcb" />
+                    android:layout_marginEnd="5dp"
+                    android:src="@{CardBrandType.type(dataViewModel.cardNumber).getImage()}"
+                    android:visibility="invisible" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/cardImage"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="25sp"-->
+<!--                    android:layout_alignEnd="@+id/cardNumber"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginEnd="5dp"-->
+<!--                    android:src="@drawable/jcb"-->
+<!--                    android:visibility="invisible" />-->
             </RelativeLayout>
 
             <ImageView
