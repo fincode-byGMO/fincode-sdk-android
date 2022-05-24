@@ -1,11 +1,9 @@
-package jp.gmopg.japanpost.fincodesdk.util;
+package jp.gmopg.japanpost.fincodesdk.enumeration;
 
-import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
-import androidx.core.content.res.ResourcesCompat;
-import androidx.lifecycle.ViewModel;
 import jp.gmopg.japanpost.fincodesdk.R;
+import jp.gmopg.japanpost.fincodesdk.util.StringUtil;
 
 /**
  * Created by a.nakajima on 2022/05/19.
@@ -28,19 +26,22 @@ public enum CardBrandType{
     }
 
     public static CardBrandType type(String number){
-        if (Pattern.compile(VISA.regex).matcher(number).matches()) {
+        if(number == null) { return NONE; }
+
+        String withOutSpace = number.replace(" ", "");
+        if (Pattern.compile(VISA.regex).matcher(withOutSpace).matches()) {
             return VISA;
         }
-        if (Pattern.compile(MASTER.regex).matcher(number).matches()) {
+        if (Pattern.compile(MASTER.regex).matcher(withOutSpace).matches()) {
             return MASTER;
         }
-        if (Pattern.compile(JCB.regex).matcher(number).matches()) {
+        if (Pattern.compile(JCB.regex).matcher(withOutSpace).matches()) {
             return JCB;
         }
-        if (Pattern.compile(DINERS.regex).matcher(number).matches()) {
+        if (Pattern.compile(DINERS.regex).matcher(withOutSpace).matches()) {
             return DINERS;
         }
-        if (Pattern.compile(AMEX.regex).matcher(number).matches()) {
+        if (Pattern.compile(AMEX.regex).matcher(withOutSpace).matches()) {
             return AMEX;
         }
         return NONE;
@@ -65,7 +66,7 @@ public enum CardBrandType{
         }
     }
 
-    public int digits() {
+    public int digitsWithOutSpace() {
         switch (this) {
             case DINERS:
                 return 14;
@@ -77,6 +78,21 @@ public enum CardBrandType{
             case NONE:
             default:
                 return 16;
+        }
+    }
+
+    public int digitsWithSpace() {
+        switch (this) {
+            case DINERS:
+                return 16;
+            case AMEX:
+                return 17;
+            case VISA:
+            case MASTER:
+            case JCB:
+            case NONE:
+            default:
+                return 19;
         }
     }
 

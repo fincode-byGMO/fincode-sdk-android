@@ -3,7 +3,7 @@ package jp.gmopg.japanpost.fincodesdk.util;
 /**
  * Created by a.nakajima on 2022/05/19.
  */
-class StringUtil {
+public class StringUtil {
 
     public static String allFourDelimit(String value) {
         if(value.length() != 16) { return value; }

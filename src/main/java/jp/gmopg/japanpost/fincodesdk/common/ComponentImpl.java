@@ -1,5 +1,7 @@
 package jp.gmopg.japanpost.fincodesdk.common;
 
+// TODO Delete
+
 /**
  * Created by a.nakajima on 2022/05/19.
  */
@@ -14,7 +16,7 @@ public interface ComponentImpl {
     // バリデーション 表示クリア
     void clear();
 
-    /// 見出しの表示・非表示
+    // 見出しの表示・非表示
     void headingHidden(boolean value);
 
     // 活性・非活性
