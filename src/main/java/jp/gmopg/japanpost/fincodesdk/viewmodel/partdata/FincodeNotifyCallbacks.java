@@ -1,4 +1,4 @@
-package jp.gmopg.japanpost.fincodesdk.viewmodel;
+package jp.gmopg.japanpost.fincodesdk.viewmodel.partdata;
 
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 /**
  * Created by a.nakajima on 2022/05/22.
  */
-class FincodeNotifyCallbacks extends ViewModel implements Observable {
+public class FincodeNotifyCallbacks extends ViewModel implements Observable {
 
     protected PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
 
@@ -34,7 +34,7 @@ class FincodeNotifyCallbacks extends ViewModel implements Observable {
     /**
      * Notifies observers that all properties of this instance have changed.
      */
-    void notifyChange() {
+    protected void notifyChange() {
         callbacks.notifyCallbacks(this, 0, null);
     }
 
@@ -45,7 +45,7 @@ class FincodeNotifyCallbacks extends ViewModel implements Observable {
      *
      * @param fieldId The generated BR id for the Bindable field.
      */
-    void notifyPropertyChanged(int fieldId) {
+    protected void notifyPropertyChanged(int fieldId) {
         callbacks.notifyCallbacks(this, fieldId, null);
     }
 }

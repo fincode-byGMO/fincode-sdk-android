@@ -1,0 +1,68 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/expirationDateItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/expiration_date"
+            android:textSize="14sp"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@+id/expirationDateItem"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/expireMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="@string/expiration_date_month_hint"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:background="@{dataViewModel.expirePart.isExpireError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                app:viewModel="@{dataViewModel}"
+                app:partsType="@{PartsType.EXPIRE}"
+                app:selectedBorder="@{@drawable/frame_border_selected}"/>
+
+            <EditText
+                android:id="@+id/expireYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/frame_border_default"
+                android:ems="10"
+                android:hint="@string/expiration_date_year_hint"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:padding="5dp"
+                android:layout_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/expireMonth"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
