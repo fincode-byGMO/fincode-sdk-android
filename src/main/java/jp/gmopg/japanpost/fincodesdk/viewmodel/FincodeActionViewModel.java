@@ -1,5 +1,7 @@
 package jp.gmopg.japanpost.fincodesdk.viewmodel;
 
+import android.view.View;
+
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -7,7 +9,15 @@ import androidx.lifecycle.ViewModel;
  */
 public class FincodeActionViewModel {
 
-    public void execute() {
+    public void execute(View view) {
         //FincodeViewModelHolder.getInstance().getDataViewModel().setCardNumber("★");
+    }
+
+    public void onTextChangedForCardNo(CharSequence s, int start, int before, int count) {
+
+    }
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
     }
 }

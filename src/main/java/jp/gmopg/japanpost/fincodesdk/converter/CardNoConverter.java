@@ -1,9 +1,9 @@
 package jp.gmopg.japanpost.fincodesdk.converter;
 
-import android.widget.EditText;
-
 import androidx.databinding.InverseMethod;
-import jp.gmopg.japanpost.fincodesdk.util.CardBrandType;
+import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
+
+// TODO Delete
 
 /**
  * Created by a.nakajima on 2022/05/22.

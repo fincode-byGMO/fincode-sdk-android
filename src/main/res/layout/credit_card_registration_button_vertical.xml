@@ -21,7 +21,7 @@
             android:padding="10dp"
             android:background="@drawable/credit_card_registration_button"
             tools:ignore="MissingConstraints"
-            android:onClick="@{() -> actionViewModel.execute()}"/>
+            android:onClick="@{actionViewModel.execute}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
