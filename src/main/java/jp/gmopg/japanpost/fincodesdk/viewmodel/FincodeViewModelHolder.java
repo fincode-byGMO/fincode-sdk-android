@@ -6,6 +6,7 @@ package jp.gmopg.japanpost.fincodesdk.viewmodel;
 public class FincodeViewModelHolder {
 
     private static FincodeViewModelHolder fincodeViewModelHolder;
+
     private FincodeActionViewModel action = new FincodeActionViewModel();
     private FincodeDataViewModel data = new FincodeDataViewModel();
 

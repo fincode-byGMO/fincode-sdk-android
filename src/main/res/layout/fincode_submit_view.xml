@@ -19,9 +19,9 @@
             android:text="@string/credit_card_registration"
             android:textColor="#ffffff"
             android:padding="10dp"
-            android:background="@drawable/credit_card_registration_button"
+            android:background="@drawable/submit_button"
             tools:ignore="MissingConstraints"
-            android:onClick="@{actionViewModel.execute}"/>
+            android:onClick="@{actionViewModel::execute}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

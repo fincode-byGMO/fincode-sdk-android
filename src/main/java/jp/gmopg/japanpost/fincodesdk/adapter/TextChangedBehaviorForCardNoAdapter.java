@@ -13,17 +13,17 @@ import jp.gmopg.japanpost.fincodesdk.util.EditTextUtil;
 /**
  * Created by a.nakajima on 2022/05/23.
  */
-public class DynamicLengthOfInputAdapter {
+public class TextChangedBehaviorForCardNoAdapter {
 
     // Model --> View
-    @BindingAdapter("dynamicLengthOfInput")
-    public static void setDynamicLengthOfInput(EditText view, String oldValue, String newValue) {
+    @BindingAdapter("dynamicLength")
+    public static void setTextChangedBehaviorForCardNo(EditText view, String oldValue, String newValue) {
         // do nothing
     }
 
     // View --> Model
-    @InverseBindingAdapter(attribute = "dynamicLengthOfInput")
-    public static String getDynamicLengthOfInput(EditText view) {
+    @InverseBindingAdapter(attribute = "dynamicLength")
+    public static String getTextChangedBehaviorForCardNo(EditText view) {
         Editable editable = view.getText();
         if(editable != null) {
             CardBrandType type = CardBrandType.type(editable.toString());
@@ -33,7 +33,7 @@ public class DynamicLengthOfInputAdapter {
     }
 
     // Set a change trigger
-    @BindingAdapter("dynamicLengthOfInputAttrChanged")
+    @BindingAdapter("dynamicLengthAttrChanged")
     public static void setListeners(EditText view, final InverseBindingListener attrChange) {
         view.addTextChangedListener(new TextWatcher() {
             @Override
