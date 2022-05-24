@@ -4,7 +4,6 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
-        <import type="jp.gmopg.japanpost.fincodesdk.converter.CardNoConverter"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
     </data>
@@ -35,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <!-- Required attributes [app:viewModel, app:partsType] -->
+                <!-- Required attributes [app:viewModelForCardNo, app:partsTypeForCardNo, selectedBorderForCardNo] -->
                 <!-- Unique attributes of CardNo [app:dynamicLengthOfInput, app:dynamicLengthOfFocusOut] -->
                 <EditText
                     android:id="@+id/cardNumber"
@@ -43,15 +42,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/shape_input_field"
                     android:hint="@string/card_number"
                     android:inputType="number"
-                    app:viewModel="@{dataViewModel}"
-                    app:partsType="@{PartsType.CARD_NUMBER}"
-                    app:dynamicLengthOfInput="@={dataViewModel.cardNumber}"
-                    app:dynamicLengthOfFocusOut="@{true}"
                     android:padding="10dp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:background="@{dataViewModel.cardNoPart.isCardNoError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    app:viewModelForCardNo="@{dataViewModel}"
+                    app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
+                    app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
+                    app:dynamicLength="@={dataViewModel.cardNoPart.cardNo}"/>
 
                 <ImageView
                     android:id="@+id/cardImage"
@@ -60,7 +59,7 @@
                     android:layout_alignEnd="@+id/cardNumber"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
-                    app:imageResource="@{CardBrandType.type(dataViewModel.cardNumber).getImage()}"/>
+                    app:imageResource="@{CardBrandType.type(dataViewModel.cardNoPart.cardNo).getImage()}"/>
             </RelativeLayout>
 
             <ImageView

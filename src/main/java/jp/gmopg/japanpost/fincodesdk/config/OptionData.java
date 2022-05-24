@@ -41,6 +41,7 @@ public class OptionData {
         return  optionData;
     }
 
+    // TODO 以下を削除する
     // カスタム属性を利用する場合は以下を活かす
 //    public OptionData(Context context, AttributeSet attrs){
 //        isHeadingVisibility = getAttrsBoolean(context, attrs, R.styleable.FincodeSetting_fincodeHeadingVisibility, true);

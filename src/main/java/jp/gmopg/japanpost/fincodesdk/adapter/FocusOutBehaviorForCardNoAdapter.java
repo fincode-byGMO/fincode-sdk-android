@@ -1,18 +1,22 @@
 package jp.gmopg.japanpost.fincodesdk.adapter;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.databinding.BindingAdapter;
 import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
+import jp.gmopg.japanpost.fincodesdk.enumeration.PartsType;
 import jp.gmopg.japanpost.fincodesdk.util.EditTextUtil;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
 /**
  * Created by fincode on 2022/05/24.
  */
-public class DynamicLengthOfFocusOutAdapter {
-    @BindingAdapter("dynamicLengthOfFocusOut")
-    public static void setDynamicLengthOfFocusOut(EditText view, boolean value) {
+public class FocusOutBehaviorForCardNoAdapter {
+
+    @BindingAdapter(value={"viewModelForCardNo", "partsTypeForCardNo", "selectedBorderForCardNo"})
+    public static void setFocusOutBehaviorForCardNo(EditText view, FincodeDataViewModel dataViewModel, PartsType partsType, Drawable drawable) {
         view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -20,12 +24,17 @@ public class DynamicLengthOfFocusOutAdapter {
                 CardBrandType type = CardBrandType.type(str);
                 if(!hasFocus) {
                     // focus out
+                    // set max length
                     EditTextUtil.setMaxLength(view, type.digitsWithSpace());
                     view.setText(type.delimit(str));
+                    // do validate
+                    partsType.doValidate(dataViewModel);
                 } else {
                     // focus in
                     EditTextUtil.setMaxLength(view, type.digitsWithOutSpace());
                     view.setText(str.replace(" ", ""));
+                    // set selected border
+                    view.setBackground(drawable);
                 }
             }
         });

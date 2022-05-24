@@ -10,14 +10,6 @@ import androidx.lifecycle.ViewModel;
 public class FincodeActionViewModel {
 
     public void execute(View view) {
-        //FincodeViewModelHolder.getInstance().getDataViewModel().setCardNumber("★");
-    }
-
-    public void onTextChangedForCardNo(CharSequence s, int start, int before, int count) {
-
-    }
-
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        // TODO お支払い・カード登録・カード更新のボタン タッチ時の処理を実装する
     }
 }
