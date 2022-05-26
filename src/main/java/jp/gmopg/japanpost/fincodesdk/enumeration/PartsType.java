@@ -1,7 +1,9 @@
 package jp.gmopg.japanpost.fincodesdk.enumeration;
 
+import jp.gmopg.japanpost.fincodesdk.util.StringUtil;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeCardNoValidatier;
-import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireMonthValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireYearValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeHolderNameValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeSecurityCodeValidatier;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
@@ -11,7 +13,8 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public enum PartsType {
     CARD_NUMBER,
-    EXPIRE,
+    EXPIRE_MONTH,
+    EXPIRE_YEAR,
     SECURITY_CODE,
     SUBMIT,
     HOLDER_NAME,
@@ -23,8 +26,11 @@ public enum PartsType {
             case CARD_NUMBER:
                 FincodeCardNoValidatier.validate(dataViewModel);
                 break;
-            case EXPIRE:
-                FincodeExpireValidatier.validate(dataViewModel);
+            case EXPIRE_MONTH:
+                FincodeExpireMonthValidatier.validate(dataViewModel);
+                break;
+            case EXPIRE_YEAR:
+                FincodeExpireYearValidatier.validate(dataViewModel);
                 break;
             case SECURITY_CODE:
                 FincodeSecurityCodeValidatier.validate(dataViewModel);
@@ -37,6 +43,17 @@ public enum PartsType {
             case PAY_TIMES:
                 // do nothing
                 break;
+        }
+    }
+
+    public void doZeroPrepend(FincodeDataViewModel dataViewModel) {
+        String zeroPadding = "";
+        if (this == PartsType.EXPIRE_MONTH) {
+            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expirePart.getExpireMonth());
+            dataViewModel.expirePart.setExpireMonth(zeroPadding);
+        } else if (this == PartsType.EXPIRE_YEAR) {
+            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expirePart.getExpireYear());
+            dataViewModel.expirePart.setExpireYear(zeroPadding);
         }
     }
 }
