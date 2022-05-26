@@ -8,26 +8,59 @@ import jp.gmopg.japanpost.fincodesdk.BR;
  */
 public class FincodeExpirePart extends FincodeNotifyCallbacks {
 
-    private String expire = "";
-    private boolean isExpireError = false;
+    private String expireMonth = "";
+    private String expireYear = "";
+    private boolean isExpireMonthError = false;
+    private boolean isExpireYearError = false;
+    private boolean isExpireMonthFormatError = false;
 
     @Bindable
-    public String getExpire() {
-        return this.expire;
+    public String getExpireMonth() {
+        return this.expireMonth;
     }
 
-    public void setExpire(String value) {
-        this.expire = value;
-        notifyPropertyChanged(BR.expire);
+    public void setExpireMonth(String value) {
+        this.expireMonth = value;
+        notifyPropertyChanged(BR.expireMonth);
     }
 
     @Bindable
-    public boolean getIsExpireError() {
-        return this.isExpireError;
+    public boolean getIsExpireMonthError() {
+        return this.isExpireMonthError;
     }
 
-    public void setIsExpireError(boolean value) {
-        this.isExpireError = value;
-        notifyPropertyChanged(BR.isExpireError);
+    public void setIsExpireMonthError(boolean value) {
+        this.isExpireMonthError = value;
+        notifyPropertyChanged(BR.isExpireMonthError);
+    }
+
+    @Bindable
+    public String getExpireYear() {
+        return expireYear;
+    }
+
+    public void setExpireYear(String expireYear) {
+        this.expireYear = expireYear;
+        notifyPropertyChanged(BR.expireYear);
+    }
+
+    @Bindable
+    public boolean getIsExpireYearError() {
+        return isExpireYearError;
+    }
+
+    public void setIsExpireYearError(boolean expireYearError) {
+        isExpireYearError = expireYearError;
+        notifyPropertyChanged(BR.isExpireYearError);
+    }
+
+    @Bindable
+    public boolean getIsExpireMonthFormatError() {
+        return isExpireMonthFormatError;
+    }
+
+    public void setIsExpireMonthFormatError(boolean expireMonthFormatError) {
+        isExpireMonthFormatError = expireMonthFormatError;
+        notifyPropertyChanged(BR.isExpireMonthFormatError);
     }
 }
