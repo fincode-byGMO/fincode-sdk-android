@@ -11,15 +11,13 @@ public class FincodeExpireMonthValidatier {
 
         if (dataViewModel.expirePart.getExpireMonth().equals("")) {
             dataViewModel.expirePart.setIsExpireMonthError(true);
+            dataViewModel.expirePart.setIsExpireMonthFormatError(false);
         } else {
-            if(dataViewModel.expirePart.getExpireMonth().matches("(^[0][0]{0,2}$)")){// 0or00
-                dataViewModel.expirePart.setIsExpireMonthFormatError(true);
-            } else if (dataViewModel.expirePart.getExpireMonth().matches("(^[1-9]?$)")// 1-9
-                    || dataViewModel.expirePart.getExpireMonth().matches("^[1][0-2]{0,2}$")// 10-12
-                    || dataViewModel.expirePart.getExpireMonth().matches("^[0][1-9]{0,2}$")){// 01-09
+            if(dataViewModel.expirePart.getExpireMonth().matches("(^[1-9]?$)|(^0[1-9]$)|(^1[0-2]$)")){// 0or00
                 dataViewModel.expirePart.setIsExpireMonthError(false);
                 dataViewModel.expirePart.setIsExpireMonthFormatError(false);
             } else {
+                dataViewModel.expirePart.setIsExpireMonthError(false);
                 dataViewModel.expirePart.setIsExpireMonthFormatError(true);
             }
         }
