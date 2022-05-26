@@ -35,4 +35,11 @@ public class StringUtil {
 
         return part1 + " " + part2 + " " + part3;
     }
+
+    public static String setZeroPrepend(String value){
+        if (1 != value.length()){
+            return value;
+        }
+        return String.format("%2s", value).replace(' ', '0');
+    }
 }
