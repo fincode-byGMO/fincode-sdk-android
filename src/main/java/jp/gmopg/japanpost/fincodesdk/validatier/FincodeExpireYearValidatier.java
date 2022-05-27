@@ -8,13 +8,10 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 public class FincodeExpireYearValidatier {
 
     public static void validate(FincodeDataViewModel dataViewModel) {
-
-        if (dataViewModel.expirePart.getExpireYear().equals("")) {
-            dataViewModel.expirePart.setIsExpireYearError(true);
+        if ("".equals(dataViewModel.expireYearPart.getValue())) {
+            dataViewModel.expireYearPart.setIsError(true);
         } else {
-            dataViewModel.expirePart.setIsExpireYearError(false);
+            dataViewModel.expireYearPart.setIsError(false);
         }
-
     }
-
 }

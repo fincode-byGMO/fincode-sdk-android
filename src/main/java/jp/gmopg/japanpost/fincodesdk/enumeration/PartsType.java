@@ -49,11 +49,11 @@ public enum PartsType {
     public void doZeroPrepend(FincodeDataViewModel dataViewModel) {
         String zeroPadding = "";
         if (this == PartsType.EXPIRE_MONTH) {
-            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expirePart.getExpireMonth());
-            dataViewModel.expirePart.setExpireMonth(zeroPadding);
+            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expireMonthPart.getValue());
+            dataViewModel.expireMonthPart.setValue(zeroPadding);
         } else if (this == PartsType.EXPIRE_YEAR) {
-            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expirePart.getExpireYear());
-            dataViewModel.expirePart.setExpireYear(zeroPadding);
+            zeroPadding = StringUtil.setZeroPrepend(dataViewModel.expireYearPart.getValue());
+            dataViewModel.expireYearPart.setValue(zeroPadding);
         }
     }
 }

@@ -2,6 +2,7 @@ package jp.gmopg.japanpost.fincodesdk.views;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
@@ -13,14 +14,14 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 /**
  * Created by a.nakajima on 2022/05/19.
  */
-abstract class FincodeCommon extends ConstraintLayout {
+abstract class FincodeCommon extends LinearLayout {
 
     public OptionData optionData = OptionData.getInstance();
 
     public FincodeCommon(Context context, int layoutId) {
         super(context);
 
-        inflate(context, layoutId, this);
+       // inflate(context, layoutId, this);
 
         LayoutInflater inflater = LayoutInflater.from(context);
         initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),

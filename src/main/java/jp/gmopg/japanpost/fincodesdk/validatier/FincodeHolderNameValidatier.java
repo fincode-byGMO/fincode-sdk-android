@@ -10,6 +10,5 @@ public class FincodeHolderNameValidatier {
     public static void validate(FincodeDataViewModel dataViewModel) {
 
         // TODO 入力チェックをする。入力チェックでエラーの場合は、Errorフラグをtrueにする
-        dataViewModel.holderNamePart.setIsHolderNameError(true);
     }
 }
