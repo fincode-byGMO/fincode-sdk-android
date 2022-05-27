@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
@@ -13,22 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp"
-        >
+        android:padding="@dimen/partPadding">
 
         <TextView
             android:id="@+id/cardNumberItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/card_number"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/titleFontSize"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/textFieldMarginTop">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -41,15 +41,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
+                    android:background="@{dataViewModel.cardNoPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     android:hint="@string/card_number"
                     android:inputType="number"
-                    android:padding="10dp"
-                    android:textSize="14sp"
-                    android:background="@{dataViewModel.cardNoPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
-                    app:viewModelForCardNo="@{dataViewModel}"
+                    android:padding="@dimen/textFieldPadding"
+                    android:textSize="@dimen/textFieldFontSize"
+                    app:dynamicLength="@={dataViewModel.cardNoPart.value}"
                     app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
                     app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
-                    app:dynamicLength="@={dataViewModel.cardNoPart.value}"/>
+                    app:viewModelForCardNo="@{dataViewModel}" />
 
                 <ImageView
                     android:id="@+id/cardImage"
@@ -73,11 +73,14 @@
             android:id="@+id/cardNumberError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/card_number_no_input_message"
-            android:textSize="12sp"
+            tools:visibility="gone"
+            android:paddingTop="@dimen/errorMsgTopPadding"
+            android:textSize="@dimen/errorMsgFontSize"
             android:textColor="#FF0000"
-            android:visibility="gone"/>
+            app:errorVisibile="@{dataViewModel.cardNoPart.isError}"
+            app:formatErrorMsg="@{@string/card_number_no_format_message}"
+            app:noInputErrorMsg="@{@string/card_number_no_input_message}"
+            app:viewModelPart="@{dataViewModel.cardNoPart}"/>
 
     </LinearLayout>
 </layout>

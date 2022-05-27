@@ -13,14 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/partPadding">
 
         <TextView
             android:id="@+id/expirTitleVertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/expiration_date"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/titleFontSize"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,13 +28,14 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/expireMonthVertical"
+                    android:layout_marginTop="@dimen/textFieldMarginTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -42,9 +43,9 @@
                     android:inputType="number"
                     android:nextFocusForward="@id/expireYearVertical"
                     android:maxLength="2"
-                    android:padding="10dp"
+                    android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireMonthPart.value}"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/textFieldFontSize"
                     android:background="@{dataViewModel.expireMonthPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_MONTH}"
@@ -54,9 +55,10 @@
                     android:id="@+id/expireMonthErrorMsgVertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:paddingTop="@dimen/errorMsgTopPadding"
                     android:textColor="#FF0000"
-                    android:textSize="12sp"
+                    tools:visibility="gone"
+                    android:textSize="@dimen/errorMsgFontSize"
                     app:errorVisibile="@{dataViewModel.expireMonthPart.isError}"
                     app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
                     app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
@@ -65,22 +67,23 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/expireYearVertical"
+                    android:layout_marginTop="@dimen/textFieldMarginTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/expiration_date_year_hint"
                     android:inputType="number"
                     android:importantForAutofill="no"
                     android:maxLength="2"
-                    android:padding="10dp"
+                    android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireYearPart.value}"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/textFieldFontSize"
                     android:background="@{dataViewModel.expireYearPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_YEAR}"
@@ -92,7 +95,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FF0000"
                     tools:visibility="gone"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/errorMsgFontSize"
+                    android:paddingTop="@dimen/errorMsgTopPadding"
                     app:errorVisibile="@{dataViewModel.expireYearPart.isError}"
                     app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
                     app:viewModelPart="@{dataViewModel.expireYearPart}"
