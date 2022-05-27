@@ -1,26 +1,25 @@
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
-        <import type="android.view.View" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/partPadding">
 
         <TextView
             android:id="@+id/securityCodeItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/security_code"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/titleFontSize"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +29,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="@dimen/textFieldMarginTop">
 
                 <EditText
                     android:id="@+id/securityCode"
@@ -40,9 +39,9 @@
                     android:hint="@string/security_code_hint"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:padding="10dp"
+                    android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.securityCodePart.value}"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/textFieldFontSize"
                     app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
                     app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
                     app:viewModelForSecurityCode="@{dataViewModel}" />
@@ -62,11 +61,14 @@
                 android:id="@+id/expireMonthNotEnteredError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="@string/security_code_no_input_message"
-                android:textSize="12sp"
+                tools:visibility="gone"
+                android:paddingTop="@dimen/errorMsgTopPadding"
+                android:textSize="@dimen/errorMsgFontSize"
                 android:textColor="#FF0000"
-                android:visibility="@{dataViewModel.securityCodePart.isError ? View.VISIBLE : View.GONE}"/>
+                app:errorVisibile="@{dataViewModel.securityCodePart.isError}"
+                app:viewModelPart="@{dataViewModel.securityCodePart}"
+                app:formatErrorMsg="@{&quot;&quot;}"
+                app:noInputErrorMsg="@{@string/security_code_no_input_message}"/>
 
         </LinearLayout>
 

@@ -1,4 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
     <string name="sdk_app_name">FincodeSDK</string>
 
@@ -32,6 +33,7 @@
     <string name="expiration_date_year_no_input_message">有効期限（年）が指定されていません</string>
     <string name="expiration_date_month_format_error_message">有効期限（月）が無効です</string>
     <string name="security_code_no_input_message">セキュリティコードが指定されていません</string>
+    <string name="label_holder_name_format_error_message">カード名義人が無効です</string>
     <string name="label_holder_name_no_input_message">カード名義人が指定されていません</string>
 
 </resources>
