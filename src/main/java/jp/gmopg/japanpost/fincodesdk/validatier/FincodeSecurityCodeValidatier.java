@@ -10,6 +10,5 @@ public class FincodeSecurityCodeValidatier {
     public static void validate(FincodeDataViewModel dataViewModel) {
 
         // TODO 入力チェックをする。入力チェックでエラーの場合は、Errorフラグをtrueにする
-        dataViewModel.securityCodePart.setIsSecurityCodeError(true);
     }
 }

@@ -6,6 +6,7 @@
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -34,8 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <!-- Required attributes [app:viewModelForCardNo, app:partsTypeForCardNo, selectedBorderForCardNo] -->
-                <!-- Unique attributes of CardNo [app:dynamicLengthOfInput, app:dynamicLengthOfFocusOut] -->
                 <EditText
                     android:id="@+id/cardNumber"
                     android:layout_width="match_parent"
@@ -46,11 +45,11 @@
                     android:inputType="number"
                     android:padding="10dp"
                     android:textSize="14sp"
-                    android:background="@{dataViewModel.cardNoPart.isCardNoError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:background="@{dataViewModel.cardNoPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForCardNo="@{dataViewModel}"
                     app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
                     app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
-                    app:dynamicLength="@={dataViewModel.cardNoPart.cardNo}"/>
+                    app:dynamicLength="@={dataViewModel.cardNoPart.value}"/>
 
                 <ImageView
                     android:id="@+id/cardImage"
@@ -59,7 +58,7 @@
                     android:layout_alignEnd="@+id/cardNumber"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
-                    app:imageResource="@{CardBrandType.type(dataViewModel.cardNoPart.cardNo).getImage()}"/>
+                    app:imageResource="@{CardBrandType.type(dataViewModel.cardNoPart.value).getImage()}"/>
             </RelativeLayout>
 
             <ImageView
@@ -76,16 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/card_number_no_input_message"
-            android:textSize="12sp"
-            android:textColor="#FF0000"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/cardNumberFormatError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/card_number_no_format_message"
             android:textSize="12sp"
             android:textColor="#FF0000"
             android:visibility="gone"/>

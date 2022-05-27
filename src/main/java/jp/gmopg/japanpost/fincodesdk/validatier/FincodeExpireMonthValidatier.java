@@ -8,17 +8,13 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 public class FincodeExpireMonthValidatier {
 
     public static void validate(FincodeDataViewModel dataViewModel) {
-
-        if (dataViewModel.expirePart.getExpireMonth().equals("")) {
-            dataViewModel.expirePart.setIsExpireMonthError(true);
-            dataViewModel.expirePart.setIsExpireMonthFormatError(false);
+        if ("".equals(dataViewModel.expireMonthPart.getValue())) {
+            dataViewModel.expireMonthPart.setIsError(true);
         } else {
-            if(dataViewModel.expirePart.getExpireMonth().matches("(^[1-9]?$)|(^0[1-9]$)|(^1[0-2]$)")){// 0or00
-                dataViewModel.expirePart.setIsExpireMonthError(false);
-                dataViewModel.expirePart.setIsExpireMonthFormatError(false);
+            if(dataViewModel.expireMonthPart.getValue().matches("(^[1-9]?$)|(^0[1-9]$)|(^1[0-2]$)")){
+                dataViewModel.expireMonthPart.setIsError(false);
             } else {
-                dataViewModel.expirePart.setIsExpireMonthError(false);
-                dataViewModel.expirePart.setIsExpireMonthFormatError(true);
+                dataViewModel.expireMonthPart.setIsError(true);
             }
         }
     }

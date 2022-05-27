@@ -16,7 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/expirationDateItem">
 
         <TextView
-            android:id="@+id/expirationDateItem"
+            android:id="@+id/expirTitleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -37,7 +37,7 @@
                 android:background="@drawable/frame_border_default">
 
                 <EditText
-                    android:id="@+id/expireMonth"
+                    android:id="@+id/expireMonthHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -46,9 +46,9 @@
                     android:inputType="number"
                     android:importantForAutofill="no"
                     android:maxLength="2"
-                    android:nextFocusForward="@id/expireYear"
+                    android:nextFocusForward="@id/expireYearHorizontal"
                     android:padding="10dp"
-                    android:text="@={dataViewModel.expirePart.expireMonth}"
+                    android:text="@={dataViewModel.expireMonthPart.value}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:textColor="@android:color/black"/>
 
                 <EditText
-                    android:id="@+id/expireYear"
+                    android:id="@+id/expireYearHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -70,40 +70,40 @@
                     android:importantForAutofill="no"
                     android:maxLength="2"
                     android:padding="10dp"
-                    android:text="@={dataViewModel.expirePart.expireYear}"
+                    android:text="@={dataViewModel.expireYearPart.value}"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/expireMonthNotEnteredError"
+                android:id="@+id/expireErrorMsgHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="@string/expiration_date_month_no_input_message"
                 android:textSize="12sp"
                 android:textColor="#FF0000"
-                android:visibility="@{dataViewModel.expirePart.isExpireMonthError ? View.VISIBLE : View.GONE}"/>
+                android:visibility="@{dataViewModel.expireMonthPart.isError ? View.VISIBLE : View.GONE}"/>
 
-            <TextView
-                android:id="@+id/expireMonthFormatError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="@string/expiration_date_month_format_error_message"
-                android:textSize="12sp"
-                android:textColor="#FF0000"
-                android:visibility="@{dataViewModel.expirePart.isExpireMonthFormatError ? View.VISIBLE : View.GONE}"/>
+<!--            <TextView-->
+<!--                android:id="@+id/expireMonthFormatError"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:text="@string/expiration_date_month_format_error_message"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="#FF0000"-->
+<!--                android:visibility="@{dataViewModel.expireMonthPart.isError ? View.VISIBLE : View.GONE}"/>-->
 
 
-            <TextView
-                android:id="@+id/expireYearNotEnteredError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/expiration_date_year_no_input_message"
-                android:textSize="12sp"
-                android:textColor="#FF0000"
-                android:visibility="@{dataViewModel.expirePart.isExpireYearError ? View.VISIBLE : View.GONE}"/>
+<!--            <TextView-->
+<!--                android:id="@+id/expireYearNotEnteredError"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/expiration_date_year_no_input_message"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="#FF0000"-->
+<!--                android:visibility="@{dataViewModel.expireYearPart.isError ? View.VISIBLE : View.GONE}"/>-->
 
         </LinearLayout>
 
