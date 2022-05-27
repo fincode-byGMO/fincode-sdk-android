@@ -1,33 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/securityCodeItem"
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/security_code"
-        android:textSize="14sp"
-        tools:ignore="MissingConstraints" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <EditText
-        android:id="@+id/securityCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/frame_border_default"
-        android:ems="10"
-        android:hint="@string/security_code_hint"
-        android:inputType="number"
-        android:textSize="14sp"
-        android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/securityCodeItem"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/securityCodeItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/security_code"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/securityCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@{dataViewModel.securityCodePart.isSecurityCodeError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:hint="@string/security_code_hint"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="10dp"
+                    android:text="@={dataViewModel.securityCodePart.securityCode}"
+                    android:textSize="14sp"
+                    app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
+                    app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
+                    app:viewModelForSecurityCode="@{dataViewModel}" />
+
+                <ImageView
+                    android:id="@+id/cardImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/securityCode"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:src="@{dataViewModel.securityCodePart.isSecurityCodeError ? @drawable/ic_cvc_er : @drawable/ic_cvc}"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/expireMonthNotEnteredError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/security_code_no_input_message"
+                android:textSize="12sp"
+                android:textColor="#FF0000"
+                android:visibility="@{dataViewModel.securityCodePart.isSecurityCodeError ? View.VISIBLE : View.GONE}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
