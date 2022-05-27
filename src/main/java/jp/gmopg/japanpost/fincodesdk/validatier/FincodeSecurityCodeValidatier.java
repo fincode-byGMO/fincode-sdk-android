@@ -1,5 +1,6 @@
 package jp.gmopg.japanpost.fincodesdk.validatier;
 
+import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
 /**
@@ -10,6 +11,13 @@ public class FincodeSecurityCodeValidatier {
     public static void validate(FincodeDataViewModel dataViewModel) {
 
         // TODO 入力チェックをする。入力チェックでエラーの場合は、Errorフラグをtrueにする
-        dataViewModel.securityCodePart.setIsSecurityCodeError(true);
+
+        if (dataViewModel.securityCodePart.getSecurityCode().equals("")
+                || CardBrandType.securityCodeLength(dataViewModel.securityCodePart.getSecurityCode())) {
+            dataViewModel.securityCodePart.setIsSecurityCodeError(true);
+        } else {
+            dataViewModel.securityCodePart.setIsSecurityCodeError(false);
+        }
+
     }
 }
