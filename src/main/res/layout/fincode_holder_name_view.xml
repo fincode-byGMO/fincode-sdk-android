@@ -1,34 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/labelHolderNameItem"
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_holder_name"
-        android:textSize="14sp"
-        tools:ignore="MissingConstraints"/>
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <EditText
-        android:id="@+id/labelHolderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:autofillHints="null"
-        android:background="@drawable/frame_border_default"
-        android:ems="10"
-        android:hint="@string/label_holder_name_hint"
-        android:inputType="number"
-        android:padding="5dp"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/labelHolderNameItem"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="10dp" />
+        <TextView
+            android:id="@+id/labelHolderNameItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_holder_name"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/labelHolderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@{dataViewModel.holderNamePart.isHolderNameError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+            android:hint="@string/label_holder_name_hint"
+            android:inputType="textVisiblePassword|textCapCharacters"
+            android:maxLength="50"
+            android:padding="10dp"
+            android:text="@={dataViewModel.holderNamePart.holderName}"
+            android:textSize="14sp"
+            app:partsType="@{PartsType.HOLDER_NAME}"
+            app:selectedBorder="@{@drawable/frame_border_selected}"
+            app:viewModel="@{dataViewModel}" />
+
+        <TextView
+            android:id="@+id/holderNamedError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/label_holder_name_no_input_message"
+            android:textSize="12sp"
+            android:textColor="#FF0000"
+            android:visibility="@{dataViewModel.holderNamePart.isHolderNameError ? View.VISIBLE : View.GONE}"/>
+
+    </LinearLayout>
+
+</layout>
