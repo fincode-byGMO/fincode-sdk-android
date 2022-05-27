@@ -17,7 +17,7 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeBasePart;
  */
 public class ErrorMsgVisibilityAdapter {
 
-    @BindingAdapter(value={"errorVisibile", "viewModelPart", "noInputErrorMsg", "formatErrorMsg"}, requireAll = false)
+    @BindingAdapter(value={"errorVisibile", "viewModelPart", "noInputErrorMsg", "formatErrorMsg"})
     public static void setErrorVisibile(TextView view, boolean isError, FincodeBasePart basePart,
                                         String noInputErrorMsg, String formatErrorMsg) {
         if(isError) {

@@ -14,8 +14,9 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class FocusOutBehaviorForExpireHorizontalAdapter {
 
-    @BindingAdapter(value={"viewModelForExpireHorizontal", "partsTypeForExpireHorizontal", "selectedBorderForExpireHorizontal"})
-    public static void setFocusOutBehaviorForExpireHorizontal(LinearLayout view, FincodeDataViewModel dataViewModel, PartsType partsType, Drawable drawable) {
+    @BindingAdapter(value={"viewModelForExpireHorizontal", "partsTypeForExpireHorizontal", "selectedBorderForExpireHorizontal", "borderView"})
+    public static void setFocusOutBehaviorForExpireHorizontal(EditText view, FincodeDataViewModel dataViewModel,
+                                                              PartsType partsType, Drawable drawable, LinearLayout linearLayout) {
         view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -27,7 +28,7 @@ public class FocusOutBehaviorForExpireHorizontalAdapter {
                 } else {
                     // focus in
                     // set selected border
-                    view.setBackground(drawable);
+                    linearLayout.setBackground(drawable);
                 }
             }
         });
