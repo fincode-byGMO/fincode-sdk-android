@@ -111,6 +111,14 @@ public enum CardBrandType{
         }
     }
 
+    public static boolean cardNumberLength(String value) {
+
+        if (value.matches("^[0-9]{10,16}$")) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean securityCodeLength(String value) {
 
         if (value.matches("^[0-9]{3,4}$")) {
