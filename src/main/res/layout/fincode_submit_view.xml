@@ -5,6 +5,7 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.ButtonPressType"/>
     </data>
 
     <LinearLayout
@@ -16,7 +17,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/credit_card_registration"
+            android:text="@{ButtonPressType.buttonText()}"
             android:textColor="#ffffff"
             android:background="@drawable/submit_button"
             android:onClick="@{actionViewModel::execute}"/>
