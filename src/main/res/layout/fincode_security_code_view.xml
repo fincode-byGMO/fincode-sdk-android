@@ -47,7 +47,7 @@
                     app:viewModelForSecurityCode="@{dataViewModel}" />
 
                 <ImageView
-                    android:id="@+id/cardImage"
+                    android:id="@+id/securityCodeImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/securityCode"
@@ -58,7 +58,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/expireMonthNotEnteredError"
+                android:id="@+id/securityCodeError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:visibility="gone"

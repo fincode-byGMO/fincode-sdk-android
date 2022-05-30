@@ -39,7 +39,7 @@
             app:viewModel="@{dataViewModel}" />
 
         <TextView
-            android:id="@+id/holderNamedError"
+            android:id="@+id/holderNameError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:visibility="gone"
