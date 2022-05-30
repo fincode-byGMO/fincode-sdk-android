@@ -1,5 +1,6 @@
 package jp.gmopg.japanpost.fincodesdk.validatier;
 
+import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
 /**
@@ -8,8 +9,14 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 public class FincodeCardNoValidatier {
 
     public static void validate(FincodeDataViewModel dataViewModel) {
+        String str = dataViewModel.cardNoPart.getValue();
+        CardBrandType type = CardBrandType.type(str);
 
-        // TODO 入力チェックをする。入力チェックでエラーの場合は、Errorフラグをtrueにする
-        dataViewModel.cardNoPart.setIsError(true);
+        if ("".equals(str) || CardBrandType.cardNumberLength(str)
+                || str.length() != type.digitsWithOutSpace()) {
+            dataViewModel.cardNoPart.setIsError(true);
+        } else {
+            dataViewModel.cardNoPart.setIsError(false);
+        }
     }
 }

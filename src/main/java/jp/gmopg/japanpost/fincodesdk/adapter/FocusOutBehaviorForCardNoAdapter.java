@@ -26,9 +26,9 @@ public class FocusOutBehaviorForCardNoAdapter {
                     // focus out
                     // set max length
                     EditTextUtil.setMaxLength(view, type.digitsWithSpace());
-                    view.setText(type.delimit(str));
                     // do validate
                     partsType.doValidate(dataViewModel);
+                    view.setText(type.delimit(str));
                 } else {
                     // focus in
                     EditTextUtil.setMaxLength(view, type.digitsWithOutSpace());
