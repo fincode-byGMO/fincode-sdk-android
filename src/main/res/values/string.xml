@@ -13,12 +13,17 @@
     <string name="expiration_date">有効期限</string>
     <string name="security_code">セキュリティコード</string>
     <string name="label_holder_name">カード名義人</string>
+    <string name="payment_method">お支払い方法</string>
 
     <!--hint-->
     <string name="expiration_date_month_hint">月（MM）</string>
     <string name="expiration_date_year_hint">年（YY）</string>
     <string name="security_code_hint">001</string>
     <string name="label_holder_name_hint">TARO YAMADA</string>
+
+    <!--radio_button-->
+    <string name="one_time_payment">一括</string>
+    <string name="installment_payment">分割</string>
 
     <!--button-->
     <string name="credit_card_registration">クレジットカードを登録</string>

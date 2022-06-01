@@ -5,8 +5,10 @@ import jp.gmopg.japanpost.fincodesdk.validatier.FincodeCardNoValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireMonthValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireYearValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeHolderNameValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodePayTimesValidatier;
 import jp.gmopg.japanpost.fincodesdk.validatier.FincodeSecurityCodeValidatier;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodePayTimesPart;
 
 /**
  * Created by a.nakajima on 2022/05/24.
@@ -38,9 +40,10 @@ public enum PartsType {
             case HOLDER_NAME:
                 FincodeHolderNameValidatier.validate(dataViewModel);
                 break;
+            case PAY_TIMES:
+                FincodePayTimesValidatier.validate(dataViewModel);
             case CARD_NUMBER_SELECT:
             case SUBMIT:
-            case PAY_TIMES:
                 // do nothing
                 break;
         }

@@ -1,0 +1,75 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/partPadding">
+
+        <TextView
+            android:id="@+id/labelHolderNameItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_method"
+            android:textSize="@dimen/titleFontSize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/partPadding">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:viewModelForPayTimes="@{dataViewModel}"
+                app:partsTypeForPayTimes="@{PartsType.PAY_TIMES}">
+
+                <RadioButton
+                    android:id="@+id/oneTimePayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="30dp"
+                    android:buttonTint="@color/submitButtonBackground"
+                    android:checked="true"
+                    android:text="@string/one_time_payment" />
+
+                <RadioButton
+                    android:id="@+id/InstallmentPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="30dp"
+                    android:buttonTint="@color/submitButtonBackground"
+                    android:text="@string/installment_payment"/>
+
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/planets_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/frame_border_default"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:entries="@array/payment_times_array"
+                tools:visibility="@{dataViewModel.payTimesPart.isError ? View.VISIBLE : View.GONE}"
+                app:viewModelForSpinner="@{dataViewModel}"
+                android:selectedItemPosition="@{dataViewModel.payTimesPart.isError ? 0 : 0}"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

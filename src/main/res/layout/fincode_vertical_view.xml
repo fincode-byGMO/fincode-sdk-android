@@ -17,6 +17,7 @@
         <include layout="@layout/fincode_expir_vertical_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
         <include layout="@layout/fincode_security_code_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
         <include layout="@layout/fincode_holder_name_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
+        <include layout="@layout/fincode_pay_times_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
         <include layout="@layout/fincode_submit_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
 
     </LinearLayout>
