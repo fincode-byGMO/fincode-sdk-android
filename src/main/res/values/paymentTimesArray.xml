@@ -11,4 +11,5 @@
         <item>20回</item>
         <item>24回</item>
     </string-array>
+    <string name="payment_times_unit">回</string>
 </resources>
