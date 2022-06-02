@@ -31,9 +31,7 @@
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:viewModelForPayTimes="@{dataViewModel}"
-                app:partsTypeForPayTimes="@{PartsType.PAY_TIMES}">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/oneTimePayment"
@@ -45,7 +43,7 @@
                     android:text="@string/one_time_payment" />
 
                 <RadioButton
-                    android:id="@+id/InstallmentPayment"
+                    android:id="@+id/installmentPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="30dp"
@@ -63,9 +61,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:entries="@array/payment_times_array"
-                tools:visibility="@{dataViewModel.payTimesPart.isError ? View.VISIBLE : View.GONE}"
-                app:viewModelForSpinner="@{dataViewModel}"
-                android:selectedItemPosition="@{dataViewModel.payTimesPart.isError ? 0 : 0}"/>
+                tools:visibility="@{installmentPayment.checked ? View.VISIBLE : View.GONE}"
+                app:viewModelForSpinner="@{dataViewModel}"/>
 
         </LinearLayout>
 
