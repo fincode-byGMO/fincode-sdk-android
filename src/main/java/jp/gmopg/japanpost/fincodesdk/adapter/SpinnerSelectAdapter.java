@@ -7,6 +7,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import androidx.databinding.BindingAdapter;
+import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.enumeration.PartsType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
@@ -17,21 +18,28 @@ public class SpinnerSelectAdapter {
 
     @BindingAdapter(value={"viewModelForSpinner"})
     public static void setSpinnerSelect(Spinner spinner, FincodeDataViewModel dataViewModel) {
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //　アイテムが選択された時
             @Override
-            public void onItemSelected(AdapterView<?> parent,
-                                       View view, int position, long id) {
-                Spinner spinner = (Spinner) parent;
-                String item = (String) spinner.getSelectedItem();
-                dataViewModel.payTimesPart.setValue(item);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Spinner spinner = getSpinner(parent);
+                if(spinner != null && spinner.getSelectedItem() instanceof String) {
+                    String val = (String)spinner.getSelectedItem();
+                    String withoutUnit = val.replace(spinner.getContext().getString(R.string.payment_times_unit), "");
+                    dataViewModel.payTimesPart.setValue(withoutUnit);
+                }
             }
 
-            //　アイテムが選択されなかった
             public void onNothingSelected(AdapterView<?> parent) {
                 // do nothing
             }
         });
+    }
+
+    private static Spinner getSpinner(AdapterView<?> parent) {
+        if(parent instanceof Spinner) {
+           return  (Spinner) parent;
+        }
+        return null;
     }
 }
