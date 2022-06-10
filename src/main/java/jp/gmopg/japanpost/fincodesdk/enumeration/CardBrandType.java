@@ -25,7 +25,7 @@ public enum CardBrandType{
         this.regex = regex;
     }
 
-    public static CardBrandType type(String number){
+    public static CardBrandType typeForNumber(String number){
         if(number == null) { return NONE; }
 
         String withOutSpace = number.replace(" ", "");
@@ -44,6 +44,18 @@ public enum CardBrandType{
         if (Pattern.compile(AMEX.regex).matcher(withOutSpace).matches()) {
             return AMEX;
         }
+        return NONE;
+    }
+
+    public static CardBrandType typeForName(String name){
+        if(name == null || name.isEmpty()) { return NONE; }
+
+        for (CardBrandType i : CardBrandType.values()) {
+            if(i.getBrandChar().equals(name)) {
+                return i;
+            }
+        }
+
         return NONE;
     }
 
@@ -144,5 +156,9 @@ public enum CardBrandType{
             return false;
         }
         return true;
+    }
+
+    public String getBrandChar() {
+        return this.brandChar;
     }
 }

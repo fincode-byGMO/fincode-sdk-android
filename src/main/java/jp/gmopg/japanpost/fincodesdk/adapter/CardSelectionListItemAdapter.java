@@ -11,6 +11,7 @@ import java.util.List;
 
 import androidx.databinding.BindingAdapter;
 import jp.gmopg.japanpost.fincodesdk.entities.CardInfoItem;
+import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
 import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
@@ -19,17 +20,19 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class CardSelectionListItemAdapter {
 
-    @BindingAdapter(value={"viewModelForSpinnerList", "cardInfoList"})
-    public static void setSpinnerSelect(Spinner spinner, FincodeDataViewModel dataViewModel,
-                                        ArrayList<CardInfoItem> cardInfoItems) {
+    @BindingAdapter(value={"viewModelForSelectCardNo", "dataSource"})
+    public static void setSpinnerSelect(Spinner spinner, FincodeDataViewModel viewModel, ArrayList<SelectCardNoItem> cardInfoList) {
 
-        spinner.setAdapter(CardSelectionListAdapter.getAdapter(spinner, cardInfoItems));
+        spinner.setAdapter(new CardSelectionListAdapter(spinner.getContext() , cardInfoList));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CardInfoItem selectCard = cardInfoItems.get(position);
-                dataViewModel.selectCardNoPart.setValue(selectCard.getCardNumber());
+                if(parent.getAdapter() != null && parent.getAdapter() instanceof CardSelectionListAdapter) {
+                    CardSelectionListAdapter adapter = (CardSelectionListAdapter) parent.getAdapter();
+                    viewModel.selectCardNoPart.setValue(adapter.item(position).getCardId());
+                }
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -37,5 +40,4 @@ public class CardSelectionListItemAdapter {
             }
         });
     }
-
 }
