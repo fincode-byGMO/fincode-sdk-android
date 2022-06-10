@@ -26,7 +26,7 @@ public class TextChangedBehaviorForCardNoAdapter {
     public static String getTextChangedBehaviorForCardNo(EditText view) {
         Editable editable = view.getText();
         if(editable != null) {
-            CardBrandType type = CardBrandType.type(editable.toString());
+            CardBrandType type = CardBrandType.typeForNumber(editable.toString());
             EditTextUtil.setMaxLength(view, type.digitsWithOutSpace());
         }
         return view.getText().toString();

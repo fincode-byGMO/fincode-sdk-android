@@ -58,7 +58,7 @@
                     android:layout_alignEnd="@+id/cardNumber"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
-                    app:imageResource="@{CardBrandType.type(dataViewModel.cardNoPart.value).getImage()}"/>
+                    app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"/>
             </RelativeLayout>
 
             <ImageView

@@ -21,7 +21,7 @@ public class FocusOutBehaviorForCardNoAdapter {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 String str = getText(view);
-                CardBrandType type = CardBrandType.type(str);
+                CardBrandType type = CardBrandType.typeForNumber(str);
                 if(!hasFocus) {
                     // focus out
                     // set max length

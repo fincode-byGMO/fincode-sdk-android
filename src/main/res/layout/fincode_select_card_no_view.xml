@@ -4,7 +4,6 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
-        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
     </data>
 
     <LinearLayout
@@ -14,21 +13,17 @@
         android:padding="@dimen/partPadding">
 
         <TextView
-            android:id="@+id/cardNumberItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registered_card"
             android:textSize="@dimen/titleFontSize"/>
 
         <Spinner
-            android:id="@+id/cardSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/payment_times_array"
             android:background="@drawable/frame_border_default"
-            app:viewModelForSpinnerList="@{dataViewModel}"
-            app:cardInfoList="@{dataViewModel.selectCardNoPart.cardInfoItemsList}"
-            />
+            app:viewModelForSelectCardNo="@{dataViewModel}"
+            app:dataSource="@{dataViewModel.selectCardNoPart.selectCardNoList}" />
 
     </LinearLayout>
 

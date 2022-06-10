@@ -10,7 +10,7 @@ public class FincodeCardNoValidatier {
 
     public static void validate(FincodeDataViewModel dataViewModel) {
         String str = dataViewModel.cardNoPart.getValue();
-        CardBrandType type = CardBrandType.type(str);
+        CardBrandType type = CardBrandType.typeForNumber(str);
 
         if ("".equals(str) || CardBrandType.cardNumberLength(str)
                 || str.length() != type.digitsWithOutSpace()) {
