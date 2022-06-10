@@ -1,6 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
@@ -22,12 +21,13 @@
             android:textSize="@dimen/titleFontSize"/>
 
         <Spinner
-            android:id="@+id/sample_spinner_id"
+            android:id="@+id/cardSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/payment_times_array"
             android:background="@drawable/frame_border_default"
             app:viewModelForSpinnerList="@{dataViewModel}"
+            app:cardInfoList="@{dataViewModel.selectCardNoPart.cardInfoItemsList}"
             />
 
     </LinearLayout>

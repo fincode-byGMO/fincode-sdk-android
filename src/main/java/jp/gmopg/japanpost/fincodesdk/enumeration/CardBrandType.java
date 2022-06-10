@@ -66,6 +66,25 @@ public enum CardBrandType{
         }
     }
 
+    public static int getImage(String brandName){
+
+        switch (brandName) {
+            case "VISA":
+                return R.drawable.visa;
+            case "MASTER":
+                return R.drawable.master;
+            case "JCB":
+                return R.drawable.jcb;
+            case "DINERS":
+                return R.drawable.diners;
+            case "AMEX":
+                return R.drawable.amex;
+            case "NONE":
+            default:
+                return -1;
+        }
+    }
+
     public int digitsWithOutSpace() {
         switch (this) {
             case DINERS:
