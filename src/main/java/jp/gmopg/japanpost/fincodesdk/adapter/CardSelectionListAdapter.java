@@ -12,8 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.databinding.DataBindingUtil;
 import jp.gmopg.japanpost.fincodesdk.R;
+import jp.gmopg.japanpost.fincodesdk.databinding.FincodeSelectCardNoCellViewBinding;
 import jp.gmopg.japanpost.fincodesdk.entities.CardInfoItem;
+import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
 import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 
 /**
@@ -21,63 +24,41 @@ import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
  */
 public class CardSelectionListAdapter extends BaseAdapter {
 
-    private LayoutInflater inflater;
-    private int layoutID;
+    private Context context;
+    private ArrayList<SelectCardNoItem> selectCardNoList;
 
-    private static int imageViewId;
-    private static List<Integer> imageIDs;
-    private static List<String> cardInformationList;
-    private static List<String> expirsList;
-    private static List<String> brandTypeList;
-    private static ArrayList<CardInfoItem> cardInfoItemArrayList;
-
-    static class ViewHolder {
-        ImageView imageView;
-        TextView cardNumberView;
-        TextView expirView;
-    }
-
-    CardSelectionListAdapter(Context context,
-                             int itemLayoutId,
-                             ArrayList<CardInfoItem> cardInfoItems){
-
-        inflater = LayoutInflater.from(context);
-        layoutID = itemLayoutId;
-        cardInfoItemArrayList = cardInfoItems;
-        imageIDs = new ArrayList<>();
+    public CardSelectionListAdapter(Context context, ArrayList<SelectCardNoItem> selectCardNoList) {
+        this.context = context;
+        this.selectCardNoList = selectCardNoList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder;
+        FincodeSelectCardNoCellViewBinding binding = null;
         if (convertView == null) {
-            convertView = inflater.inflate(layoutID, null);
-            holder = new ViewHolder();
-
-            holder.imageView = convertView.findViewById(R.id.imageView);
-            holder.cardNumberView = convertView.findViewById(R.id.textView);
-            holder.expirView = convertView.findViewById(R.id.expirText);
-            convertView.setTag(holder);
+            LayoutInflater inflater = LayoutInflater.from(context);
+            binding = DataBindingUtil.inflate(inflater, R.layout.fincode_select_card_no_cell_view, parent, false);
+            binding.getRoot().setTag(binding);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            if(convertView.getTag() instanceof FincodeSelectCardNoCellViewBinding) {
+                binding = (FincodeSelectCardNoCellViewBinding) convertView.getTag();
+            }
         }
-        getImage(position);
-        holder.imageView.setImageResource(imageIDs.get(position));
-        holder.cardNumberView.setText(cardInfoItemArrayList.get(position).getCardNumber());
-        holder.expirView.setText(cardInfoItemArrayList.get(position).getExpire());
 
-        return convertView;
+        binding.setItem(selectCardNoList.get(position));
+
+        return binding.getRoot();
     }
 
     @Override
     public int getCount() {
-        return cardInfoItemArrayList.size();
+        return selectCardNoList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return selectCardNoList.get(position);
     }
 
     @Override
@@ -85,40 +66,7 @@ public class CardSelectionListAdapter extends BaseAdapter {
         return position;
     }
 
-    public static CardSelectionListAdapter getAdapter(Spinner spinner, ArrayList<CardInfoItem> cardInfoItems){
-        return new CardSelectionListAdapter(spinner.getContext(),
-                R.layout.fincode_spinner_selected_item, cardInfoItems);
-    }
-
-    private static void getImage(int position) {
-        imageViewId = CardBrandType.getImage(cardInfoItemArrayList.get(position).getCardBrand());
-        imageIDs.add(position, imageViewId);
-    }
-
-    public static List<String> getCardNumber() {
-        cardInformationList = new ArrayList<>();
-        cardInformationList.add("3500000000000000");
-        cardInformationList.add("4800000000000000");
-        cardInformationList.add("5500000000000000");
-        cardInformationList.add("39000000000000");
-        return cardInformationList;
-    }
-
-    public static List<String> getExpir() {
-        expirsList = new ArrayList<>();
-        expirsList.add("0527");
-        expirsList.add("0130");
-        expirsList.add("1226");
-        expirsList.add("1035");
-        return expirsList;
-    }
-
-    public static List<String> getBrandType() {
-        brandTypeList = new ArrayList<>();
-        brandTypeList.add("JCB");
-        brandTypeList.add("VISA");
-        brandTypeList.add("MASTER");
-        brandTypeList.add("DINERS");
-        return brandTypeList;
+    public SelectCardNoItem item(int position) {
+        return selectCardNoList.get(position);
     }
 }
