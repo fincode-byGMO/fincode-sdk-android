@@ -2,17 +2,12 @@ package jp.gmopg.japanpost.fincodesdk.adapter;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.databinding.BindingAdapter;
-import jp.gmopg.japanpost.fincodesdk.entities.CardInfoItem;
 import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
-import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
 /**

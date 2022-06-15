@@ -1,23 +1,49 @@
-package jp.gmopg.japanpost.fincodesdk.entities;
+package jp.gmopg.japanpost.fincodesdk.entities.api;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.security.Timestamp;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by m.ohkawa on 2022/06/06.
  */
-public class CardInfoItem {
+public class FincodeCardInfo {
 
+    @SerializedName("customer_id")
     private String customerId;
+
+    @SerializedName("id")
     private String cardId;
+
+    @SerializedName("default_flag")
     private String defaltFlag;
-    private String cardNumber;
+
+    @SerializedName("card_no")
+    private String cardNo;
+
+    @SerializedName("expire")
     private String expire;
+
+    @SerializedName("holder_name")
     private String holderName;
-    private String cardNumberHash;
-    private Timestamp created;
-    private Timestamp updated;
+
+    @SerializedName("card_no_hash")
+    private String cardNoHash;
+
+    @Expose
+    @SerializedName("created")
+    private Date created;
+
+    @Expose
+    @SerializedName("updated")
+    private Date updated;
+
+    @SerializedName("type")
     private String cardType;
+
+    @SerializedName("brand")
     private String cardBrand;
 
     public String getCustomerId() {
@@ -44,12 +70,12 @@ public class CardInfoItem {
         this.defaltFlag = defaltFlag;
     }
 
-    public String getCardNumber() {
-        return cardNumber;
+    public String getCardNo() {
+        return cardNo;
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
     }
 
     public String getExpire() {
@@ -68,27 +94,27 @@ public class CardInfoItem {
         this.holderName = holderName;
     }
 
-    public String getCardNumberHash() {
-        return cardNumberHash;
+    public String getCardNoHash() {
+        return cardNoHash;
     }
 
-    public void setCardNumberHash(String cardNumberHash) {
-        this.cardNumberHash = cardNumberHash;
+    public void setCardNoHash(String cardNoHash) {
+        this.cardNoHash = cardNoHash;
     }
 
-    public Timestamp getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public Timestamp getUpdated() {
+    public Date getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Timestamp updated) {
+    public void setUpdated(Date updated) {
         this.updated = updated;
     }
 

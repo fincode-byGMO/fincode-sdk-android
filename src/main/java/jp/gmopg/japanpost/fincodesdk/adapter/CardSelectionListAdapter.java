@@ -5,19 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.databinding.DataBindingUtil;
 import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.databinding.FincodeSelectCardNoCellViewBinding;
-import jp.gmopg.japanpost.fincodesdk.entities.CardInfoItem;
 import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
-import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 
 /**
  * Created by m.ohkawa on 2022/06/03.
