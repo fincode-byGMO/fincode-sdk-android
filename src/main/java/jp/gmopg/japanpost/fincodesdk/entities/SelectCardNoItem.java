@@ -3,7 +3,6 @@ package jp.gmopg.japanpost.fincodesdk.entities;
 import android.media.Image;
 
 import androidx.databinding.Bindable;
-import jp.gmopg.japanpost.fincodesdk.BR;
 import jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeNotifyCallbacks;
 
@@ -20,7 +19,6 @@ public class SelectCardNoItem extends FincodeNotifyCallbacks {
     public SelectCardNoItem() {
     }
 
-    // TODO 動作確認後に削除する
     public SelectCardNoItem(String maskCardNo, String cardId, String brandName, String expir) {
         this.maskCardNo = maskCardNo;
         this.cardId = cardId;
