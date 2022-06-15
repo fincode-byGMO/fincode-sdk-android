@@ -40,7 +40,8 @@
                     android:paddingEnd="30dp"
                     android:buttonTint="@color/submitButtonBackground"
                     android:checked="true"
-                    android:text="@string/one_time_payment" />
+                    android:text="@string/one_time_payment"
+                    android:enabled="@{dataViewModel.radioSelect}"/>
 
                 <RadioButton
                     android:id="@+id/installmentPayment"
@@ -48,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:paddingEnd="30dp"
                     android:buttonTint="@color/submitButtonBackground"
-                    android:text="@string/installment_payment"/>
+                    android:text="@string/installment_payment"
+                    android:enabled="@{dataViewModel.radioSelect}" />
 
             </RadioGroup>
 
@@ -62,10 +64,10 @@
                 android:paddingEnd="10dp"
                 android:entries="@array/payment_times_array"
                 tools:visibility="@{installmentPayment.checked ? View.VISIBLE : View.GONE}"
-                app:viewModelForSpinner="@{dataViewModel}"/>
+                app:viewModelForSpinner="@{dataViewModel}"
+                android:enabled="@{dataViewModel.radioSelect}"/>
 
         </LinearLayout>
-
 
     </LinearLayout>
 
