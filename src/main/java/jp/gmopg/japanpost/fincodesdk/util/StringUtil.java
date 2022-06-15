@@ -42,4 +42,14 @@ public class StringUtil {
         }
         return String.format("%2s", value).replace(' ', '0');
     }
+
+    public static String setSlash(String value){
+        if (4 != value.length()){
+            return value;
+        }
+        StringBuilder sb = new StringBuilder(value);
+
+        sb.insert(2, "/");
+        return sb.toString();
+    }
 }

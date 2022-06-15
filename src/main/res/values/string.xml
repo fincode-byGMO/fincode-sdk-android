@@ -14,7 +14,6 @@
     <string name="security_code">セキュリティコード</string>
     <string name="label_holder_name">カード名義人</string>
     <string name="payment_method">お支払い方法</string>
-    <string name="registered_card">登録済みのカード</string>
 
     <!--hint-->
     <string name="expiration_date_month_hint">月（MM）</string>
@@ -23,6 +22,8 @@
     <string name="label_holder_name_hint">TARO YAMADA</string>
 
     <!--radio_button-->
+    <string name="registered_card">登録済みのカード</string>
+    <string name="new_card">新しいクレジットカード</string>
     <string name="one_time_payment">一括</string>
     <string name="installment_payment">分割</string>
 
