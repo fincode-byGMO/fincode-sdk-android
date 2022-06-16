@@ -29,9 +29,9 @@ public class FincodeCardOperateRepository<T> {
     }
 
     public void getCardInfoList(HashMap<String, String> header, String customerId, FincodeCallback<FincodeCardInfoListResponse> fincodeCallback) {
-        CardOperateApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
+        CardOperateApiInterface httpClient = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
 
-        api.cardInfoList(header, customerId)
+        httpClient.cardInfoList(header, customerId)
                 .enqueue(new Callback<FincodeCardInfoListResponse>() {
                     @Override
                     public void onResponse(Call<FincodeCardInfoListResponse> call, Response<FincodeCardInfoListResponse> response) {
