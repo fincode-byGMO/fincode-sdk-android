@@ -18,8 +18,8 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
 public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
     public boolean radioSelect = false;
-    // TODO 動作確認用に仮実装
-    public static String customerID = null;
+    // TODO 動作確認用に仮実装 初期値はブランクにする
+    public String customerID = "4649";
 
     public FincodeDataViewModel() { }
 
@@ -41,14 +41,12 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
         notifyPropertyChanged(BR.radioSelect);
     }
 
-    // TODO 動作確認用に仮実装
+    @Bindable
     public String getCustomerID() {
-        customerID = "4649";
         return customerID;
     }
 
     public void setCustomerID(String customerID) {
-        FincodeDataViewModel.customerID = customerID;
+        this.customerID = customerID;
     }
-
 }
