@@ -11,18 +11,17 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 public class CardOperateUseCase extends BaseUseCase {
 
-    public void getCardInfoList(String customerId) {
+    public void getCardInfoList(String customerId, FincodeCallback<FincodeCardInfoListResponse> fincodeCallback) {
 
         FincodeCardOperateRepository.getInstance().getCardInfoList(getHeader(), customerId, new FincodeCallback<FincodeCardInfoListResponse>() {
             @Override
             public void onResponse(FincodeCardInfoListResponse response) {
-                if(response == null && response.cardInfoList == null) { return; }
-                FincodeViewModelHolder.getInstance().getDataViewModel().selectCardNoPart.setSelectCardNoList(response.cardInfoList);
+                fincodeCallback.onResponse(response);
             }
 
             @Override
             public void onFailure(FincodeErrorResponse errorInfo) {
-                // TODO 処理を実装する
+                fincodeCallback.onFailure(errorInfo);
             }
         });
     }
