@@ -17,7 +17,6 @@
         android:padding="@dimen/partPadding">
 
         <TextView
-            android:id="@+id/cardNumberItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/card_number"
@@ -41,18 +40,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    android:background="@{dataViewModel.cardNoPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:background="@{dataViewModel.cardNoPart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     android:hint="@string/card_number"
                     android:inputType="number"
                     android:padding="@dimen/textFieldPadding"
                     android:textSize="@dimen/textFieldFontSize"
+                    android:nextFocusForward="@id/expireMonth"
                     app:dynamicLength="@={dataViewModel.cardNoPart.value}"
                     app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
                     app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
-                    app:viewModelForCardNo="@{dataViewModel}" />
+                    app:viewModelForCardNo="@{dataViewModel}"
+                    android:enabled="@{dataViewModel.radioSelect}"/>
 
                 <ImageView
-                    android:id="@+id/cardImage"
                     android:layout_width="wrap_content"
                     android:layout_height="25sp"
                     android:layout_alignEnd="@+id/cardNumber"
@@ -61,23 +61,18 @@
                     app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"/>
             </RelativeLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/jcb"
-                android:layout_gravity="center"/>
+            <include layout="@layout/fincode_card_image_list"/>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/cardNumberError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:visibility="gone"
             android:paddingTop="@dimen/errorMsgTopPadding"
             android:textSize="@dimen/errorMsgFontSize"
             android:textColor="#FF0000"
-            app:errorVisibile="@{dataViewModel.cardNoPart.isError}"
+            app:errorVisibile="@{dataViewModel.cardNoPart.isError &amp;&amp; dataViewModel.radioSelect}"
             app:formatErrorMsg="@{@string/card_number_no_format_message}"
             app:noInputErrorMsg="@{@string/card_number_no_input_message}"
             app:viewModelPart="@{dataViewModel.cardNoPart}"/>

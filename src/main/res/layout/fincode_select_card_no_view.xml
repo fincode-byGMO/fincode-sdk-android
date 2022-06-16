@@ -12,18 +12,13 @@
         android:orientation="vertical"
         android:padding="@dimen/partPadding">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registered_card"
-            android:textSize="@dimen/titleFontSize"/>
-
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_border_default"
             app:viewModelForSelectCardNo="@{dataViewModel}"
-            app:dataSource="@{dataViewModel.selectCardNoPart.selectCardNoList}" />
+            app:dataSource="@{dataViewModel.selectCardNoPart.selectCardNoList}"
+            android:enabled="@{!dataViewModel.radioSelect}"/>
 
     </LinearLayout>
 

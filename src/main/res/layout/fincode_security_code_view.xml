@@ -15,7 +15,6 @@
         android:padding="@dimen/partPadding">
 
         <TextView
-            android:id="@+id/securityCodeItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/security_code"
@@ -35,7 +34,7 @@
                     android:id="@+id/securityCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@{dataViewModel.securityCodePart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:background="@{dataViewModel.securityCodePart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     android:hint="@string/security_code_hint"
                     android:inputType="number"
                     android:maxLength="4"
@@ -44,28 +43,27 @@
                     android:textSize="@dimen/textFieldFontSize"
                     app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
                     app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
-                    app:viewModelForSecurityCode="@{dataViewModel}" />
+                    app:viewModelForSecurityCode="@{dataViewModel}"
+                    android:enabled="@{dataViewModel.radioSelect}" />
 
                 <ImageView
-                    android:id="@+id/securityCodeImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/securityCode"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    android:src="@{dataViewModel.securityCodePart.isError ? @drawable/ic_cvc_er : @drawable/ic_cvc}" />
+                    android:src="@{dataViewModel.securityCodePart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/ic_cvc_er : @drawable/ic_cvc}" />
 
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/securityCodeError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:visibility="gone"
                 android:paddingTop="@dimen/errorMsgTopPadding"
                 android:textSize="@dimen/errorMsgFontSize"
                 android:textColor="#FF0000"
-                app:errorVisibile="@{dataViewModel.securityCodePart.isError}"
+                app:errorVisibile="@{dataViewModel.securityCodePart.isError &amp;&amp; dataViewModel.radioSelect}"
                 app:viewModelPart="@{dataViewModel.securityCodePart}"
                 app:formatErrorMsg="@{&quot;&quot;}"
                 app:noInputErrorMsg="@{@string/security_code_no_input_message}"/>

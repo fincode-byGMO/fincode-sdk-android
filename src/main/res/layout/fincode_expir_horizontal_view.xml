@@ -17,7 +17,6 @@
         app:layout_constraintTop_toBottomOf="@+id/expirationDateItem">
 
         <TextView
-            android:id="@+id/expirTitleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/expiration_date"
@@ -34,11 +33,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/textFieldMarginTop"
-                android:background="@{dataViewModel.expireMonthPart.isError || dataViewModel.expireYearPart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                android:background="@{dataViewModel.expireMonthPart.isError || dataViewModel.expireYearPart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                 >
 
                 <EditText
-                    android:id="@+id/expireMonthHorizontal"
+                    android:id="@+id/expireMonth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.45"
@@ -47,14 +46,14 @@
                     android:inputType="number"
                     android:importantForAutofill="no"
                     android:maxLength="2"
-                    android:nextFocusForward="@id/expireYearHorizontal"
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireMonthPart.value}"
                     android:textSize="@dimen/textFieldFontSize"
                     app:viewModelForExpireHorizontal="@{dataViewModel}"
                     app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_MONTH}"
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
-                    app:borderView="@{borderLinearLayout}"/>
+                    app:borderView="@{borderLinearLayout}"
+                    android:enabled="@{dataViewModel.radioSelect}"/>
 
                 <TextView
                     android:layout_weight="0.1"
@@ -66,7 +65,7 @@
                     android:textColor="@android:color/black"/>
 
                 <EditText
-                    android:id="@+id/expireYearHorizontal"
+                    android:id="@+id/expireYear"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.45"
@@ -81,32 +80,31 @@
                     app:viewModelForExpireHorizontal="@{dataViewModel}"
                     app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_YEAR}"
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
-                    app:borderView="@{borderLinearLayout}"/>
+                    app:borderView="@{borderLinearLayout}"
+                    android:enabled="@{dataViewModel.radioSelect}"/>
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/expireMonthErrorMsgHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/errorMsgTopPadding"
                 tools:visibility="gone"
                 android:textSize="@dimen/errorMsgFontSize"
                 android:textColor="#FF0000"
-                app:errorVisibile="@{dataViewModel.expireMonthPart.isError}"
+                app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; dataViewModel.radioSelect}"
                 app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
                 app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
                 app:viewModelPart="@{dataViewModel.expireMonthPart}"/>
 
             <TextView
-                android:id="@+id/expireYearErrorMsgHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/errorMsgTopPadding"
                 tools:visibility="gone"
                 android:textSize="@dimen/errorMsgFontSize"
                 android:textColor="#FF0000"
-                app:errorVisibile="@{dataViewModel.expireYearPart.isError}"
+                app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; dataViewModel.radioSelect}"
                 app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
                 app:viewModelPart="@{dataViewModel.expireYearPart}"
                 app:formatErrorMsg="@{&quot;&quot;}"/>
