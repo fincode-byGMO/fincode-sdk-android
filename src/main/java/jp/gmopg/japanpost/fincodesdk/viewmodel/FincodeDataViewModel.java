@@ -1,9 +1,12 @@
 package jp.gmopg.japanpost.fincodesdk.viewmodel;
 
+import androidx.databinding.Bindable;
+import jp.gmopg.japanpost.fincodesdk.BR;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeCardNoPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeExpireMonthPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeExpireYearPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeHolderNamePart;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeNotifyCallbacks;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodePayTimesPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSecurityCodePart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
@@ -12,7 +15,11 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
 /**
  * Created by a.nakajima on 2022/05/19.
  */
-public class FincodeDataViewModel {
+public class FincodeDataViewModel extends FincodeNotifyCallbacks {
+
+    public boolean radioSelect = false;
+    // TODO 動作確認用に仮実装
+    public static String customerID = null;
 
     public FincodeDataViewModel() { }
 
@@ -23,4 +30,25 @@ public class FincodeDataViewModel {
     public FincodePayTimesPart payTimesPart = new FincodePayTimesPart();
     public FincodeSecurityCodePart securityCodePart = new FincodeSecurityCodePart();
     public FincodeSelectCardNoPart selectCardNoPart = new FincodeSelectCardNoPart();
+
+    @Bindable
+    public boolean getRadioSelect() {
+        return this.radioSelect;
+    }
+
+    public void setRadioSelect(boolean radioSelect) {
+        this.radioSelect = radioSelect;
+        notifyPropertyChanged(BR.radioSelect);
+    }
+
+    // TODO 動作確認用に仮実装
+    public String getCustomerID() {
+        customerID = "4649";
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        FincodeDataViewModel.customerID = customerID;
+    }
+
 }

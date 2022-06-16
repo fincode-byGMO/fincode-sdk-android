@@ -15,19 +15,17 @@
         android:padding="@dimen/partPadding">
 
         <TextView
-            android:id="@+id/labelHolderNameItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_holder_name"
             android:textSize="@dimen/titleFontSize" />
 
         <EditText
-            android:id="@+id/labelHolderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="null"
             android:layout_marginTop="@dimen/textFieldMarginTop"
-            android:background="@{dataViewModel.holderNamePart.isError ? @drawable/frame_border_error : @drawable/frame_border_default}"
+            android:background="@{dataViewModel.holderNamePart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
             android:hint="@string/label_holder_name_hint"
             android:inputType="textVisiblePassword|textCapCharacters"
             android:maxLength="50"
@@ -36,17 +34,17 @@
             android:textSize="@dimen/textFieldFontSize"
             app:partsType="@{PartsType.HOLDER_NAME}"
             app:selectedBorder="@{@drawable/frame_border_selected}"
-            app:viewModel="@{dataViewModel}" />
+            app:viewModel="@{dataViewModel}"
+            android:enabled="@{dataViewModel.radioSelect}" />
 
         <TextView
-            android:id="@+id/holderNameError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:visibility="gone"
             android:paddingTop="@dimen/errorMsgTopPadding"
             android:textColor="#FF0000"
             android:textSize="@dimen/errorMsgFontSize"
-            app:errorVisibile="@{dataViewModel.holderNamePart.isError}"
+            app:errorVisibile="@{dataViewModel.holderNamePart.isError &amp;&amp; dataViewModel.radioSelect}"
             app:formatErrorMsg="@{@string/label_holder_name_format_error_message}"
             app:noInputErrorMsg="@{@string/label_holder_name_no_input_message}"
             app:viewModelPart="@{dataViewModel.holderNamePart}"/>
