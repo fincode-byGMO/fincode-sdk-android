@@ -51,7 +51,6 @@ public class FincodeCardOperateRepository<T> {
                 });
     }
 
-    // TODO カード登録APIの実装する
     public void cardRegister(HashMap<String, String> header, String customerId, FincodeCardInfoRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
         CardOperateApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
 
@@ -73,5 +72,24 @@ public class FincodeCardOperateRepository<T> {
                 });
     }
 
-    // TODO カード更新APIの実装する
+    public void cardUpdate(HashMap<String, String> header, String customerId, String cardId, FincodeCardInfoRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
+        CardOperateApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
+
+        api.cardUpdate(header, cardInfoRequest, customerId, cardId)
+                .enqueue(new Callback<FincodeCardInfo>() {
+                    @Override
+                    public void onResponse(Call<FincodeCardInfo> call, Response<FincodeCardInfo> response) {
+                        if(response.isSuccessful()) {
+                            fincodeCallback.onResponse(response.body());
+                        } else {
+                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FincodeCardInfo> call, Throwable t) {
+                        // do nothing
+                    }
+                });
+    }
 }
