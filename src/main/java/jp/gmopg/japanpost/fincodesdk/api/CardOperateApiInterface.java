@@ -23,16 +23,14 @@ public interface CardOperateApiInterface {
     Call<FincodeCardInfoListResponse> cardInfoList(@HeaderMap Map<String, String> headers,
                                                    @Path("customerId") String customerId);
 
-    // TODO リクエストパラメータを修正する
     @POST("/v1/customers/{customerId}/cards")
     Call<FincodeCardInfo> cardRegister(@HeaderMap Map<String, String> headers,
                                        @Body FincodeCardInfoRequest request,
                                        @Path("customerId") String customerId);
 
-    // TODO リクエストパラメータを修正する
-    @PUT("/v1/customers/{customer_id}/cards/{cardId}")
-    Call<FincodeCardInfoListResponse> cardUpdate(@HeaderMap Map<String, String> headers,
-                                                 @Body FincodeCardInfoListRequest request,
+    @PUT("/v1/customers/{customerId}/cards/{cardId}")
+    Call<FincodeCardInfo> cardUpdate(@HeaderMap Map<String, String> headers,
+                                                 @Body FincodeCardInfoRequest request,
                                                  @Path("customerId") String customerId,
                                                  @Path("cardId") String cardId);
 }
