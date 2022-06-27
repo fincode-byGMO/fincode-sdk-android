@@ -5,7 +5,6 @@ import java.util.HashMap;
 import jp.gmopg.japanpost.fincodesdk.api.AsyncHttpClient;
 import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
 import jp.gmopg.japanpost.fincodesdk.api.PaymentApiInterface;
-import jp.gmopg.japanpost.fincodesdk.api.TransactionRegisterApiInterface;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.TransactionRegisterRequest;
