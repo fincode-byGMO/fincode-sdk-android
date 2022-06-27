@@ -21,6 +21,9 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     // TODO 動作確認用に仮実装 初期値はブランクにする
     public String customerID = "4649";
 
+    // Vertical：true, Horizontal:false
+    public boolean direction = false;
+
     public FincodeDataViewModel() { }
 
     public FincodeCardNoPart cardNoPart = new FincodeCardNoPart();
@@ -48,5 +51,14 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
     public void setCustomerID(String customerID) {
         this.customerID = customerID;
+    }
+
+    @Bindable
+    public boolean isDirection() {
+        return direction;
+    }
+
+    public void setDirection(boolean direction) {
+        this.direction = direction;
     }
 }

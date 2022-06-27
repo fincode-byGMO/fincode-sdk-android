@@ -53,11 +53,11 @@
                     android:enabled="@{dataViewModel.radioSelect}"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25sp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/cardNumber"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
                     app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"/>
             </RelativeLayout>
 

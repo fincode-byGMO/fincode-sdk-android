@@ -63,15 +63,15 @@ public enum CardBrandType{
 
         switch (this) {
             case VISA:
-                return R.drawable.visa;
+                return R.drawable.ic_visa;
             case MASTER:
-                return R.drawable.master;
+                return R.drawable.ic_master;
             case JCB:
-                return R.drawable.jcb;
+                return R.drawable.ic_jcb;
             case DINERS:
-                return R.drawable.diners;
+                return R.drawable.ic_diners;
             case AMEX:
-                return R.drawable.amex;
+                return R.drawable.ic_amex;
             case NONE:
             default:
                 return -1; // TODO 該当なしの場合-1を返却でいいか検討する
@@ -82,15 +82,15 @@ public enum CardBrandType{
 
         switch (brandName) {
             case "VISA":
-                return R.drawable.visa;
+                return R.drawable.ic_visa;
             case "MASTER":
-                return R.drawable.master;
+                return R.drawable.ic_master;
             case "JCB":
-                return R.drawable.jcb;
+                return R.drawable.ic_jcb;
             case "DINERS":
-                return R.drawable.diners;
+                return R.drawable.ic_diners;
             case "AMEX":
-                return R.drawable.amex;
+                return R.drawable.ic_amex;
             case "NONE":
             default:
                 return -1;
