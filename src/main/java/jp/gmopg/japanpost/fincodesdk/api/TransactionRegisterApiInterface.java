@@ -14,7 +14,5 @@ import retrofit2.http.POST;
  */
 public interface TransactionRegisterApiInterface {
 
-    @POST("/v1/payments")
-    Call<TransactionRegisterResponse> transactionRegister(@HeaderMap Map<String, String> headers,
-                                                          @Body TransactionRegisterRequest request);
+
 }
