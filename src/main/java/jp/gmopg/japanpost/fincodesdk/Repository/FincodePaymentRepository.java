@@ -7,8 +7,6 @@ import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
 import jp.gmopg.japanpost.fincodesdk.api.PaymentApiInterface;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
-import jp.gmopg.japanpost.fincodesdk.entities.api.TransactionRegisterRequest;
-import jp.gmopg.japanpost.fincodesdk.entities.api.TransactionRegisterResponse;
 import jp.gmopg.japanpost.fincodesdk.util.HttpUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,24 +50,4 @@ public class FincodePaymentRepository {
                 });
     }
 
-    public void transactionRegister(HashMap<String, String> header, TransactionRegisterRequest request, FincodeCallback<TransactionRegisterResponse> fincodeCallback) {
-        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
-
-        api.transactionRegister(header, request)
-                .enqueue(new Callback<TransactionRegisterResponse>() {
-                    @Override
-                    public void onResponse(Call<TransactionRegisterResponse> call, Response<TransactionRegisterResponse> response) {
-                        if(response.isSuccessful()) {
-                            fincodeCallback.onResponse(response.body());
-                        } else {
-                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<TransactionRegisterResponse> call, Throwable t) {
-                        // do nothing
-                    }
-                });
-    }
 }
