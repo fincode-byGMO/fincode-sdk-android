@@ -3,12 +3,11 @@ package jp.gmopg.japanpost.fincodesdk.viewmodel;
 import android.view.View;
 
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoRequest;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeSettlementRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.TransactionRegisterRequest;
 import jp.gmopg.japanpost.fincodesdk.enumeration.ButtonPressType;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
-import jp.gmopg.japanpost.fincodesdk.usecase.SettlementUseCase;
-import jp.gmopg.japanpost.fincodesdk.usecase.TransactionRegisterUseCase;
+import jp.gmopg.japanpost.fincodesdk.usecase.PaymentUseCase;
 
 /**
  * Created by a.nakajima on 2022/05/22.
@@ -22,9 +21,9 @@ public class FincodeActionViewModel {
 
         switch (ButtonPressType.getButtonPressType()){
             case PAYMENT:
-                FincodeSettlementRequest settlementRequest = new FincodeSettlementRequest();
-                SettlementUseCase settlementUseCase = new SettlementUseCase();
-                settlementUseCase.settlement("o_nJMBJ6wIQji5bOW7n43jBw", settlementRequest);
+                FincodePaymentRequest paymentRequest = new FincodePaymentRequest();
+                PaymentUseCase paymentUseCase = new PaymentUseCase();
+                paymentUseCase.payment("o_nJMBJ6wIQji5bOW7n43jBw", paymentRequest);
                 break;
             case CARD_REGISTER:
                 useCase.cardRegister("c_HSZkCAxNS2q_7TbLcO9y1A", cardInfoRequest);
@@ -36,10 +35,8 @@ public class FincodeActionViewModel {
 
         // TODO 取引登録API　RV動作確認終わったら削除
         TransactionRegisterRequest transactionRegisterRequest = new TransactionRegisterRequest();
-        TransactionRegisterUseCase transactionRegisterUseCase = new TransactionRegisterUseCase();
+        PaymentUseCase paymentUseCase = new PaymentUseCase();
 
-        transactionRegisterUseCase.transactionRegister(transactionRegisterRequest);
-
+        paymentUseCase.transactionRegister(transactionRegisterRequest);
     }
-
 }

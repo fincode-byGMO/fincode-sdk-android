@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by m.ohkawa on 2022/06/23.
  */
-public class FincodeSettlementResponse {
+public class FincodePaymentResponse {
 
     @SerializedName("acs")
     private String acs;
