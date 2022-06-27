@@ -4,7 +4,6 @@ import android.view.View;
 
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
-import jp.gmopg.japanpost.fincodesdk.entities.api.TransactionRegisterRequest;
 import jp.gmopg.japanpost.fincodesdk.enumeration.ButtonPressType;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
 import jp.gmopg.japanpost.fincodesdk.usecase.PaymentUseCase;
@@ -33,10 +32,5 @@ public class FincodeActionViewModel {
                 break;
         }
 
-        // TODO 取引登録API　RV動作確認終わったら削除
-        TransactionRegisterRequest transactionRegisterRequest = new TransactionRegisterRequest();
-        PaymentUseCase paymentUseCase = new PaymentUseCase();
-
-        paymentUseCase.transactionRegister(transactionRegisterRequest);
     }
 }
