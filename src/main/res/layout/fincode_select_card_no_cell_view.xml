@@ -25,16 +25,17 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
             android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
             app:imageResource="@{item.brandImage}"
             />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.23"
             android:layout_gravity="center"
             android:textSize="@dimen/titleFontSize"
             android:text="@{SelectCardNoConverter.withSlash(item.expir)}"

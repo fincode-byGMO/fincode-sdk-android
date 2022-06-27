@@ -18,8 +18,8 @@
     <!--hint-->
     <string name="expiration_date_month_hint">月（MM）</string>
     <string name="expiration_date_year_hint">年（YY）</string>
-    <string name="security_code_hint">001</string>
-    <string name="label_holder_name_hint">TARO YAMADA</string>
+    <string name="security_code_hint">CVC</string>
+    <string name="label_holder_name_hint">カード名義人名（TARO YAMADA）</string>
 
     <!--radio_button-->
     <string name="registered_card">登録済みのカード</string>
