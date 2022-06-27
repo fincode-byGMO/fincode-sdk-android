@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by fincode on 2022/06/23.
  */
-public class FincodeSettlementRequest {
+public class FincodePaymentRequest {
 
     @SerializedName("pay_type")
     private String payType;
