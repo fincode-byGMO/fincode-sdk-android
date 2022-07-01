@@ -1,19 +1,8 @@
 package jp.gmopg.japanpost.fincodesdk.usecase;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
-import jp.gmopg.japanpost.fincodesdk.R;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoListResponse;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfo;
-import okhttp3.ResponseBody;
-import retrofit2.Response;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
 /**
  * Created by fincode on 2022/06/13.
@@ -27,5 +16,12 @@ public class BaseUseCase {
         map.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
         return map;
+    }
+
+    public boolean showProgress(){
+        return FincodeViewModelHolder.getInstance().getDataViewModel().isProgressBar = true;
+    }
+    public boolean hideProgress(){
+        return FincodeViewModelHolder.getInstance().getDataViewModel().isProgressBar = false;
     }
 }

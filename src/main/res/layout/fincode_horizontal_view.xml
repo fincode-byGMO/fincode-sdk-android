@@ -13,6 +13,17 @@
         android:padding="@dimen/partPadding"
         android:orientation="vertical">
 
+        <!-- communicating progress bar -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00ffffff"
+            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}">
+
+            <include layout="@layout/partial_progress"/>
+
+        </FrameLayout>
+
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
