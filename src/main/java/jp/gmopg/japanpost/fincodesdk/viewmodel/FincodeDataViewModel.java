@@ -20,12 +20,7 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     public boolean radioSelect = false;
     // TODO 動作確認用に仮実装 初期値はブランクにする
     public String customerID = "4649";
-
-    // Vertical：true, Horizontal:false
-    public boolean direction = false;
-
-    // progress
-    public boolean isProgressBar = false;
+    public boolean isProgressBar = true;
 
     public FincodeDataViewModel() { }
 
