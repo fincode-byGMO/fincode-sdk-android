@@ -2,6 +2,7 @@ package jp.gmopg.japanpost.fincodesdk.viewmodel;
 
 import android.view.View;
 
+import androidx.lifecycle.ViewModel;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.enumeration.ButtonPressType;
@@ -11,7 +12,7 @@ import jp.gmopg.japanpost.fincodesdk.usecase.PaymentUseCase;
 /**
  * Created by a.nakajima on 2022/05/22.
  */
-public class FincodeActionViewModel {
+public class FincodeActionViewModel extends ViewModel {
 
     public void execute(View view) {
 

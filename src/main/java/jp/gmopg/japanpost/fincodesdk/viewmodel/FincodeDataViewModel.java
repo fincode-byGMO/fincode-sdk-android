@@ -24,6 +24,9 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     // Vertical：true, Horizontal:false
     public boolean direction = false;
 
+    // progress
+    public boolean isProgressBar = false;
+
     public FincodeDataViewModel() { }
 
     public FincodeCardNoPart cardNoPart = new FincodeCardNoPart();
@@ -60,5 +63,15 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
     public void setDirection(boolean direction) {
         this.direction = direction;
+    }
+
+    @Bindable
+    public boolean getIsProgressBar() {
+        return isProgressBar;
+    }
+
+    public void setIsProgressBar(boolean isProgressBar) {
+        this.isProgressBar = isProgressBar;
+        notifyPropertyChanged(BR.isProgressBar);
     }
 }
