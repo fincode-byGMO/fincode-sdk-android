@@ -5,10 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by m.ohkawa on 2022/06/20.
  */
-public class FincodeCardInfoRequest {
-
-    @SerializedName("customer_id")
-    private String customerId;
+public class FincodeCardRegisterRequest {
 
     @SerializedName("default_flag")
     private String defaltFlag;
@@ -28,47 +25,12 @@ public class FincodeCardInfoRequest {
     @SerializedName("token")
     private String token;
 
-    // トークンに入力がない場合
-    public FincodeCardInfoRequest(
-            String customerId,
-            String defaltFlag,
-            String cardNo,
-            String expire,
-            String holderName,
-            String securityCode)
-    {
-        this.customerId = customerId;
-        this.defaltFlag = defaltFlag;
-        this.cardNo = cardNo;
-        this.expire = expire;
-        this.holderName = holderName;
-        this.securityCode = securityCode;
-    }
-
-    public FincodeCardInfoRequest(){};
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     public String getDefaltFlag() {
         return defaltFlag;
     }
 
     public void setDefaltFlag(String defaltFlag) {
         this.defaltFlag = defaltFlag;
-    }
-
-    public String getCardNo() {
-        return cardNo;
-    }
-
-    public void setCardNo(String cardNo) {
-        this.cardNo = cardNo;
     }
 
     public String getExpire() {
@@ -102,5 +64,13 @@ public class FincodeCardInfoRequest {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
     }
 }

@@ -7,7 +7,8 @@ import jp.gmopg.japanpost.fincodesdk.api.CardOperateApiInterface;
 import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfo;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoListResponse;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardRegisterRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardUpdateRequest;
 import jp.gmopg.japanpost.fincodesdk.util.HttpUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +52,7 @@ public class FincodeCardOperateRepository<T> {
                 });
     }
 
-    public void cardRegister(HashMap<String, String> header, String customerId, FincodeCardInfoRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
+    public void cardRegister(HashMap<String, String> header, String customerId, FincodeCardRegisterRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
         CardOperateApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
 
         api.cardRegister(header, cardInfoRequest, customerId)
@@ -72,7 +73,7 @@ public class FincodeCardOperateRepository<T> {
                 });
     }
 
-    public void cardUpdate(HashMap<String, String> header, String customerId, String cardId, FincodeCardInfoRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
+    public void cardUpdate(HashMap<String, String> header, String customerId, String cardId, FincodeCardUpdateRequest cardInfoRequest, FincodeCallback<FincodeCardInfo> fincodeCallback) {
         CardOperateApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(CardOperateApiInterface.class);
 
         api.cardUpdate(header, cardInfoRequest, customerId, cardId)

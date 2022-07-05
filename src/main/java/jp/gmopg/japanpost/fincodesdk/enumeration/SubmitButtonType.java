@@ -1,38 +1,38 @@
 package jp.gmopg.japanpost.fincodesdk.enumeration;
 
 import jp.gmopg.japanpost.fincodesdk.R;
-import jp.gmopg.japanpost.fincodesdk.config.OptionData;
 
 /**
  * Created by m.ohkawa on 2022/05/30.
  */
-public enum ButtonPressType {
+public enum SubmitButtonType {
+    NONE,
     PAYMENT,
     CARD_REGISTER,
-    CARD_RENEWAL;
+    CARD_UPDATE;
 
-    private static ButtonPressType buttonPressType;
+    private static SubmitButtonType submitButtonType;
 
-    public static ButtonPressType getButtonPressType() {
-        return buttonPressType;
+    public static SubmitButtonType getButtonPressType() {
+        return submitButtonType;
     }
 
-    public static void setButtonPressType(ButtonPressType buttonPressType) {
-        ButtonPressType.buttonPressType = buttonPressType;
+    public static void setButtonPressType(SubmitButtonType submitButtonType) {
+        SubmitButtonType.submitButtonType = submitButtonType;
     }
 
     public static int buttonText(){
-        if(buttonPressType == null) {
+        if(submitButtonType == null) {
             // アプリ側で指定された機能によって、ボタンのテキストを変える（今はNULLで落ちるので、お支払いになるようにしている）
 //            setButtonPressType(OptionData.getInstance().isButtonPressType);
-            setButtonPressType(ButtonPressType.PAYMENT);
+            setButtonPressType(SubmitButtonType.PAYMENT);
         }
-        switch (buttonPressType){
+        switch (submitButtonType){
             case PAYMENT:
                 return R.string.credit_payment;
             case CARD_REGISTER:
                 return R.string.credit_card_registration;
-            case CARD_RENEWAL:
+            case CARD_UPDATE:
                 return R.string.credit_card_renewal;
             default:
                 return 0;
