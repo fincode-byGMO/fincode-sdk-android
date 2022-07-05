@@ -17,12 +17,10 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
  */
 public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
-    public boolean radioSelect = false;
-    // TODO 動作確認用に仮実装 初期値はブランクにする
-    public String customerID = "4649";
-    public boolean isProgressBar = true;
-
-    public FincodeDataViewModel() { }
+    // true: new card, false: registered card
+    private boolean radioSelect = false; // TODO カード選択 or カード情報入力 命名を見直す
+    private boolean isProgressBar = true;
+    private boolean isDirection = true; // TODO　カード入力欄のブランドイメージをバーチカル、ホリゾンタルで出し分けに使用　見直す
 
     public FincodeCardNoPart cardNoPart = new FincodeCardNoPart();
     public FincodeExpireMonthPart expireMonthPart = new FincodeExpireMonthPart();
@@ -43,21 +41,12 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     }
 
     @Bindable
-    public String getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
-    }
-
-    @Bindable
     public boolean isDirection() {
-        return direction;
+        return isDirection;
     }
 
     public void setDirection(boolean direction) {
-        this.direction = direction;
+        this.isDirection = direction;
     }
 
     @Bindable

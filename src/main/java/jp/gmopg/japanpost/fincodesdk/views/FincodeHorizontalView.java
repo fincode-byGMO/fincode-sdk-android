@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.databinding.ViewDataBinding;
 import jp.gmopg.japanpost.fincodesdk.R;
+import jp.gmopg.japanpost.fincodesdk.config.FincodeConfiguration;
+import jp.gmopg.japanpost.fincodesdk.config.Options;
 import jp.gmopg.japanpost.fincodesdk.databinding.FincodeHorizontalViewBinding;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 

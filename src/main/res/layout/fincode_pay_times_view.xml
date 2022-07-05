@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:paddingEnd="30dp"
                     android:buttonTint="@color/submitButtonBackground"
-                    android:checked="true"
+                    android:checked="@={dataViewModel.payTimesPart.isOneTime}"
                     android:text="@string/one_time_payment"
                     android:enabled="@{dataViewModel.radioSelect}"/>
 

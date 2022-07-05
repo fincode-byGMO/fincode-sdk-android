@@ -3,7 +3,7 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
-        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.ButtonPressType"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType"/>
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{ButtonPressType.buttonText()}"
+            android:text="@{SubmitButtonType.buttonText()}"
             android:textColor="#ffffff"
             android:background="@drawable/submit_button"
             android:onClick="@{actionViewModel::execute}"/>

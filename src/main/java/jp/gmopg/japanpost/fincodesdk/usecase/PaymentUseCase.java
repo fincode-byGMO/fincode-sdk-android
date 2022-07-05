@@ -12,14 +12,11 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel;
  */
 public class PaymentUseCase extends BaseUseCase {
 
-    public void payment(String orderId, FincodePaymentRequest request) {
-
+    public void payment(String orderId, FincodePaymentRequest request, FincodeCallback<FincodePaymentResponse> fincodeCallback) {
         showProgress();
-
         FincodePaymentRepository.getInstance().payment(getHeader(), orderId, request, new FincodeCallback<FincodePaymentResponse>() {
             @Override
             public void onResponse(FincodePaymentResponse response) {
-                //TODO テストアプリ側に決済完了を通知する処理
                 hideProgress();
             }
 

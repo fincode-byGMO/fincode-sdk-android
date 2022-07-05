@@ -61,7 +61,8 @@
                     app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"/>
             </RelativeLayout>
 
-            <include layout="@layout/fincode_card_image_list"/>
+            <include layout="@layout/fincode_card_image_list"
+                android:visibility="@{dataViewModel.isDirection ? View.VISIBLE : View.GONE}"/>
 
         </LinearLayout>
 

@@ -2,6 +2,8 @@ package jp.gmopg.japanpost.fincodesdk.usecase;
 
 import java.util.HashMap;
 
+import jp.gmopg.japanpost.fincodesdk.config.DataHolder;
+import jp.gmopg.japanpost.fincodesdk.config.FincodeConfiguration;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
 /**
@@ -12,16 +14,26 @@ public class BaseUseCase {
     protected HashMap<String, String> getHeader() {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("Content-Type", "application/json");
-        // TODO SDKを組み込むアプリ側から貰うように修正する
-        map.put("Authorization", "Bearer p_prod_ZTlkN2JkMzctZDY4Ni00ZDE4LThjNTUtMDE3YzhjNzk0MmIxZmEzOWM3ZDktZmQ4MS00OTUwLWFiOWYtYmViZDZjMTc0Y2E3c18yMTEyMjc0MjU4NQ");
+        map.put("Authorization", authStr(DataHolder.getInstance().getConfig()));
 
         return map;
     }
 
-    public boolean showProgress(){
-        return FincodeViewModelHolder.getInstance().getDataViewModel().isProgressBar = true;
+    protected void showProgress(){
+        FincodeViewModelHolder.getInstance().getDataViewModel().setIsProgressBar(true);
     }
-    public boolean hideProgress(){
-        return FincodeViewModelHolder.getInstance().getDataViewModel().isProgressBar = false;
+    protected void hideProgress(){
+        FincodeViewModelHolder.getInstance().getDataViewModel().setIsProgressBar(false);
+    }
+
+    private String authStr(FincodeConfiguration config) {
+        switch (config.authorization) {
+            case BASIC:
+                return "Basic " + config.publicKey;
+            case BEARER:
+                return "Bearer " + config.publicKey;
+            default:
+                return "";
+        }
     }
 }
