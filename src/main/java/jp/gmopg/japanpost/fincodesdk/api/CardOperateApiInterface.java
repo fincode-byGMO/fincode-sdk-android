@@ -3,9 +3,9 @@ package jp.gmopg.japanpost.fincodesdk.api;
 import java.util.Map;
 
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfo;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoListRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoListResponse;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardRegisterRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardUpdateRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -25,12 +25,12 @@ public interface CardOperateApiInterface {
 
     @POST("/v1/customers/{customerId}/cards")
     Call<FincodeCardInfo> cardRegister(@HeaderMap Map<String, String> headers,
-                                       @Body FincodeCardInfoRequest request,
+                                       @Body FincodeCardRegisterRequest request,
                                        @Path("customerId") String customerId);
 
     @PUT("/v1/customers/{customerId}/cards/{cardId}")
     Call<FincodeCardInfo> cardUpdate(@HeaderMap Map<String, String> headers,
-                                                 @Body FincodeCardInfoRequest request,
-                                                 @Path("customerId") String customerId,
-                                                 @Path("cardId") String cardId);
+                                     @Body FincodeCardUpdateRequest request,
+                                     @Path("customerId") String customerId,
+                                     @Path("cardId") String cardId);
 }

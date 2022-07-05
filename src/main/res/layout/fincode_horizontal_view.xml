@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@={dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}"
+            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}"
             android:background="#afafaf">
 
             <ProgressBar
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="@{dataViewModel.customerID == null ? View.GONE : View.VISIBLE}" >
+            android:visibility="@{dataViewModel.radioSelect ? View.GONE : View.VISIBLE}" >
 
             <RadioButton
                 android:id="@+id/registeredCardButton"
