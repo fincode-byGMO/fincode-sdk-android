@@ -28,9 +28,9 @@
     <string name="installment_payment">分割</string>
 
     <!--button-->
-    <string name="credit_card_registration">クレジットカードを登録</string>
-    <string name="credit_card_renewal">クレジットカードを更新</string>
-    <string name="credit_payment">お支払い</string>
+<!--    <string name="credit_card_registration">クレジットカードを登録</string>-->
+<!--    <string name="credit_card_renewal">クレジットカードを更新</string>-->
+<!--    <string name="credit_payment">お支払い</string>-->
 
     <!--oblique_line-->
     <string name="oblique_line">/</string>
