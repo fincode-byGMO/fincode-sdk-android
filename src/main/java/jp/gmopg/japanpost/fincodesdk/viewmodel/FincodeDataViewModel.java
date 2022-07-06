@@ -2,6 +2,7 @@ package jp.gmopg.japanpost.fincodesdk.viewmodel;
 
 import androidx.databinding.Bindable;
 import jp.gmopg.japanpost.fincodesdk.BR;
+import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeCardNoPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeExpireMonthPart;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeExpireYearPart;
@@ -19,8 +20,9 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
     // true: new card, false: registered card
     private boolean radioSelect = false; // TODO カード選択 or カード情報入力 命名を見直す
-    private boolean isProgressBar = true;
+    private boolean isProgressBar = false;
     private boolean isDirection = true; // TODO　カード入力欄のブランドイメージをバーチカル、ホリゾンタルで出し分けに使用　見直す
+    private SubmitButtonType buttonType = SubmitButtonType.NONE;
 
     public FincodeCardNoPart cardNoPart = new FincodeCardNoPart();
     public FincodeExpireMonthPart expireMonthPart = new FincodeExpireMonthPart();
@@ -57,5 +59,15 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     public void setIsProgressBar(boolean isProgressBar) {
         this.isProgressBar = isProgressBar;
         notifyPropertyChanged(BR.isProgressBar);
+    }
+
+    @Bindable
+    public SubmitButtonType getButtonType() {
+        return buttonType;
+    }
+
+    public void setButtonType(SubmitButtonType buttonType) {
+        this.buttonType = buttonType;
+        notifyPropertyChanged(BR.buttonType);
     }
 }

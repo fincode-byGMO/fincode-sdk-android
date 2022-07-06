@@ -26,8 +26,8 @@ import jp.gmopg.japanpost.fincodesdk.usecase.PaymentUseCase;
  */
 public class FincodeActionViewModel extends ViewModel {
 
-    public void execute(View view) {
-        switch (SubmitButtonType.getButtonPressType()){
+    public void execute(SubmitButtonType type) {
+        switch (type){
             case PAYMENT:
                 payment();
                 break;

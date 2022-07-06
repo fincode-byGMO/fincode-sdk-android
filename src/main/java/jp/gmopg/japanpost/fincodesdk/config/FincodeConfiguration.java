@@ -27,7 +27,7 @@ public class FincodeConfiguration {
      * パブリックキー <br/>
      * ※ Basic認証の場合は、Base64でエンコードしてください。
      */
-    public String publicKey = "";
+    public String apiKey = "";
 
     /**
      * APIバージョン
@@ -39,7 +39,7 @@ public class FincodeConfiguration {
      */
     public String customerId = "";
 
-    public FincodeConfiguration(SubmitButtonType submitButtonType) {
+    protected FincodeConfiguration(SubmitButtonType submitButtonType) {
         this.submitButtonType = submitButtonType;
     }
 }

@@ -29,9 +29,9 @@ public class BaseUseCase {
     private String authStr(FincodeConfiguration config) {
         switch (config.authorization) {
             case BASIC:
-                return "Basic " + config.publicKey;
+                return "Basic " + config.apiKey;
             case BEARER:
-                return "Bearer " + config.publicKey;
+                return "Bearer " + config.apiKey;
             default:
                 return "";
         }
