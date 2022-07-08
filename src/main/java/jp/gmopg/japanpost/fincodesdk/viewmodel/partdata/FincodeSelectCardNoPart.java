@@ -21,7 +21,6 @@ public class FincodeSelectCardNoPart extends FincodeBasePart {
         if(list == null) { return; }
 
         selectCardNoList.clear();
-        selectCardNoList.add(new SelectCardNoItem("", "", "",""));
         for(FincodeCardInfo item : list) {
             selectCardNoList.add(new SelectCardNoItem(item.getCardNo(), item.getCardId(), item.getCardBrand(), item.getExpire()));
         }
@@ -29,7 +28,6 @@ public class FincodeSelectCardNoPart extends FincodeBasePart {
 
     public FincodeSelectCardNoPart(){
         selectCardNoList.add(new SelectCardNoItem("", "", "",""));
-//        selectCardNoList.add(new SelectCardNoItem("************3456", "7777", "VISA", "9999"));
     }
 
 }

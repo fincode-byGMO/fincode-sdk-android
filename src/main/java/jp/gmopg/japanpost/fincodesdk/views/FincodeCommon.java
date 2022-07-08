@@ -3,7 +3,6 @@ package jp.gmopg.japanpost.fincodesdk.views;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -17,13 +16,13 @@ import jp.gmopg.japanpost.fincodesdk.config.FincodeCardUpdateConfiguration;
 import jp.gmopg.japanpost.fincodesdk.config.FincodeConfiguration;
 import jp.gmopg.japanpost.fincodesdk.config.FincodePaymentConfiguration;
 import jp.gmopg.japanpost.fincodesdk.config.Options;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfo;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardInfoListResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardRegisterResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardUpdateResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
 /**
@@ -31,16 +30,17 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 abstract class FincodeCommon extends LinearLayout {
 
-//    public FincodeCommon(Activity context, int layoutId) {
-//        super((Context)context);
-//
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//        initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),
-//                    FincodeViewModelHolder.getInstance());
-//    }
 
-    public FincodeCommon(Activity context, int layoutId, ViewGroup replace) {
+    private void setOpt() {
+
+    }
+
+    protected FincodeCommon(Activity context, int layoutId, ViewGroup replace, boolean isVertical) {
         super((Context)context);
+
+        FincodeViewModelHolder.getInstance().init();
+
+        FincodeViewModelHolder.getInstance().getDataViewModel().setIsDirection(isVertical);
 
         LayoutInflater inflater = LayoutInflater.from(context);
         initBinding(DataBindingUtil.inflate(inflater, layoutId, replace, true),
@@ -93,6 +93,24 @@ abstract class FincodeCommon extends LinearLayout {
         } else {
             FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
         }
+    }
+
+    private void setOpt(Options opt) {
+        FincodeOptViewModel vm = FincodeViewModelHolder.getInstance().getOptViewModel();
+        vm.setIsHeadingVisibility(opt.isHeadingVisibility);
+        vm.setIsDynamicLogDisplayVisibility(opt.isDynamicLogDisplayVisibility);
+        vm.setIsHolderNameVisibility(opt.isHolderNameVisibility);
+        vm.setIsPayTimesVisibility(opt.isPayTimesVisibility);
+        vm.setLabelCardNo(opt.labelCardNo);
+        vm.setLabelExpire(opt.labelExpire);
+        vm.setLabelCvc(opt.labelCvc);
+        vm.setLabelHolderName(opt.labelHolderName);
+        vm.setLabelPaymentMethod(opt.labelPaymentMethod);
+        vm.setPlaceCardNo(opt.placeCardNo);
+        vm.setPlaceExpireMonth(opt.placeExpireMonth);
+        vm.setPlaceExpireYear(opt.placeExpireYear);
+        vm.setPlaceCvc(opt.placeCvc);
+        vm.setPlaceHolderName(opt.placeHolderName);
     }
 
     abstract void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder);

@@ -16,19 +16,16 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 public class FincodeHorizontalView extends FincodeCommon {
 
-//    public FincodeHorizontalView(Activity context) {
-//        super(context, R.layout.fincode_horizontal_view);
-//    }
-
     public FincodeHorizontalView(Activity context, ViewGroup replace) {
-        super(context, R.layout.fincode_horizontal_view, replace);
+        super(context, R.layout.fincode_horizontal_view, replace, false);
     }
 
-    public void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder) {
+    protected void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder) {
         if(binding instanceof FincodeHorizontalViewBinding) {
             FincodeHorizontalViewBinding bind = (FincodeHorizontalViewBinding) binding;
             bind.setDataViewModel(holder.getDataViewModel());
             bind.setActionViewModel(holder.getActionViewModel());
+            bind.setOptViewModel(holder.getOptViewModel());
         }
     }
 }

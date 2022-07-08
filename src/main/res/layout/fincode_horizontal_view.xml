@@ -1,126 +1,159 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="android.view.View" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/partPadding"
-        android:orientation="vertical">
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}"-->
-<!--            android:background="#afafaf">-->
-
-<!--            <ProgressBar-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="@{dataViewModel.radioSelect ? View.VISIBLE : View.GONE}" >
-
-            <RadioButton
-                android:id="@+id/registeredCardButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:buttonTint="@color/submitButtonBackground"
-                android:text="@string/registered_card"
-                android:checked="@={dataViewModel.radioSelect}"/>
-
-            <include
-                layout="@layout/fincode_select_card_no_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:actionViewModel="@{actionViewModel}"
-                app:dataViewModel="@={dataViewModel}" />
-
-            <RadioButton
-                android:id="@+id/newCardButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:buttonTint="@color/submitButtonBackground"
-                android:text="@string/new_card"/>
-
-        </RadioGroup>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:padding="@dimen/partPadding"
+            android:orientation="vertical">
 
-            <include
-                layout="@layout/fincode_card_no_view"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
+            <RadioGroup
                 android:layout_width="match_parent"
-                app:actionViewModel="@{actionViewModel}"
-                app:dataViewModel="@={dataViewModel}" />
-            <include
-                layout="@layout/fincode_expir_horizontal_view"
-                android:layout_weight="0.35"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{dataViewModel.isCardListField ? View.VISIBLE : View.GONE}" >
+
+                <RadioButton
+                    android:id="@+id/registeredCardButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:buttonTint="@color/submitButtonBackground"
+                    android:text="@string/registered_card"
+                    android:checked="@={dataViewModel.radioSelect}"/>
+
+                <include
+                    layout="@layout/fincode_select_card_no_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:dataViewModel="@={dataViewModel}" />
+
+                <RadioButton
+                    android:id="@+id/newCardButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:buttonTint="@color/submitButtonBackground"
+                    android:text="@string/new_card"/>
+
+            </RadioGroup>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                app:dataViewModel="@={dataViewModel}"
-                app:actionViewModel="@{actionViewModel}"/>
-            <include
-                layout="@layout/fincode_security_code_view"
-                android:layout_weight="0.35"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <include
+                    layout="@layout/fincode_card_no_view"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:optViewModel="@{optViewModel}"/>
+
+                <include
+                    layout="@layout/fincode_expir_horizontal_view"
+                    android:layout_weight="0.35"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:optViewModel="@{optViewModel}"/>
+
+                <include
+                    layout="@layout/fincode_security_code_view"
+                    android:layout_weight="0.35"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:optViewModel="@{optViewModel}"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                app:dataViewModel="@={dataViewModel}"
-                app:actionViewModel="@{actionViewModel}"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <include
+                    layout="@layout/fincode_holder_name_view"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:optViewModel="@{optViewModel}"
+                    android:visibility="@{optViewModel.isHolderNameVisibility ? View.VISIBLE : View.GONE}"/>
+
+                <include
+                    layout="@layout/fincode_pay_times_view"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:optViewModel="@{optViewModel}"
+                    android:visibility="@{optViewModel.isPayTimesVisibility ? View.VISIBLE : View.GONE}"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"></View>
+
+                <include
+                    layout="@layout/fincode_submit_view"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_marginTop="20dp"
+                    app:dataViewModel="@={dataViewModel}"
+                    app:actionViewModel="@{actionViewModel}"
+                    app:optViewModel="@{optViewModel}"/>
+
+                <View android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"></View>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}">
 
-            <include
-                layout="@layout/fincode_holder_name_view"
-                android:layout_weight="0.4"
+            <ProgressBar
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                app:dataViewModel="@={dataViewModel}"
-                app:actionViewModel="@{actionViewModel}"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-            <include
-                layout="@layout/fincode_pay_times_view"
-                android:layout_weight="0.4"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                app:dataViewModel="@={dataViewModel}"
-                app:actionViewModel="@{actionViewModel}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+    </FrameLayout>
 
-        <include
-            layout="@layout/fincode_submit_view"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_margin="20sp"
-            app:dataViewModel="@={dataViewModel}"
-            app:actionViewModel="@{actionViewModel}"/>
-
-    </LinearLayout>
 </layout>
