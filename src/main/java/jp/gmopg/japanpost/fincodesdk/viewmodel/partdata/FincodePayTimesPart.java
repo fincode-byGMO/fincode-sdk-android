@@ -13,7 +13,7 @@ import jp.gmopg.japanpost.fincodesdk.R;
  */
 public class FincodePayTimesPart extends FincodeBasePart {
 
-    private boolean isOneTime;
+    private boolean isOneTime = true;
 
     @Bindable
     public boolean getIsOneTime() {

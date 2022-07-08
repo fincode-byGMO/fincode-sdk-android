@@ -1,7 +1,10 @@
 package jp.gmopg.japanpost.fincodesdk.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.databinding.DataBindingUtil;
@@ -28,18 +31,29 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 abstract class FincodeCommon extends LinearLayout {
 
-    public FincodeCommon(Context context, int layoutId) {
-        super(context);
+//    public FincodeCommon(Activity context, int layoutId) {
+//        super((Context)context);
+//
+//        LayoutInflater inflater = LayoutInflater.from(context);
+//        initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),
+//                    FincodeViewModelHolder.getInstance());
+//    }
+
+    public FincodeCommon(Activity context, int layoutId, ViewGroup replace) {
+        super((Context)context);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),
-                    FincodeViewModelHolder.getInstance());
+        initBinding(DataBindingUtil.inflate(inflater, layoutId, replace, true),
+                FincodeViewModelHolder.getInstance());
     }
 
     public void initForPayment(FincodePaymentConfiguration config, Options options, FincodeCallback<FincodePaymentResponse> callback) {
         DataHolder.getInstance().setCallbackForPayment(callback);
         DataHolder.getInstance().setConfig(config);
         DataHolder.getInstance().setOptions(options);
+
+        FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
+
         getCardInfoList(config);
     }
 
@@ -47,12 +61,16 @@ abstract class FincodeCommon extends LinearLayout {
         DataHolder.getInstance().setCallbackForCardRegister(callback);
         DataHolder.getInstance().setConfig(config);
         DataHolder.getInstance().setOptions(options);
+
+        FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
     }
 
     public void initForCardUpdate(FincodeCardUpdateConfiguration config, Options options, FincodeCallback<FincodeCardUpdateResponse> callback) {
         DataHolder.getInstance().setCallbackForCardUpdate(callback);
         DataHolder.getInstance().setConfig(config);
         DataHolder.getInstance().setOptions(options);
+
+        FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
     }
 
     private void getCardInfoList(FincodeConfiguration config) {
@@ -64,6 +82,7 @@ abstract class FincodeCommon extends LinearLayout {
                 @Override
                 public void onResponse(FincodeCardInfoListResponse response) {
                     FincodeViewModelHolder.getInstance().getDataViewModel().selectCardNoPart.setSelectCardNoList(response.cardInfoList);
+                    FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(true);
                 }
 
                 @Override
@@ -72,7 +91,7 @@ abstract class FincodeCommon extends LinearLayout {
                 }
             });
         } else {
-            FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
+            FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
         }
     }
 
