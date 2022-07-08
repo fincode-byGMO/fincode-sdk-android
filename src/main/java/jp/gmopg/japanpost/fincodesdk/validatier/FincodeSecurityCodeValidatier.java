@@ -9,7 +9,7 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 public class FincodeSecurityCodeValidatier {
 
     public static void validate(FincodeDataViewModel dataViewModel) {
-        if ("".equals(dataViewModel.securityCodePart.getValue()) ||
+        if (!dataViewModel.securityCodePart.getValue().isEmpty() &&
                 CardBrandType.securityCodeLength(dataViewModel.securityCodePart.getValue())) {
             dataViewModel.securityCodePart.setIsError(true);
         } else {

@@ -19,10 +19,10 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
 public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
     // false: new card, true: registered card
-    private boolean radioSelect = true; // TODO カード選択 or カード情報入力 命名を見直す
+    private boolean radioSelect = true;
     private boolean isCardListField = false;
     private boolean isProgressBar = false;
-    private boolean isDirection = true; // TODO　カード入力欄のブランドイメージをバーチカル、ホリゾンタルで出し分けに使用　見直す
+    private boolean isDirection = true;
     private SubmitButtonType buttonType = SubmitButtonType.NONE;
 
     public FincodeCardNoPart cardNoPart = new FincodeCardNoPart();
@@ -33,6 +33,12 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     public FincodeSecurityCodePart securityCodePart = new FincodeSecurityCodePart();
     public FincodeSelectCardNoPart selectCardNoPart = new FincodeSelectCardNoPart();
 
+    private void clearValid() {
+        cardNoPart.setIsError(false);
+        expireMonthPart.setIsError(false);
+        expireYearPart.setIsError(false);
+    }
+
     @Bindable
     public boolean getRadioSelect() {
         return this.radioSelect;
@@ -41,14 +47,16 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     public void setRadioSelect(boolean radioSelect) {
         this.radioSelect = radioSelect;
         notifyPropertyChanged(BR.radioSelect);
+
+        clearValid();
     }
 
     @Bindable
-    public boolean isDirection() {
+    public boolean getIsDirection() {
         return isDirection;
     }
 
-    public void setDirection(boolean direction) {
+    public void setIsDirection(boolean direction) {
         this.isDirection = direction;
     }
 

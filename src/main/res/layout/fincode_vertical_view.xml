@@ -4,6 +4,7 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="android.view.View" />
     </data>
 
@@ -55,12 +56,20 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <include layout="@layout/fincode_card_no_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
-                <include layout="@layout/fincode_expir_vertical_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
-                <include layout="@layout/fincode_security_code_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
-                <include layout="@layout/fincode_holder_name_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
-                <include layout="@layout/fincode_pay_times_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
-                <include layout="@layout/fincode_submit_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}"/>
+                <include layout="@layout/fincode_card_no_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"/>
+                <include layout="@layout/fincode_expir_vertical_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"/>
+                <include layout="@layout/fincode_security_code_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"/>
+                <include layout="@layout/fincode_holder_name_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"
+                    android:visibility="@{optViewModel.isHolderNameVisibility ? View.VISIBLE : View.GONE}"/>
+                <include layout="@layout/fincode_pay_times_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"
+                    android:visibility="@{optViewModel.isPayTimesVisibility ? View.VISIBLE : View.GONE}"
+                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"/>
+                <include layout="@layout/fincode_submit_view" app:dataViewModel="@={dataViewModel}" app:actionViewModel="@{actionViewModel}" app:optViewModel="@{optViewModel}"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"/>
 
             </LinearLayout>
 

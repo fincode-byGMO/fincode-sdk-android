@@ -26,14 +26,60 @@ public class Options {
     public boolean isHolderNameVisibility;
 
     /**
-     * お支払い回数の表示・非表示 <br/>
+     * お支払い回数の表示・非表示
      * true: 表示, false: 非表示
      */
     public boolean isPayTimesVisibility;
 
-//    /**
-//     * submitボタンの指定 <br/>
-//     * PAYMENT: お支払い, CARD_REGISTER: カード登録, CARD_RENEWAL:カード更新
-//     */
-//    public SubmitButtonType isSubmitButtonType;
+    /**
+     * ラベルテキストを設定 ( カード番号 )
+     */
+    public String labelCardNo;
+
+    /**
+     * ラベルテキストを設定 ( 有効期限 )
+     */
+    public String labelExpire;
+
+    /**
+     * ラベルテキストを設定 ( セキュリティコード )
+     */
+    public String labelCvc;
+
+    /**
+     * ラベルテキストを設定 ( カード名義人名 )
+     */
+    public String labelHolderName;
+
+    /**
+     * ラベルテキストを設定 ( お支払い方法 )
+     */
+    public String labelPaymentMethod;
+
+    /**
+     * プレースホルダーを設定 ( カード番号 )
+     */
+    public String placeCardNo;
+
+    /**
+     * プレースホルダーを設定 ( 有効期限 [月] )
+     */
+    public String placeExpireMonth;
+
+    /**
+     * プレースホルダーを設定 ( 有効期限 [年] )
+     */
+    public String placeExpireYear;
+
+    /**
+     * プレースホルダーを設定 ( セキュリティコード )
+     */
+    public String placeCvc;
+
+    /**
+     * プレースホルダーを設定 ( カード名義人名 )
+     */
+    public String placeHolderName;
+
+
 }

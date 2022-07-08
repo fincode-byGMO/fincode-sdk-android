@@ -5,6 +5,7 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.CardBrandType"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
         <import type="android.view.View"/>
@@ -19,8 +20,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/card_number"
-            android:textSize="@dimen/titleFontSize"/>
+            android:text="@{optViewModel.labelCardNo}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,17 +42,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    android:background="@{dataViewModel.cardNoPart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
-                    android:hint="@string/card_number"
+                    android:background="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    android:hint="@{optViewModel.placeCardNo}"
                     android:inputType="number"
+                    android:nextFocusForward="@id/expireMonth"
                     android:padding="@dimen/textFieldPadding"
                     android:textSize="@dimen/textFieldFontSize"
-                    android:nextFocusForward="@id/expireMonth"
                     app:dynamicLength="@={dataViewModel.cardNoPart.value}"
                     app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
                     app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
-                    app:viewModelForCardNo="@{dataViewModel}"
-                    android:enabled="@{dataViewModel.radioSelect}"/>
+                    app:viewModelForCardNo="@{dataViewModel}" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -58,7 +60,9 @@
                     android:layout_alignEnd="@+id/cardNumber"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"/>
+                    app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"
+                    android:visibility="@{optViewModel.isDynamicLogDisplayVisibility ? View.VISIBLE : View.GONE}"/>
+
             </RelativeLayout>
 
             <include layout="@layout/fincode_card_image_list"
@@ -73,7 +77,7 @@
             android:paddingTop="@dimen/errorMsgTopPadding"
             android:textSize="@dimen/errorMsgFontSize"
             android:textColor="#FF0000"
-            app:errorVisibile="@{dataViewModel.cardNoPart.isError &amp;&amp; dataViewModel.radioSelect}"
+            app:errorVisibile="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect}"
             app:formatErrorMsg="@{@string/card_number_no_format_message}"
             app:noInputErrorMsg="@{@string/card_number_no_input_message}"
             app:viewModelPart="@{dataViewModel.cardNoPart}"/>
