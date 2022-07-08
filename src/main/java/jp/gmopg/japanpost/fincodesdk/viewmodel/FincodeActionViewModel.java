@@ -152,7 +152,7 @@ public class FincodeActionViewModel extends ViewModel {
         req.setAccessId(config.accessId);
         req.setOrderId(config.id);
         req.setCustomerId(config.customerId);
-        req.setCardId(vm.cardNoPart.getValue());
+        req.setCardId(vm.selectCardNoPart.getValue());
         if(vm.payTimesPart.getIsOneTime()) {
             req.setMethod(MethodType.ONE_TIME.getValue());
             req.setPayTimes("");

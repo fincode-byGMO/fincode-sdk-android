@@ -1,6 +1,8 @@
 package jp.gmopg.japanpost.fincodesdk.views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.ViewGroup;
 
 import androidx.databinding.ViewDataBinding;
 import jp.gmopg.japanpost.fincodesdk.R;
@@ -14,8 +16,12 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 public class FincodeHorizontalView extends FincodeCommon {
 
-    public FincodeHorizontalView(Context context) {
-        super(context, R.layout.fincode_horizontal_view);
+//    public FincodeHorizontalView(Activity context) {
+//        super(context, R.layout.fincode_horizontal_view);
+//    }
+
+    public FincodeHorizontalView(Activity context, ViewGroup replace) {
+        super(context, R.layout.fincode_horizontal_view, replace);
     }
 
     public void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder) {

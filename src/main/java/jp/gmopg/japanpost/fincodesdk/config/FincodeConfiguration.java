@@ -39,6 +39,10 @@ public class FincodeConfiguration {
      */
     public String customerId = "";
 
+    public SubmitButtonType getSubmitButtonType() {
+        return this.submitButtonType;
+    }
+
     protected FincodeConfiguration(SubmitButtonType submitButtonType) {
         this.submitButtonType = submitButtonType;
     }

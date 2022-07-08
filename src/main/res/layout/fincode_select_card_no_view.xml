@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_border_default"
-            app:viewModelForSelectCardNo="@{dataViewModel}"
+            android:enabled="@{dataViewModel.radioSelect}"
             app:dataSource="@{dataViewModel.selectCardNoPart.selectCardNoList}"
-            android:enabled="@{!dataViewModel.radioSelect}"/>
+            app:viewModelForSelectCardNo="@{dataViewModel}"/>
 
     </LinearLayout>
 

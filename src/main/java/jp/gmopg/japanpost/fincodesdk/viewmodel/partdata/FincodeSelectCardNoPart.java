@@ -20,14 +20,16 @@ public class FincodeSelectCardNoPart extends FincodeBasePart {
     public void setSelectCardNoList(List<FincodeCardInfo> list) {
         if(list == null) { return; }
 
+        selectCardNoList.clear();
+        selectCardNoList.add(new SelectCardNoItem("", "", "",""));
         for(FincodeCardInfo item : list) {
             selectCardNoList.add(new SelectCardNoItem(item.getCardNo(), item.getCardId(), item.getCardBrand(), item.getExpire()));
         }
     }
 
-    // TODO 動作確認後に削除する
     public FincodeSelectCardNoPart(){
-        selectCardNoList.add(new SelectCardNoItem("************3456", "7777", "VISA", "9999"));
+        selectCardNoList.add(new SelectCardNoItem("", "", "",""));
+//        selectCardNoList.add(new SelectCardNoItem("************3456", "7777", "VISA", "9999"));
     }
 
 }

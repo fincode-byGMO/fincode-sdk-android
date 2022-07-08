@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import jp.gmopg.japanpost.fincodesdk.config.DataHolder;
 import jp.gmopg.japanpost.fincodesdk.config.FincodeConfiguration;
+import jp.gmopg.japanpost.fincodesdk.enumeration.Authorization;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
 /**
@@ -27,11 +28,12 @@ public class BaseUseCase {
     }
 
     private String authStr(FincodeConfiguration config) {
+
         switch (config.authorization) {
             case BASIC:
-                return "Basic " + config.apiKey;
+                return Authorization.BASIC.getValue() + " " + config.apiKey;
             case BEARER:
-                return "Bearer " + config.apiKey;
+                return Authorization.BEARER.getValue() + " " + config.apiKey;
             default:
                 return "";
         }

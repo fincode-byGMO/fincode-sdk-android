@@ -18,8 +18,9 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
  */
 public class FincodeDataViewModel extends FincodeNotifyCallbacks {
 
-    // true: new card, false: registered card
-    private boolean radioSelect = false; // TODO カード選択 or カード情報入力 命名を見直す
+    // false: new card, true: registered card
+    private boolean radioSelect = true; // TODO カード選択 or カード情報入力 命名を見直す
+    private boolean isCardListField = false;
     private boolean isProgressBar = false;
     private boolean isDirection = true; // TODO　カード入力欄のブランドイメージをバーチカル、ホリゾンタルで出し分けに使用　見直す
     private SubmitButtonType buttonType = SubmitButtonType.NONE;
@@ -69,5 +70,15 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     public void setButtonType(SubmitButtonType buttonType) {
         this.buttonType = buttonType;
         notifyPropertyChanged(BR.buttonType);
+    }
+
+    @Bindable
+    public boolean getIsCardListField() {
+        return isCardListField;
+    }
+
+    public void setIsCardListField(boolean cardListField) {
+        isCardListField = cardListField;
+        notifyPropertyChanged(BR.isCardListField);
     }
 }
