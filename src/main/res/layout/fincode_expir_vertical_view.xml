@@ -5,6 +5,7 @@
     <data>
         <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
         <import type="android.view.View"/>
     </data>
@@ -18,8 +19,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/expiration_date"
-            android:textSize="@dimen/titleFontSize"/>
+            android:text="@{optViewModel.labelExpire}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,17 +40,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:hint="@string/expiration_date_month_hint"
+                    android:hint="@{optViewModel.placeExpireMonth}"
                     android:inputType="number"
                     android:maxLength="2"
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireMonthPart.value}"
                     android:textSize="@dimen/textFieldFontSize"
-                    android:background="@{dataViewModel.expireMonthPart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:background="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_MONTH}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
-                    android:enabled="@{dataViewModel.radioSelect}"/>
+                    android:enabled="@{!dataViewModel.radioSelect}"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -57,7 +59,7 @@
                     android:textColor="#FF0000"
                     tools:visibility="gone"
                     android:textSize="@dimen/errorMsgFontSize"
-                    app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; dataViewModel.radioSelect}"
+                    app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                     app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
                     app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
                     app:viewModelPart="@{dataViewModel.expireMonthPart}"/>
@@ -75,18 +77,18 @@
                     android:layout_marginTop="@dimen/textFieldMarginTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/expiration_date_year_hint"
+                    android:hint="@{optViewModel.placeExpireYear}"
                     android:inputType="number"
                     android:importantForAutofill="no"
                     android:maxLength="2"
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireYearPart.value}"
                     android:textSize="@dimen/textFieldFontSize"
-                    android:background="@{dataViewModel.expireYearPart.isError &amp;&amp; dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:background="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_YEAR}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
-                    android:enabled="@{dataViewModel.radioSelect}" />
+                    android:enabled="@{!dataViewModel.radioSelect}" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -95,7 +97,7 @@
                     tools:visibility="gone"
                     android:textSize="@dimen/errorMsgFontSize"
                     android:paddingTop="@dimen/errorMsgTopPadding"
-                    app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; dataViewModel.radioSelect}"
+                    app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                     app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
                     app:viewModelPart="@{dataViewModel.expireYearPart}"
                     app:formatErrorMsg="@{&quot;&quot;}"/> <!-- double quote escape -->

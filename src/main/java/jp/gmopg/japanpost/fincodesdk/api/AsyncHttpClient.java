@@ -15,7 +15,6 @@ public class AsyncHttpClient {
     private static AsyncHttpClient instance;
     private OkHttpClient client;
 
-    // TODO 見直す
     private final long CONNECT_TIMEOUT = 10;
     private final long WRITE_TIMEOUT = 10;
     private final long READ_TIMEOUT = 30;

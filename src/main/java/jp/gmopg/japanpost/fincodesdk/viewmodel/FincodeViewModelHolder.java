@@ -7,8 +7,9 @@ public class FincodeViewModelHolder {
 
     private static FincodeViewModelHolder fincodeViewModelHolder;
 
-    private FincodeActionViewModel action = new FincodeActionViewModel();
-    private FincodeDataViewModel data = new FincodeDataViewModel();
+    private FincodeActionViewModel action;
+    private FincodeDataViewModel data;
+    private FincodeOptViewModel opt;
 
     private FincodeViewModelHolder() {
     }
@@ -26,5 +27,15 @@ public class FincodeViewModelHolder {
 
     public FincodeDataViewModel getDataViewModel() {
         return data;
+    }
+
+    public FincodeOptViewModel getOptViewModel() {
+        return opt;
+    }
+
+    public void init() {
+        action = new FincodeActionViewModel();
+        data = new FincodeDataViewModel();
+        opt = new FincodeOptViewModel();
     }
 }

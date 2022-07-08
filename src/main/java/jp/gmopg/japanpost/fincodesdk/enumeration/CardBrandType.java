@@ -74,7 +74,7 @@ public enum CardBrandType{
                 return R.drawable.ic_amex;
             case NONE:
             default:
-                return -1; // TODO 該当なしの場合-1を返却でいいか検討する
+                return -1;
         }
     }
 
