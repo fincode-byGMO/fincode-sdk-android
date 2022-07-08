@@ -13,27 +13,27 @@
         android:padding="@dimen/partPadding"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}"
-            android:background="#afafaf">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="@{dataViewModel.isProgressBar ? View.VISIBLE : View.GONE}"-->
+<!--            android:background="#afafaf">-->
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+<!--            <ProgressBar-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="@{dataViewModel.radioSelect ? View.GONE : View.VISIBLE}" >
+            android:visibility="@{dataViewModel.radioSelect ? View.VISIBLE : View.GONE}" >
 
             <RadioButton
                 android:id="@+id/registeredCardButton"
@@ -41,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:buttonTint="@color/submitButtonBackground"
-                android:checked="true"
-                android:text="@string/registered_card" />
+                android:text="@string/registered_card"
+                android:checked="@={dataViewModel.radioSelect}"/>
 
             <include
                 layout="@layout/fincode_select_card_no_view"
@@ -58,7 +58,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:buttonTint="@color/submitButtonBackground"
-                android:checked="@={dataViewModel.radioSelect}"
                 android:text="@string/new_card"/>
 
         </RadioGroup>
