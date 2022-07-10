@@ -6,6 +6,9 @@ import android.widget.AdapterView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.databinding.BindingAdapter;
 import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.enumeration.PartsType;
@@ -16,8 +19,11 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class SpinnerSelectAdapter {
 
-    @BindingAdapter(value={"viewModelForSpinner"})
-    public static void setSpinnerSelect(Spinner spinner, FincodeDataViewModel dataViewModel) {
+    @BindingAdapter(value={"viewModelForSpinner", "dataSourceForSpinner"})
+    public static void setSpinnerSelect(Spinner spinner, FincodeDataViewModel dataViewModel, String[] list) {
+
+        spinner.setAdapter(new SpinnerSelectListAdapter(spinner.getContext() , list));
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //　アイテムが選択された時
             @Override

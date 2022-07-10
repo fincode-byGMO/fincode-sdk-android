@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelExpire}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +51,8 @@
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_MONTH}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
-                    android:enabled="@{!dataViewModel.radioSelect}"/>
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -88,7 +90,8 @@
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_YEAR}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
-                    android:enabled="@{!dataViewModel.radioSelect}" />
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"/>
 
                 <TextView
                     android:layout_width="match_parent"
