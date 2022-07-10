@@ -22,6 +22,7 @@ import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardUpdateResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
+import jp.gmopg.japanpost.fincodesdk.util.ResourceUtil;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
@@ -41,6 +42,7 @@ abstract class FincodeCommon extends LinearLayout {
         FincodeViewModelHolder.getInstance().init();
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setIsDirection(isVertical);
+        ResourceUtil.replaceFrameBorder(getContext());
 
         LayoutInflater inflater = LayoutInflater.from(context);
         initBinding(DataBindingUtil.inflate(inflater, layoutId, replace, true),
@@ -53,6 +55,7 @@ abstract class FincodeCommon extends LinearLayout {
         DataHolder.getInstance().setOptions(options);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
+//        ResourceUtil.replaceFrameBorder(getContext());
 
         getCardInfoList(config);
     }
@@ -63,6 +66,7 @@ abstract class FincodeCommon extends LinearLayout {
         DataHolder.getInstance().setOptions(options);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
+//        ResourceUtil.replaceFrameBorder(getContext());
     }
 
     public void initForCardUpdate(FincodeCardUpdateConfiguration config, Options options, FincodeCallback<FincodeCardUpdateResponse> callback) {
@@ -71,6 +75,7 @@ abstract class FincodeCommon extends LinearLayout {
         DataHolder.getInstance().setOptions(options);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
+//        ResourceUtil.replaceFrameBorder(getContext());
     }
 
     private void getCardInfoList(FincodeConfiguration config) {
@@ -83,6 +88,7 @@ abstract class FincodeCommon extends LinearLayout {
                 public void onResponse(FincodeCardInfoListResponse response) {
                     FincodeViewModelHolder.getInstance().getDataViewModel().selectCardNoPart.setSelectCardNoList(response.cardInfoList);
                     FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(true);
+                    FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(true);
                 }
 
                 @Override
@@ -92,6 +98,7 @@ abstract class FincodeCommon extends LinearLayout {
             });
         } else {
             FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
+            FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
         }
     }
 

@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelExpire}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/textFieldMarginTop"
-                android:background="@{dataViewModel.expireMonthPart.isError || dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
-                >
+                android:background="@{dataViewModel.expireMonthPart.isError || dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}">
 
                 <EditText
                     android:id="@+id/expireMonth"
@@ -55,7 +55,8 @@
                     app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_MONTH}"
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
                     app:borderView="@{borderLinearLayout}"
-                    android:enabled="@{!dataViewModel.radioSelect}"/>
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"/>
 
                 <TextView
                     android:layout_weight="0.1"
@@ -83,7 +84,8 @@
                     app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_YEAR}"
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
                     app:borderView="@{borderLinearLayout}"
-                    android:enabled="@{!dataViewModel.radioSelect}"/>
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"/>
 
             </LinearLayout>
 

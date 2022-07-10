@@ -1,5 +1,6 @@
 package jp.gmopg.japanpost.fincodesdk.adapter;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -7,6 +8,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import androidx.databinding.BindingAdapter;
+import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 

@@ -22,6 +22,7 @@ public class FincodeDataViewModel extends FincodeNotifyCallbacks {
     private boolean radioSelect = true;
     private boolean isCardListField = false;
     private boolean isProgressBar = false;
+    // card brand display
     private boolean isDirection = true;
     private SubmitButtonType buttonType = SubmitButtonType.NONE;
 

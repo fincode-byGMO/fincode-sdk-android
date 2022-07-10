@@ -21,14 +21,15 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelHolderName}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="null"
             android:layout_marginTop="@dimen/textFieldMarginTop"
-            android:background="@drawable/frame_border_default"
+            android:background="@{dataViewModel.holderNamePart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
             android:hint="@{optViewModel.placeHolderName}"
             android:inputType="textVisiblePassword|textCapCharacters"
             android:maxLength="50"
@@ -38,7 +39,20 @@
             app:partsType="@{PartsType.HOLDER_NAME}"
             app:selectedBorder="@{@drawable/frame_border_selected}"
             app:viewModel="@{dataViewModel}"
-            android:enabled="@{!dataViewModel.radioSelect}" />
+            android:enabled="@{!dataViewModel.radioSelect}"
+            app:colorText="@{optViewModel.colorText}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="gone"
+            android:paddingTop="@dimen/errorMsgTopPadding"
+            android:textColor="#FF0000"
+            android:textSize="@dimen/errorMsgFontSize"
+            app:errorVisibile="@{dataViewModel.holderNamePart.isError &amp;&amp; !dataViewModel.radioSelect}"
+            app:formatErrorMsg="@{@string/label_holder_name_format_error_message}"
+            app:noInputErrorMsg="@{&quot;&quot;}"
+            app:viewModelPart="@{dataViewModel.holderNamePart}"/>
 
     </LinearLayout>
 

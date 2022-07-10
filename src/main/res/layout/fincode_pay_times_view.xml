@@ -8,6 +8,7 @@
         <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
         <import type="android.view.View" />
+        <import type="android.graphics.Color"/>
     </data>
 
     <LinearLayout
@@ -22,7 +23,8 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelPaymentMethod}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,29 +44,31 @@
                     android:paddingEnd="30dp"
                     android:buttonTint="@color/submitButtonBackground"
                     android:checked="@={dataViewModel.payTimesPart.isOneTime}"
-                    android:text="@string/one_time_payment" />
+                    android:text="@string/one_time_payment"
+                    app:colorText="@{optViewModel.colorLabelText}"/>
 
                 <RadioButton
                     android:id="@+id/installmentPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="30dp"
                     android:buttonTint="@color/submitButtonBackground"
-                    android:text="@string/installment_payment" />
+                    android:paddingEnd="30dp"
+                    android:text="@string/installment_payment"
+                    app:colorText="@{optViewModel.colorLabelText}"/>
 
             </RadioGroup>
 
             <Spinner
                 android:id="@+id/planets_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/frame_border_default"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:entries="@array/payment_times_array"
                 tools:visibility="@{installmentPayment.checked ? View.VISIBLE : View.GONE}"
-                app:viewModelForSpinner="@{dataViewModel}" />
+                app:viewModelForSpinner="@{dataViewModel}"
+                app:dataSourceForSpinner="@{@stringArray/payment_times_array}"/>
 
         </LinearLayout>
 

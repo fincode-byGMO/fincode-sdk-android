@@ -33,6 +33,11 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
     private String placeCvc = "001";
     private String placeHolderName = "TARO YAMADA";
 
+    private String colorBackground = "";
+    private String colorBackgroundInput = "";
+    private String colorText = "";
+    private String colorLabelText = "";
+
     @Bindable
     public boolean getIsHeadingVisibility() {
         return this.isHeadingVisibility;
@@ -173,4 +178,43 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
         notifyPropertyChanged(BR.placeHolderName);
     }
 
+    @Bindable
+    public String getColorBackground() {
+        return colorBackground;
+    }
+
+    public void setColorBackground(String colorBackground) {
+        this.colorBackground = colorBackground;
+        notifyPropertyChanged(BR.colorBackground);
+    }
+
+    @Bindable
+    public String getColorBackgroundInput() {
+        return colorBackgroundInput;
+    }
+
+    public void setColorBackgroundInput(String colorBackgroundInput) {
+        this.colorBackgroundInput = colorBackgroundInput;
+        notifyPropertyChanged(BR.colorBackgroundInput);
+    }
+
+    @Bindable
+    public String getColorText() {
+        return colorText;
+    }
+
+    public void setColorText(String colorText) {
+        this.colorText = colorText;
+        notifyPropertyChanged(BR.colorText);
+    }
+
+    @Bindable
+    public String getColorLabelText() {
+        return colorLabelText;
+    }
+
+    public void setColorLabelText(String colorLabelText) {
+        this.colorLabelText = colorLabelText;
+        notifyPropertyChanged(BR.colorLabelText);
+    }
 }

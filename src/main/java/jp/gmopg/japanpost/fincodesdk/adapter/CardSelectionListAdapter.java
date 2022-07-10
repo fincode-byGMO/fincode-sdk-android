@@ -1,10 +1,14 @@
 package jp.gmopg.japanpost.fincodesdk.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -12,6 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import jp.gmopg.japanpost.fincodesdk.R;
 import jp.gmopg.japanpost.fincodesdk.databinding.FincodeSelectCardNoCellViewBinding;
 import jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem;
+import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
 
 /**
  * Created by m.ohkawa on 2022/06/03.
@@ -40,7 +45,16 @@ public class CardSelectionListAdapter extends BaseAdapter {
             }
         }
 
+//        Drawable drw = context.getResources().getDrawable(R.drawable.frame_border_default);
+//        binding.selectCardNoCell.setBackground(drw);
+
+        String colorText = FincodeViewModelHolder.getInstance().getOptViewModel().getColorText();
+        if(!colorText.isEmpty()) {
+            binding.selectCardNo.setTextColor(Color.parseColor(colorText));
+        }
+
         binding.setItem(selectCardNoList.get(position));
+
 
         return binding.getRoot();
     }
