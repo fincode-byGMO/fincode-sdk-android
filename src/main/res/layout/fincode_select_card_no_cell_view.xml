@@ -7,12 +7,14 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/select_card_no_cell"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/select_card_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
@@ -20,8 +22,7 @@
             android:layout_marginEnd="10dp"
             android:layout_gravity="center"
             android:textSize="@dimen/titleFontSize"
-            android:text="@{SelectCardNoConverter.withSpace(item.brandName, item.maskCardNo)}"
-            />
+            android:text="@{SelectCardNoConverter.withSpace(item.brandName, item.maskCardNo)}"/>
 
         <ImageView
             android:layout_width="0dp"

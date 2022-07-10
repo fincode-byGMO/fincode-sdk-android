@@ -8,29 +8,11 @@
     <string name="dialog_no">いいえ</string>
     <string name="dialog_close">閉じる</string>
 
-    <!--text-->
-<!--    <string name="card_number">カード番号</string>-->
-<!--    <string name="expiration_date">有効期限</string>-->
-<!--    <string name="security_code">セキュリティコード</string>-->
-<!--    <string name="label_holder_name">カード名義人</string>-->
-<!--    <string name="payment_method">お支払い方法</string>-->
-
-    <!--hint-->
-<!--    <string name="expiration_date_month_hint">月（MM）</string>-->
-<!--    <string name="expiration_date_year_hint">年（YY）</string>-->
-<!--    <string name="security_code_hint">CVC</string>-->
-<!--    <string name="label_holder_name_hint">カード名義人名（TARO YAMADA）</string>-->
-
     <!--radio_button-->
     <string name="registered_card">登録済みのカード</string>
     <string name="new_card">新しいクレジットカード</string>
     <string name="one_time_payment">一括</string>
     <string name="installment_payment">分割</string>
-
-    <!--button-->
-<!--    <string name="credit_card_registration">クレジットカードを登録</string>-->
-<!--    <string name="credit_card_renewal">クレジットカードを更新</string>-->
-<!--    <string name="credit_payment">お支払い</string>-->
 
     <!--oblique_line-->
     <string name="oblique_line">/</string>
@@ -43,7 +25,6 @@
     <string name="expiration_date_month_format_error_message">有効期限（月）の書式が正しくありません</string>
     <string name="security_code_no_input_message">セキュリティコードが指定されていません</string>
     <string name="security_code_no_format_error_message">セキュリティコードの書式が正しくありません</string>
-<!--    <string name="label_holder_name_format_error_message">カード名義人が無効です</string>-->
-<!--    <string name="label_holder_name_no_input_message">カード名義人が指定されていません</string>-->
+    <string name="label_holder_name_format_error_message">カード名義人名の書式が正しくありません</string>
 
 </resources>

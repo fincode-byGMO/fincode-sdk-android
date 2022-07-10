@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelCvc}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
                     android:textSize="@dimen/textFieldFontSize"
                     app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
                     app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
-                    app:viewModelForSecurityCode="@{dataViewModel}" />
+                    app:viewModelForSecurityCode="@{dataViewModel}"
+                    app:colorText="@{optViewModel.colorText}"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
