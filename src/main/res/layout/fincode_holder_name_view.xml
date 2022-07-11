@@ -1,0 +1,62 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/partPadding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{optViewModel.labelHolderName}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="null"
+            android:layout_marginTop="@dimen/textFieldMarginTop"
+            android:background="@{dataViewModel.holderNamePart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+            android:hint="@{optViewModel.placeHolderName}"
+            android:inputType="textVisiblePassword|textCapCharacters"
+            android:maxLength="50"
+            android:padding="@dimen/textFieldPadding"
+            android:text="@={dataViewModel.holderNamePart.value}"
+            android:textSize="@dimen/textFieldFontSize"
+            app:partsType="@{PartsType.HOLDER_NAME}"
+            app:selectedBorder="@{@drawable/frame_border_selected}"
+            app:viewModel="@{dataViewModel}"
+            android:enabled="@{!dataViewModel.radioSelect}"
+            app:colorText="@{optViewModel.colorText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="gone"
+            android:paddingTop="@dimen/errorMsgTopPadding"
+            android:textColor="#FF0000"
+            android:textSize="@dimen/errorMsgFontSize"
+            app:errorVisibile="@{dataViewModel.holderNamePart.isError &amp;&amp; !dataViewModel.radioSelect}"
+            app:formatErrorMsg="@{@string/label_holder_name_format_error_message}"
+            app:noInputErrorMsg="@{&quot;&quot;}"
+            app:viewModelPart="@{dataViewModel.holderNamePart}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+    </LinearLayout>
+
+</layout>

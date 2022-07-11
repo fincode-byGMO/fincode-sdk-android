@@ -1,0 +1,46 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="item" type="jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.converter.SelectCardNoConverter"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/select_card_no_cell"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/select_card_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
+            android:textSize="@dimen/titleFontSize"
+            android:text="@{SelectCardNoConverter.withSpace(item.brandName, item.maskCardNo)}"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
+            app:imageResource="@{item.brandImage}"
+            />
+
+        <TextView
+            android:id="@+id/select_card_expire"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            android:layout_gravity="center"
+            android:textSize="@dimen/titleFontSize"
+            android:text="@{SelectCardNoConverter.withSlash(item.expir)}"
+            />
+    </LinearLayout>
+</layout>
