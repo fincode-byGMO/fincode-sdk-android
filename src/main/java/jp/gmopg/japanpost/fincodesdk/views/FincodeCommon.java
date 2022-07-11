@@ -51,31 +51,33 @@ abstract class FincodeCommon extends LinearLayout {
 
     public void initForPayment(FincodePaymentConfiguration config, FincodeCallback<FincodePaymentResponse> callback) {
         DataHolder.getInstance().setCallbackForPayment(callback);
-        DataHolder.getInstance().setConfig(config);
-        DataHolder.getInstance().setOptions(opt);
 
-        FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
-        setOpt(opt);
+        initCommon(config);
 
         getCardInfoList(config);
     }
 
     public void initForCardRegister(FincodeCardRegisterConfiguration config, FincodeCallback<FincodeCardRegisterResponse> callback) {
         DataHolder.getInstance().setCallbackForCardRegister(callback);
-        DataHolder.getInstance().setConfig(config);
-        DataHolder.getInstance().setOptions(opt);
 
-        FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
-        setOpt(opt);
+        initCommon(config);
     }
 
     public void initForCardUpdate(FincodeCardUpdateConfiguration config, FincodeCallback<FincodeCardUpdateResponse> callback) {
         DataHolder.getInstance().setCallbackForCardUpdate(callback);
+
+        initCommon(config);
+    }
+
+    private void initCommon(FincodeConfiguration config) {
         DataHolder.getInstance().setConfig(config);
         DataHolder.getInstance().setOptions(opt);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
         setOpt(opt);
+
+        FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
+        FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
     }
 
     private void getCardInfoList(FincodeConfiguration config) {
@@ -96,9 +98,6 @@ abstract class FincodeCommon extends LinearLayout {
                     // do nothing
                 }
             });
-        } else {
-            FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
-            FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
         }
     }
 

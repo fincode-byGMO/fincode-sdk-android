@@ -6,6 +6,7 @@
         <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
         <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
         <import type="android.view.View" />
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType"/>
     </data>
 
     <FrameLayout
@@ -68,7 +69,8 @@
                     android:layout_width="match_parent"
                     app:actionViewModel="@{actionViewModel}"
                     app:dataViewModel="@={dataViewModel}"
-                    app:optViewModel="@{optViewModel}"/>
+                    app:optViewModel="@{optViewModel}"
+                    android:visibility="@{dataViewModel.buttonType != SubmitButtonType.CARD_UPDATE ? View.VISIBLE : View.GONE}"/>
 
                 <include
                     layout="@layout/fincode_expir_horizontal_view"
@@ -113,7 +115,7 @@
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
-                    android:visibility="@{optViewModel.isPayTimesVisibility ? View.VISIBLE : View.GONE}"/>
+                    android:visibility="@{dataViewModel.buttonType == SubmitButtonType.PAYMENT &amp;&amp; optViewModel.isPayTimesVisibility ? View.VISIBLE : View.GONE}"/>
 
             </LinearLayout>
 
