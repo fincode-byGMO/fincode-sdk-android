@@ -24,7 +24,8 @@
             android:text="@{optViewModel.labelPaymentMethod}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +46,8 @@
                     android:buttonTint="@color/submitButtonBackground"
                     android:checked="@={dataViewModel.payTimesPart.isOneTime}"
                     android:text="@string/one_time_payment"
-                    app:colorText="@{optViewModel.colorLabelText}"/>
+                    app:colorText="@{optViewModel.colorLabelText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <RadioButton
                     android:id="@+id/installmentPayment"
@@ -54,7 +56,8 @@
                     android:buttonTint="@color/submitButtonBackground"
                     android:paddingEnd="30dp"
                     android:text="@string/installment_payment"
-                    app:colorText="@{optViewModel.colorLabelText}"/>
+                    app:colorText="@{optViewModel.colorLabelText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </RadioGroup>
 

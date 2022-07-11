@@ -1,5 +1,7 @@
 package jp.gmopg.japanpost.fincodesdk.config;
 
+import android.graphics.Typeface;
+
 import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
 
 /**
@@ -81,5 +83,33 @@ public class Options {
      */
     public String placeHolderName;
 
+    /**
+     * フォーム全体の背景色
+     */
+    public String colorBackground = "";
 
+    /**
+     * インプットフィールドの背景色
+     */
+    public String colorBackgroundInput = "";
+
+    /**
+     * インプットの文字色
+     */
+    public String colorText = "";
+
+    /**
+     * ラベルの文字色
+     */
+    public String colorLabelText = "";
+
+    /**
+     * インプットのボーダーの色
+     */
+    public String colorBorder = "";
+
+    /**
+     * フォントの種類
+     */
+    public Typeface fontFamily = null;
 }

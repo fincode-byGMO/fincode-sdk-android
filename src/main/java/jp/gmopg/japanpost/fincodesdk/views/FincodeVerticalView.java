@@ -18,8 +18,8 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 public class FincodeVerticalView extends FincodeCommon {
 
-    public FincodeVerticalView(Activity context, ViewGroup replace) {
-        super(context, R.layout.fincode_vertical_view, replace, true);
+    public FincodeVerticalView(Activity context, Options options, ViewGroup replace) {
+        super(context, R.layout.fincode_vertical_view, replace, options,true);
     }
 
     protected void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder) {

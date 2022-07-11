@@ -2,6 +2,7 @@ package jp.gmopg.japanpost.fincodesdk.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,14 +46,8 @@ public class CardSelectionListAdapter extends BaseAdapter {
             }
         }
 
-//        Drawable drw = context.getResources().getDrawable(R.drawable.frame_border_default);
-//        binding.selectCardNoCell.setBackground(drw);
-
-        String colorText = FincodeViewModelHolder.getInstance().getOptViewModel().getColorText();
-        if(!colorText.isEmpty()) {
-            binding.selectCardNo.setTextColor(Color.parseColor(colorText));
-        }
-
+        setColorText(binding);
+        setFontFamily(binding);
         binding.setItem(selectCardNoList.get(position));
 
 
@@ -76,5 +71,21 @@ public class CardSelectionListAdapter extends BaseAdapter {
 
     public SelectCardNoItem item(int position) {
         return selectCardNoList.get(position);
+    }
+
+    private void setColorText(FincodeSelectCardNoCellViewBinding binding) {
+        String colorText = FincodeViewModelHolder.getInstance().getOptViewModel().getColorText();
+        if(!colorText.isEmpty()) {
+            binding.selectCardNo.setTextColor(Color.parseColor(colorText));
+            binding.selectCardExpire.setTextColor(Color.parseColor(colorText));
+        }
+    }
+
+    private void setFontFamily(FincodeSelectCardNoCellViewBinding binding) {
+        Typeface fontFamily = FincodeViewModelHolder.getInstance().getOptViewModel().getFontFamily();
+        if(fontFamily != null) {
+            binding.selectCardNo.setTypeface(fontFamily);
+            binding.selectCardExpire.setTypeface(fontFamily);
+        }
     }
 }
