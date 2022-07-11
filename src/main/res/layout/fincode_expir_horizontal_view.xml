@@ -1,0 +1,125 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/partPadding"
+        app:layout_constraintTop_toBottomOf="@+id/expirationDateItem">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{optViewModel.labelExpire}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/borderLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/textFieldMarginTop"
+                android:background="@{dataViewModel.expireMonthPart.isError || dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}">
+
+                <EditText
+                    android:id="@+id/expireMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.45"
+                    android:background="#00000000"
+                    android:hint="@{optViewModel.placeExpireMonth}"
+                    android:inputType="number"
+                    android:importantForAutofill="no"
+                    android:maxLength="2"
+                    android:padding="@dimen/textFieldPadding"
+                    android:text="@={dataViewModel.expireMonthPart.value}"
+                    android:textSize="@dimen/textFieldFontSize"
+                    app:viewModelForExpireHorizontal="@{dataViewModel}"
+                    app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_MONTH}"
+                    app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
+                    app:borderView="@{borderLinearLayout}"
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
+
+                <TextView
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/oblique_line"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
+
+                <EditText
+                    android:id="@+id/expireYear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.45"
+                    android:background="#00000000"
+                    android:hint="@{optViewModel.placeExpireYear}"
+                    android:inputType="number"
+                    android:importantForAutofill="no"
+                    android:maxLength="2"
+                    android:padding="@dimen/textFieldPadding"
+                    android:text="@={dataViewModel.expireYearPart.value}"
+                    android:textSize="@dimen/textFieldFontSize"
+                    app:viewModelForExpireHorizontal="@{dataViewModel}"
+                    app:partsTypeForExpireHorizontal="@{PartsType.EXPIRE_YEAR}"
+                    app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
+                    app:borderView="@{borderLinearLayout}"
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/errorMsgTopPadding"
+                tools:visibility="gone"
+                android:textSize="@dimen/errorMsgFontSize"
+                android:textColor="#FF0000"
+                app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect}"
+                app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
+                app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
+                app:viewModelPart="@{dataViewModel.expireMonthPart}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/errorMsgTopPadding"
+                tools:visibility="gone"
+                android:textSize="@dimen/errorMsgFontSize"
+                android:textColor="#FF0000"
+                app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect}"
+                app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
+                app:viewModelPart="@{dataViewModel.expireYearPart}"
+                app:formatErrorMsg="@{&quot;&quot;}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

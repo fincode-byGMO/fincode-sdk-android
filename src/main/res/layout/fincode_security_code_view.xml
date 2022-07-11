@@ -1,0 +1,83 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
+        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/partPadding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{optViewModel.labelCvc}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textFieldMarginTop">
+
+                <EditText
+                    android:id="@+id/securityCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@{dataViewModel.securityCodePart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    android:hint="@{optViewModel.placeCvc}"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="@dimen/textFieldPadding"
+                    android:text="@={dataViewModel.securityCodePart.value}"
+                    android:textSize="@dimen/textFieldFontSize"
+                    app:colorText="@{optViewModel.colorText}"
+                    app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
+                    app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
+                    app:viewModelForSecurityCode="@{dataViewModel}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/securityCode"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:src="@{dataViewModel.securityCodePart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/ic_cvc_er : @drawable/ic_cvc}" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="gone"
+                android:paddingTop="@dimen/errorMsgTopPadding"
+                android:textSize="@dimen/errorMsgFontSize"
+                android:textColor="#FF0000"
+                app:errorVisibile="@{dataViewModel.securityCodePart.isError &amp;&amp; !dataViewModel.radioSelect}"
+                app:viewModelPart="@{dataViewModel.securityCodePart}"
+                app:formatErrorMsg="@{@string/security_code_no_format_error_message}"
+                app:noInputErrorMsg="@{@string/security_code_no_input_message}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

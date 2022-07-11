@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="sdk_app_name">FincodeSDK</string>
+
+    <!--daialog-->
+    <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
+    <string name="dialog_close">閉じる</string>
+
+    <!--radio_button-->
+    <string name="registered_card">登録済みのカード</string>
+    <string name="new_card">新しいクレジットカード</string>
+    <string name="one_time_payment">一括</string>
+    <string name="installment_payment">分割</string>
+
+    <!--oblique_line-->
+    <string name="oblique_line">/</string>
+
+    <!--error-->
+    <string name="card_number_no_input_message">カード番号が指定されていません</string>
+    <string name="card_number_no_format_message">カード番号の書式が正しくありません</string>
+    <string name="expiration_date_month_no_input_message">有効期限（月）が指定されていません</string>
+    <string name="expiration_date_year_no_input_message">有効期限（年）が指定されていません</string>
+    <string name="expiration_date_month_format_error_message">有効期限（月）の書式が正しくありません</string>
+    <string name="security_code_no_input_message">セキュリティコードが指定されていません</string>
+    <string name="security_code_no_format_error_message">セキュリティコードの書式が正しくありません</string>
+    <string name="label_holder_name_format_error_message">カード名義人名の書式が正しくありません</string>
+
+</resources>
