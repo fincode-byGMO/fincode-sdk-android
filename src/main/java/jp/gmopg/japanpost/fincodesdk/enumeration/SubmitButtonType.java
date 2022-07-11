@@ -11,16 +11,6 @@ public enum SubmitButtonType {
     CARD_REGISTER,
     CARD_UPDATE;
 
-//    private static SubmitButtonType submitButtonType;
-//
-//    public static SubmitButtonType getButtonPressType() {
-//        return submitButtonType;
-//    }
-//
-//    public static void setButtonPressType(SubmitButtonType submitButtonType) {
-//        SubmitButtonType.submitButtonType = submitButtonType;
-//    }
-
     public static String getTitle(SubmitButtonType type){
         switch (type){
             case PAYMENT:
