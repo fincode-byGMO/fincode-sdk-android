@@ -24,7 +24,8 @@
             android:text="@{optViewModel.labelCardNo}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,11 +52,12 @@
                     android:nextFocusForward="@id/expireMonth"
                     android:padding="@dimen/textFieldPadding"
                     android:textSize="@dimen/textFieldFontSize"
+                    app:colorText="@{optViewModel.colorText}"
                     app:dynamicLength="@={dataViewModel.cardNoPart.value}"
                     app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
                     app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
                     app:viewModelForCardNo="@{dataViewModel}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <ImageView
                     android:layout_width="30dp"
@@ -83,7 +85,8 @@
             app:errorVisibile="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect}"
             app:formatErrorMsg="@{@string/card_number_no_format_message}"
             app:noInputErrorMsg="@{@string/card_number_no_input_message}"
-            app:viewModelPart="@{dataViewModel.cardNoPart}"/>
+            app:viewModelPart="@{dataViewModel.cardNoPart}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
     </LinearLayout>
 </layout>

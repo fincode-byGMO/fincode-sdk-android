@@ -23,7 +23,8 @@
             android:text="@{optViewModel.labelExpire}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +57,8 @@
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
                     app:borderView="@{borderLinearLayout}"
                     android:enabled="@{!dataViewModel.radioSelect}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <TextView
                     android:layout_weight="0.1"
@@ -85,7 +87,8 @@
                     app:selectedBorderForExpireHorizontal="@{@drawable/frame_border_selected}"
                     app:borderView="@{borderLinearLayout}"
                     android:enabled="@{!dataViewModel.radioSelect}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </LinearLayout>
 
@@ -99,7 +102,8 @@
                 app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                 app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
                 app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
-                app:viewModelPart="@{dataViewModel.expireMonthPart}"/>
+                app:viewModelPart="@{dataViewModel.expireMonthPart}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -111,7 +115,8 @@
                 app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                 app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
                 app:viewModelPart="@{dataViewModel.expireYearPart}"
-                app:formatErrorMsg="@{&quot;&quot;}"/>
+                app:formatErrorMsg="@{&quot;&quot;}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
 
         </LinearLayout>
 

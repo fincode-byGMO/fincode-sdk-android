@@ -22,7 +22,8 @@
             android:text="@{optViewModel.labelExpire}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +53,8 @@
                     app:partsTypeForExpire="@{PartsType.EXPIRE_MONTH}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
                     android:enabled="@{!dataViewModel.radioSelect}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -64,7 +66,8 @@
                     app:errorVisibile="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                     app:formatErrorMsg="@{@string/expiration_date_month_format_error_message}"
                     app:noInputErrorMsg="@{@string/expiration_date_month_no_input_message}"
-                    app:viewModelPart="@{dataViewModel.expireMonthPart}"/>
+                    app:viewModelPart="@{dataViewModel.expireMonthPart}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </LinearLayout>
 
@@ -91,7 +94,8 @@
                     app:partsTypeForExpire="@{PartsType.EXPIRE_YEAR}"
                     app:selectedBorderForExpire="@{@drawable/frame_border_selected}"
                     android:enabled="@{!dataViewModel.radioSelect}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:colorText="@{optViewModel.colorText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -103,7 +107,8 @@
                     app:errorVisibile="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect}"
                     app:noInputErrorMsg="@{@string/expiration_date_year_no_input_message}"
                     app:viewModelPart="@{dataViewModel.expireYearPart}"
-                    app:formatErrorMsg="@{&quot;&quot;}"/> <!-- double quote escape -->
+                    app:formatErrorMsg="@{&quot;&quot;}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </LinearLayout>
 

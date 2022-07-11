@@ -33,7 +33,8 @@
                     android:buttonTint="@color/submitButtonBackground"
                     android:text="@string/registered_card"
                     android:checked="@={dataViewModel.radioSelect}"
-                    app:colorText="@{optViewModel.colorLabelText}"/>
+                    app:colorText="@{optViewModel.colorLabelText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <include
                     layout="@layout/fincode_select_card_no_view"
@@ -50,7 +51,8 @@
                     android:layout_marginBottom="5dp"
                     android:buttonTint="@color/submitButtonBackground"
                     android:text="@string/new_card"
-                    app:colorText="@{optViewModel.colorLabelText}"/>
+                    app:colorText="@{optViewModel.colorLabelText}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </RadioGroup>
 

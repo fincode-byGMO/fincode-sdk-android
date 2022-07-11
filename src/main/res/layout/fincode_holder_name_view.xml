@@ -22,7 +22,8 @@
             android:text="@{optViewModel.labelHolderName}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -40,7 +41,8 @@
             app:selectedBorder="@{@drawable/frame_border_selected}"
             app:viewModel="@{dataViewModel}"
             android:enabled="@{!dataViewModel.radioSelect}"
-            app:colorText="@{optViewModel.colorText}"/>
+            app:colorText="@{optViewModel.colorText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +54,8 @@
             app:errorVisibile="@{dataViewModel.holderNamePart.isError &amp;&amp; !dataViewModel.radioSelect}"
             app:formatErrorMsg="@{@string/label_holder_name_format_error_message}"
             app:noInputErrorMsg="@{&quot;&quot;}"
-            app:viewModelPart="@{dataViewModel.holderNamePart}"/>
+            app:viewModelPart="@{dataViewModel.holderNamePart}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
     </LinearLayout>
 
