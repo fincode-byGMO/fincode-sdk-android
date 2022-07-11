@@ -1,0 +1,51 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/visaImage"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_visa"/>
+
+        <ImageView
+            android:id="@+id/masterImage"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:layout_toRightOf="@+id/visaImage"
+            android:src="@drawable/ic_master"/>
+
+        <ImageView
+            android:id="@+id/jcbImage"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="1dp"
+            android:layout_below="@+id/masterImage"
+            android:src="@drawable/ic_jcb"/>
+
+        <ImageView
+            android:id="@+id/amexImage"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_toRightOf="@+id/jcbImage"
+            android:layout_below="@+id/masterImage"
+            android:src="@drawable/ic_amex"/>
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/amexImage"
+            android:layout_below="@+id/masterImage"
+            android:src="@drawable/ic_diners"/>
+
+    </RelativeLayout>
+
+</layout>

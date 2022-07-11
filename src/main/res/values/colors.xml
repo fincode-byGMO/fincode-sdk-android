@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="submitButtonBackground">#205c98</color>
+    <color name="background">#f4f4ff</color>
+    <color name="defaultBorder">#CDCBCB</color>
+    <color name="selectedBorder">#293DAA</color>
+    <color name="errorBorder">#F44336</color>
+</resources>

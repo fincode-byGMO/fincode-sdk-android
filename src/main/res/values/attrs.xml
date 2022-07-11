@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <declare-styleable name="FincodeSetting">-->
+<!--        &lt;!&ndash; 見出しの表示・非表示を設定します ( true: 表示 ,false: 非表示 ) &ndash;&gt;-->
+<!--        <attr name="fincodeHeadingVisibility" format="boolean" />-->
+<!--        &lt;!&ndash; ブランド画像 動的切り替えの表示・非表示を設定します ( true: 表示 ,false: 非表示 ) &ndash;&gt;-->
+<!--        <attr name="fincodeDynamicLogDisplayVisibility" format="boolean" />-->
+<!--        &lt;!&ndash; 名義人名の表示・非表示を設定します ( true: 表示 ,false: 非表示 ) &ndash;&gt;-->
+<!--        <attr name="fincodeHolderNameVisibility" format="boolean" />-->
+<!--        &lt;!&ndash; お支払い回数の表示・非表示を設定します ( true: 表示 ,false: 非表示 ) &ndash;&gt;-->
+<!--        <attr name="fincodePayTimesVisibility" format="boolean" />-->
+<!--    </declare-styleable>-->
+</resources>
