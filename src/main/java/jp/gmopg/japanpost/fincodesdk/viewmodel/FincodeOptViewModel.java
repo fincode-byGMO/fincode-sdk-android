@@ -1,5 +1,7 @@
 package jp.gmopg.japanpost.fincodesdk.viewmodel;
 
+import android.graphics.Typeface;
+
 import androidx.databinding.Bindable;
 import jp.gmopg.japanpost.fincodesdk.BR;
 import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
@@ -22,11 +24,13 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
     private boolean isDynamicLogDisplayVisibility = true;
     private boolean isHolderNameVisibility = true;
     private boolean isPayTimesVisibility = true;
+
     private String labelCardNo = "カード番号";
     private String labelExpire = "有効期限";
     private String labelCvc = "セキュリティコード";
     private String labelHolderName = "カード名義人";
     private String labelPaymentMethod = "お支払い方法";
+
     private String placeCardNo = "1234 5678 9012 3456";
     private String placeExpireMonth = "01";
     private String placeExpireYear = "25";
@@ -37,6 +41,8 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
     private String colorBackgroundInput = "";
     private String colorText = "";
     private String colorLabelText = "";
+    private String colorBorder = "";
+    private Typeface fontFamily = null;
 
     @Bindable
     public boolean getIsHeadingVisibility() {
@@ -216,5 +222,25 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
     public void setColorLabelText(String colorLabelText) {
         this.colorLabelText = colorLabelText;
         notifyPropertyChanged(BR.colorLabelText);
+    }
+
+    @Bindable
+    public String getColorBorder() {
+        return colorBorder;
+    }
+
+    public void setColorBorder(String colorBorder) {
+        this.colorBorder = colorBorder;
+        notifyPropertyChanged(BR.colorBorder);
+    }
+
+    @Bindable
+    public Typeface getFontFamily() {
+        return fontFamily;
+    }
+
+    public void setFontFamily(Typeface fontFamily) {
+        this.fontFamily = fontFamily;
+        notifyPropertyChanged(BR.fontFamily);
     }
 }

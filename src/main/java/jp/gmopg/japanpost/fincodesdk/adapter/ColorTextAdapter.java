@@ -1,6 +1,7 @@
 package jp.gmopg.japanpost.fincodesdk.adapter;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;

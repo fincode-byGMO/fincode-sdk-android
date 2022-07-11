@@ -22,7 +22,8 @@
             android:text="@{optViewModel.labelCvc}"
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
-            app:colorText="@{optViewModel.colorLabelText}"/>
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,10 +47,11 @@
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.securityCodePart.value}"
                     android:textSize="@dimen/textFieldFontSize"
+                    app:colorText="@{optViewModel.colorText}"
                     app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
                     app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
                     app:viewModelForSecurityCode="@{dataViewModel}"
-                    app:colorText="@{optViewModel.colorText}"/>
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -71,7 +73,8 @@
                 app:errorVisibile="@{dataViewModel.securityCodePart.isError &amp;&amp; !dataViewModel.radioSelect}"
                 app:viewModelPart="@{dataViewModel.securityCodePart}"
                 app:formatErrorMsg="@{@string/security_code_no_format_error_message}"
-                app:noInputErrorMsg="@{@string/security_code_no_input_message}"/>
+                app:noInputErrorMsg="@{@string/security_code_no_input_message}"
+                app:fontFamily="@{optViewModel.fontFamily}"/>
 
         </LinearLayout>
 

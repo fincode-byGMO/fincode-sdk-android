@@ -2,6 +2,7 @@ package jp.gmopg.japanpost.fincodesdk.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,9 @@ public class SpinnerSelectListAdapter extends BaseAdapter {
             view = (TextView) convertView.getTag();
         }
 
+        setColorText(view);
+        setFontFamily(view);
         view.setText(list[position]);
-        String colorText = FincodeViewModelHolder.getInstance().getOptViewModel().getColorText();
-        if(!colorText.isEmpty()) {
-            view.setTextColor(Color.parseColor(colorText));
-        }
 
         return convertView;
     }
@@ -70,5 +69,19 @@ public class SpinnerSelectListAdapter extends BaseAdapter {
 
     public String  item(int position) {
         return list[position];
+    }
+
+    private void setColorText(TextView view) {
+        String colorText = FincodeViewModelHolder.getInstance().getOptViewModel().getColorText();
+        if(!colorText.isEmpty()) {
+            view.setTextColor(Color.parseColor(colorText));
+        }
+    }
+
+    private void setFontFamily(TextView view) {
+        Typeface fontFamily = FincodeViewModelHolder.getInstance().getOptViewModel().getFontFamily();
+        if(fontFamily != null) {
+            view.setTypeface(fontFamily);
+        }
     }
 }
