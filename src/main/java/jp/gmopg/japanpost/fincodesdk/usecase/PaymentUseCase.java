@@ -18,11 +18,13 @@ public class PaymentUseCase extends BaseUseCase {
             @Override
             public void onResponse(FincodePaymentResponse response) {
                 hideProgress();
+                fincodeCallback.onResponse(response);
             }
 
             @Override
             public void onFailure(FincodeErrorResponse errorInfo) {
                 hideProgress();
+                fincodeCallback.onFailure(errorInfo);
             }
         });
     }

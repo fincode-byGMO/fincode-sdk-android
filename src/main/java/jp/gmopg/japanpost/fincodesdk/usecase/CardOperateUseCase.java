@@ -44,6 +44,7 @@ public class CardOperateUseCase extends BaseUseCase {
             @Override
             public void onFailure(FincodeErrorResponse errorInfo) {
                 hideProgress();
+                fincodeCallback.onFailure(errorInfo);
             }
         });
     }
