@@ -41,8 +41,11 @@ abstract class FincodeCommon extends LinearLayout {
         FincodeViewModelHolder.getInstance().init();
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setIsDirection(isVertical);
-        ResourceUtil.replaceFrameBackground(getContext(), options.colorBackgroundInput);
-        ResourceUtil.replaceFrameBorder(getContext(), options.colorBorder);
+
+        if(opt != null) {
+            ResourceUtil.replaceFrameBackground(getContext(), opt.colorBackgroundInput);
+            ResourceUtil.replaceFrameBorder(getContext(), opt.colorBorder);
+        }
 
         LayoutInflater inflater = LayoutInflater.from(context);
         initBinding(DataBindingUtil.inflate(inflater, layoutId, replace, true),
@@ -102,6 +105,11 @@ abstract class FincodeCommon extends LinearLayout {
     }
 
     private void setOpt(Options opt) {
+
+        if(opt == null) {
+            return;
+        }
+
         FincodeOptViewModel vm = FincodeViewModelHolder.getInstance().getOptViewModel();
 
         vm.setIsHeadingVisibility(opt.isHeadingVisibility);
