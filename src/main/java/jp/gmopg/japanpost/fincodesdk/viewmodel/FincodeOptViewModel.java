@@ -29,7 +29,7 @@ public class FincodeOptViewModel extends FincodeNotifyCallbacks {
     private String labelExpire = "有効期限";
     private String labelCvc = "セキュリティコード";
     private String labelHolderName = "カード名義人";
-    private String labelPaymentMethod = "お支払い方法";
+    private String labelPaymentMethod = "お支払方法";
 
     private String placeCardNo = "1234 5678 9012 3456";
     private String placeExpireMonth = "01";
