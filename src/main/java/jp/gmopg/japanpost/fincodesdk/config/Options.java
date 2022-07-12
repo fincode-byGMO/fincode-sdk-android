@@ -13,98 +13,108 @@ public class Options {
      * 見出しの表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isHeadingVisibility;
+    public boolean isHeadingVisibility = true;
 
     /**
      * ブランド画像 動的切り替えの表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isDynamicLogDisplayVisibility;
+    public boolean isDynamicLogDisplayVisibility = true;
 
     /**
      * 名義人名の表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isHolderNameVisibility;
+    public boolean isHolderNameVisibility = true;
 
     /**
      * お支払い回数の表示・非表示
      * true: 表示, false: 非表示
      */
-    public boolean isPayTimesVisibility;
+    public boolean isPayTimesVisibility = true;
 
     /**
      * ラベルテキストを設定 ( カード番号 )
      */
-    public String labelCardNo;
+    public String labelCardNo = "カード番号";
 
     /**
      * ラベルテキストを設定 ( 有効期限 )
      */
-    public String labelExpire;
+    public String labelExpire = "有効期限";
 
     /**
      * ラベルテキストを設定 ( セキュリティコード )
      */
-    public String labelCvc;
+    public String labelCvc = "セキュリティコード";
 
     /**
      * ラベルテキストを設定 ( カード名義人名 )
      */
-    public String labelHolderName;
+    public String labelHolderName = "カード名義人";
 
     /**
      * ラベルテキストを設定 ( お支払い方法 )
      */
-    public String labelPaymentMethod;
+    public String labelPaymentMethod = "お支払方法";
 
     /**
      * プレースホルダーを設定 ( カード番号 )
      */
-    public String placeCardNo;
+    public String placeCardNo = "1234 5678 9012 3456";
 
     /**
      * プレースホルダーを設定 ( 有効期限 [月] )
      */
-    public String placeExpireMonth;
+    public String placeExpireMonth = "01";
 
     /**
      * プレースホルダーを設定 ( 有効期限 [年] )
      */
-    public String placeExpireYear;
+    public String placeExpireYear = "25";
 
     /**
      * プレースホルダーを設定 ( セキュリティコード )
      */
-    public String placeCvc;
+    public String placeCvc = "001";
 
     /**
      * プレースホルダーを設定 ( カード名義人名 )
      */
-    public String placeHolderName;
+    public String placeHolderName = "TARO YAMADA";
 
     /**
-     * フォーム全体の背景色
+     * フォーム全体の背景色 <br/>
+     * 16進数
+     * 例 #71f5c4
      */
     public String colorBackground = "";
 
     /**
-     * インプットフィールドの背景色
+     * インプットフィールドの背景色 <br/>
+     * 16進数
+     * 例 #71f5c4
      */
     public String colorBackgroundInput = "";
 
     /**
-     * インプットの文字色
+     * インプットの文字色 <br/>
+     * 16進数
+     * 例 #71f5c4
      */
     public String colorText = "";
 
     /**
-     * ラベルの文字色
+     * ラベルの文字色 <br/>
+     * 16進数
+     * 例 #71f5c4
      */
     public String colorLabelText = "";
 
     /**
-     * インプットのボーダーの色
+     * インプットのボーダーの色 <br/>
+     * 16進数
+     * 例 #71f5c4
      */
     public String colorBorder = "";
 
