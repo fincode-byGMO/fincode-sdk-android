@@ -13,25 +13,25 @@ public class Options {
      * 見出しの表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isHeadingVisibility = true;
+    public boolean headingHidden = true;
 
     /**
      * ブランド画像 動的切り替えの表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isDynamicLogDisplayVisibility = true;
+    public boolean dynamicLogDisplay = true;
 
     /**
      * 名義人名の表示・非表示 <br/>
      * true: 表示, false: 非表示
      */
-    public boolean isHolderNameVisibility = true;
+    public boolean holderNameHidden = true;
 
     /**
      * お支払い回数の表示・非表示
      * true: 表示, false: 非表示
      */
-    public boolean isPayTimesVisibility = true;
+    public boolean payTimesHidden = true;
 
     /**
      * ラベルテキストを設定 ( カード番号 )
