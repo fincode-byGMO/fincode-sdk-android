@@ -1,5 +1,6 @@
 package jp.gmopg.japanpost.fincodesdk.validatier;
 
+import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
 
 /**
@@ -7,14 +8,19 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class FincodeExpireMonthValidatier {
 
-    public static void validate(FincodeDataViewModel dataViewModel) {
-        if ("".equals(dataViewModel.expireMonthPart.getValue())) {
+    public static boolean validate(FincodeDataViewModel dataViewModel) {
+
+        if (dataViewModel.expireMonthPart.getValue().isEmpty() &&
+                dataViewModel.getButtonType() != SubmitButtonType.CARD_UPDATE) {
             dataViewModel.expireMonthPart.setIsError(true);
+            return true;
         } else {
             if(dataViewModel.expireMonthPart.getValue().matches("(^[1-9]?$)|(^0[1-9]$)|(^1[0-2]$)")){
                 dataViewModel.expireMonthPart.setIsError(false);
+                return false;
             } else {
                 dataViewModel.expireMonthPart.setIsError(true);
+                return true;
             }
         }
     }
