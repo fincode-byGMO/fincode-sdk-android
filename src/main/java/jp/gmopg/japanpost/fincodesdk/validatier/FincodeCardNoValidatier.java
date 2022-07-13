@@ -8,15 +8,17 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class FincodeCardNoValidatier {
 
-    public static void validate(FincodeDataViewModel dataViewModel) {
-        String str = dataViewModel.cardNoPart.getValue();
+    public static boolean validate(FincodeDataViewModel dataViewModel) {
+        String str = dataViewModel.cardNoPart.getValue().replace(" ", "");
         CardBrandType type = CardBrandType.typeForNumber(str);
 
-        if ("".equals(str) || CardBrandType.cardNumberLength(str)
+        if (str.isEmpty() || CardBrandType.cardNumberLength(str)
                 || str.length() != type.digitsWithOutSpace()) {
             dataViewModel.cardNoPart.setIsError(true);
+            return true;
         } else {
             dataViewModel.cardNoPart.setIsError(false);
+            return false;
         }
     }
 }
