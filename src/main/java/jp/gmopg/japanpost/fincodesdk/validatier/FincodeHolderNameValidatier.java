@@ -8,12 +8,14 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel;
  */
 public class FincodeHolderNameValidatier {
 
-    public static void validate(FincodeDataViewModel dataViewModel) {
+    public static boolean validate(FincodeDataViewModel dataViewModel) {
         if (!dataViewModel.holderNamePart.getValue().isEmpty() &&
                 !dataViewModel.holderNamePart.getValue().matches("^[a-zA-Z0-9 ¥¥x2c-¥¥x2f]{0,50}$")) {
             dataViewModel.holderNamePart.setIsError(true);
+            return true;
         } else {
             dataViewModel.holderNamePart.setIsError(false);
+            return false;
         }
     }
 }
