@@ -112,10 +112,10 @@ abstract class FincodeCommon extends LinearLayout {
 
         FincodeOptViewModel vm = FincodeViewModelHolder.getInstance().getOptViewModel();
 
-        vm.setIsHeadingVisibility(opt.isHeadingVisibility);
-        vm.setIsDynamicLogDisplayVisibility(opt.isDynamicLogDisplayVisibility);
-        vm.setIsHolderNameVisibility(opt.isHolderNameVisibility);
-        vm.setIsPayTimesVisibility(opt.isPayTimesVisibility);
+        vm.setIsHeadingVisibility(opt.headingHidden);
+        vm.setIsDynamicLogDisplayVisibility(opt.dynamicLogDisplay);
+        vm.setIsHolderNameVisibility(opt.holderNameHidden);
+        vm.setIsPayTimesVisibility(opt.payTimesHidden);
 
         vm.setLabelCardNo(opt.labelCardNo);
         vm.setLabelExpire(opt.labelExpire);
