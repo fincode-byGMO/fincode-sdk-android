@@ -17,6 +17,11 @@ public class BaseUseCase {
         map.put("Content-Type", "application/json");
         map.put("Authorization", authStr(DataHolder.getInstance().getConfig()));
 
+        String apiVer = DataHolder.getInstance().getConfig().apiVersion;
+        if(apiVer != null && !apiVer.isEmpty()) {
+            map.put("Api-Version", apiVer);
+        }
+
         return map;
     }
 
