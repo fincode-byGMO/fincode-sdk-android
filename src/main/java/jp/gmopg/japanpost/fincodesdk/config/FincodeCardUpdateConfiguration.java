@@ -16,7 +16,7 @@ public class FincodeCardUpdateConfiguration extends FincodeConfiguration {
     /**
      * デフォルトフラグ
      */
-    public DefaultFlg defaultFlg = DefaultFlg.OFF;
+    public DefaultFlg defaultFlg = null;
 
     public FincodeCardUpdateConfiguration() {
         super(SubmitButtonType.CARD_UPDATE);

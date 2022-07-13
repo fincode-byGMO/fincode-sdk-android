@@ -20,6 +20,11 @@ import jp.gmopg.japanpost.fincodesdk.enumeration.MethodType;
 import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
 import jp.gmopg.japanpost.fincodesdk.usecase.PaymentUseCase;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeCardNoValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireMonthValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeExpireYearValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeHolderNameValidatier;
+import jp.gmopg.japanpost.fincodesdk.validatier.FincodeSecurityCodeValidatier;
 
 /**
  * Created by a.nakajima on 2022/05/22.
@@ -29,15 +34,47 @@ public class FincodeActionViewModel extends ViewModel {
     public void execute(SubmitButtonType type) {
         switch (type){
             case PAYMENT:
-                payment();
+                if(!isError()) {
+                    payment();
+                }
                 break;
             case CARD_REGISTER:
-                cardRegister();
+                if(!isError()) {
+                    cardRegister();
+                }
                 break;
             case CARD_UPDATE:
-                cardUpdate();
+                if(!isErrorForCardUpdate()) {
+                    cardUpdate();
+                }
                 break;
         }
+    }
+
+    private boolean isError() {
+        boolean result = false;
+
+        FincodeDataViewModel vm = FincodeViewModelHolder.getInstance().getDataViewModel();
+        if(vm.getRadioSelect() == false) {
+            result = result | FincodeCardNoValidatier.validate(vm);
+            result = result | FincodeExpireMonthValidatier.validate(vm);
+            result = result | FincodeExpireYearValidatier.validate(vm);
+            result = result | FincodeHolderNameValidatier.validate(vm);
+            result = result | FincodeSecurityCodeValidatier.validate(vm);
+        }
+
+        return result;
+    }
+
+    private boolean isErrorForCardUpdate() {
+        boolean result = false;
+        FincodeDataViewModel vm = FincodeViewModelHolder.getInstance().getDataViewModel();
+        result = result | FincodeExpireMonthValidatier.validate(vm);
+        result = result | FincodeExpireYearValidatier.validate(vm);
+        result = result | FincodeHolderNameValidatier.validate(vm);
+        result = result | FincodeSecurityCodeValidatier.validate(vm);
+
+        return result;
     }
 
     // ----- card register -----
@@ -48,10 +85,14 @@ public class FincodeActionViewModel extends ViewModel {
 
         FincodeCardRegisterRequest req = new FincodeCardRegisterRequest();
         req.setDefaltFlag(config.defaultFlg.getValue());
-        req.setCardNo(vm.cardNoPart.getValue());
+        req.setCardNo(vm.cardNoPart.getValue().replace(" ", ""));
         req.setExpire(vm.expireYearPart.getValue() + vm.expireMonthPart.getValue());
-        req.setSecurityCode(vm.securityCodePart.getValue());
-        req.setHolderName(vm.holderNamePart.getValue());
+        if(!vm.securityCodePart.getValue().isEmpty()) {
+            req.setSecurityCode(vm.securityCodePart.getValue());
+        }
+        if(!vm.holderNamePart.getValue().isEmpty()) {
+            req.setHolderName(vm.holderNamePart.getValue());
+        }
 
         CardOperateUseCase useCase = new CardOperateUseCase();
         useCase.cardRegister(config.customerId, req, new FincodeCallback<FincodeCardRegisterResponse>() {
@@ -62,7 +103,7 @@ public class FincodeActionViewModel extends ViewModel {
 
             @Override
             public void onFailure(FincodeErrorResponse errorInfo) {
-                DataHolder.getInstance().getCallbackForPayment().onFailure(errorInfo);
+                DataHolder.getInstance().getCallbackForCardRegister().onFailure(errorInfo);
             }
         });
     }
@@ -74,12 +115,18 @@ public class FincodeActionViewModel extends ViewModel {
         FincodeDataViewModel vm = FincodeViewModelHolder.getInstance().getDataViewModel();
 
         FincodeCardUpdateRequest req = new FincodeCardUpdateRequest();
-        req.setDefaltFlag(config.defaultFlg.getValue());
+        if(config.defaultFlg != null) {
+            req.setDefaltFlag(config.defaultFlg.getValue());
+        }
         if(!vm.expireYearPart.getValue().isEmpty() && !vm.expireMonthPart.getValue().isEmpty()) {
             req.setExpire(vm.expireYearPart.getValue() + vm.expireMonthPart.getValue());
         }
-        req.setSecurityCode(vm.securityCodePart.getValue());
-        req.setHolderName(vm.holderNamePart.getValue());
+        if(!vm.securityCodePart.getValue().isEmpty()) {
+            req.setSecurityCode(vm.securityCodePart.getValue());
+        }
+        if(!vm.holderNamePart.getValue().isEmpty()) {
+            req.setHolderName(vm.holderNamePart.getValue());
+        }
 
         CardOperateUseCase useCase = new CardOperateUseCase();
         useCase.cardUpdate(config.customerId, config.cardId, req, new FincodeCallback<FincodeCardUpdateResponse>() {
@@ -90,7 +137,7 @@ public class FincodeActionViewModel extends ViewModel {
 
             @Override
             public void onFailure(FincodeErrorResponse errorInfo) {
-                DataHolder.getInstance().getCallbackForPayment().onFailure(errorInfo);
+                DataHolder.getInstance().getCallbackForCardUpdate().onFailure(errorInfo);
             }
         });
     }
@@ -102,7 +149,7 @@ public class FincodeActionViewModel extends ViewModel {
         FincodeDataViewModel vm = FincodeViewModelHolder.getInstance().getDataViewModel();
 
         FincodePaymentRequest request;
-        if(vm.getRadioSelect()) {
+        if(vm.getRadioSelect() == false) {
             // input card info
             request = directRequest(config, vm);
         } else {
@@ -130,17 +177,24 @@ public class FincodeActionViewModel extends ViewModel {
         req.setPayType(config.payType);
         req.setAccessId(config.accessId);
         req.setOrderId(config.id);
-        req.setCardNo(vm.cardNoPart.getValue());
+
+        if(vm.getRadioSelect() == false && !vm.cardNoPart.getValue().isEmpty()) {
+            req.setCardNo(vm.cardNoPart.getValue().replace(" ", ""));
+        }
+
         req.setExpire(vm.expireYearPart.getValue() + vm.expireMonthPart.getValue());
         if(vm.payTimesPart.getIsOneTime()) {
             req.setMethod(MethodType.ONE_TIME.getValue());
-            req.setPayTimes("");
         } else {
             req.setMethod(MethodType.INSTALLMENT.getValue());
             req.setPayTimes(vm.payTimesPart.getValue());
         }
-        req.setSecurityCode(vm.securityCodePart.getValue());
-        req.setHolderName(vm.holderNamePart.getValue());
+        if(!vm.securityCodePart.getValue().isEmpty()) {
+            req.setSecurityCode(vm.securityCodePart.getValue());
+        }
+        if(!vm.holderNamePart.getValue().isEmpty()) {
+            req.setHolderName(vm.holderNamePart.getValue());
+        }
 
         return req;
     }
@@ -155,13 +209,17 @@ public class FincodeActionViewModel extends ViewModel {
         req.setCardId(vm.selectCardNoPart.getValue());
         if(vm.payTimesPart.getIsOneTime()) {
             req.setMethod(MethodType.ONE_TIME.getValue());
-            req.setPayTimes("");
+//            req.setPayTimes("");
         } else {
             req.setMethod(MethodType.INSTALLMENT.getValue());
             req.setPayTimes(vm.payTimesPart.getValue());
         }
-        req.setSecurityCode(vm.securityCodePart.getValue());
-        req.setHolderName(vm.holderNamePart.getValue());
+//        if(!vm.securityCodePart.getValue().isEmpty()) {
+//            req.setSecurityCode(vm.securityCodePart.getValue());
+//        }
+//        if(!vm.holderNamePart.getValue().isEmpty()) {
+//            req.setHolderName(vm.holderNamePart.getValue());
+//        }
 
         return req;
     }
