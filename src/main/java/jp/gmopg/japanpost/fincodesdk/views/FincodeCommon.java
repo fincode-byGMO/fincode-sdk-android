@@ -91,6 +91,10 @@ abstract class FincodeCommon extends LinearLayout {
             useCase.getCardInfoList(config.customerId, new FincodeCallback<FincodeCardInfoListResponse>() {
                 @Override
                 public void onResponse(FincodeCardInfoListResponse response) {
+                    if(response.cardInfoList != null && response.cardInfoList.size() <= 0) {
+                        return;
+                    }
+
                     FincodeViewModelHolder.getInstance().getDataViewModel().selectCardNoPart.setSelectCardNoList(response.cardInfoList);
                     FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(true);
                     FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(true);
