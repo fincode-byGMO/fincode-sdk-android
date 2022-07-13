@@ -30,12 +30,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    viewBinding {
-//        enabled = true
-//    }
-
     dataBinding {
         enabled = true
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "FincodeSDK.aar"
+        }
     }
 }
 
