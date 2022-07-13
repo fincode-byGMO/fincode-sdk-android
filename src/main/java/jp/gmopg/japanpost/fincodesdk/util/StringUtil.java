@@ -47,9 +47,10 @@ public class StringUtil {
         if (4 != value.length()){
             return value;
         }
-        StringBuilder sb = new StringBuilder(value);
 
-        sb.insert(2, "/");
-        return sb.toString();
+        String year = value.substring(0, 2);
+        String month = value.substring(2, 4);
+
+        return month + "/" + year;
     }
 }
