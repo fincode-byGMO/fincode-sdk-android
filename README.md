@@ -59,7 +59,7 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
         ```
 
     - Activityの設定
-    SDKを配置するActivityは「Activity」を継承し、SDKを置き換える箇所のレイアウトを取得する。(「xmlに配置」で追加したレイアウトのIDで指定する)
+    SDKを配置するActivityは「Activity」を継承し、onCreate()内にSDKを置き換える箇所のレイアウトを取得する。(「xmlに配置」で追加したレイアウトのIDで指定する)
 
       例
         ```
