@@ -64,7 +64,9 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
       例
         ```
         public class MainActivity extends Activity
+        ```
 
+        ```
         // DataBindingを使用する場合
         ViewGroup vg = binding.replaceView;
 
