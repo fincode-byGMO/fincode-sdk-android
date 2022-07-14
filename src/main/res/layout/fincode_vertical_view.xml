@@ -102,14 +102,14 @@
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
-                    android:visibility="@{optViewModel.isHolderNameVisibility ? View.VISIBLE : View.GONE}"/>
+                    android:visibility="@{optViewModel.isHolderNameVisibility ? View.GONE : View.VISIBLE}"/>
 
                 <include
                     layout="@layout/fincode_pay_times_view"
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
-                    android:visibility="@{dataViewModel.buttonType == SubmitButtonType.PAYMENT &amp;&amp; optViewModel.isPayTimesVisibility ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{dataViewModel.buttonType == SubmitButtonType.PAYMENT &amp;&amp; optViewModel.isPayTimesVisibility ? View.GONE : View.VISIBLE}"
                     android:layout_marginTop="30dp"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"/>
