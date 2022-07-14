@@ -1,5 +1,6 @@
 package jp.gmopg.japanpost.fincodesdk.Repository;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import jp.gmopg.japanpost.fincodesdk.api.AsyncHttpClient;
@@ -43,7 +44,11 @@ public class FincodeCardOperateRepository<T> {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
-                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
                         }
                     }
 
@@ -64,7 +69,11 @@ public class FincodeCardOperateRepository<T> {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
-                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
                         }
                     }
 
@@ -85,7 +94,11 @@ public class FincodeCardOperateRepository<T> {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
-                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
                         }
                     }
 
