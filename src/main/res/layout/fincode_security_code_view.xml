@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelCvc}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
             app:fontFamily="@{optViewModel.fontFamily}"/>
 
