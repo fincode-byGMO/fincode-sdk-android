@@ -143,20 +143,17 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 
     各機能に応じた初期化処理を実行します。
 
-
-    ・決済の場合
-
+    - 決済の場合
     ```
     view.initForPayment(new FincodePaymentConfiguration(), this);
     ```
 
-    ・カード登録の場合
-
+    - カード登録の場合
     ```
     view.initForCardRegister(new FincodeCardRegisterConfiguration(), this);
     ```
 
-    ・カード更新の場合
+    - カード更新の場合
     ```
     view.initForCardUpdate(new FincodeCardUpdateConfiguration(), this);
     ```
