@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelCardNo}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
             app:fontFamily="@{optViewModel.fontFamily}"/>
 
@@ -66,7 +66,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
                     app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"
-                    android:visibility="@{optViewModel.isDynamicLogDisplayVisibility ? View.VISIBLE : View.GONE}"/>
+                    android:visibility="@{optViewModel.isDynamicLogDisplayVisibility ? View.GONE : View.VISIBLE}"/>
 
             </RelativeLayout>
 

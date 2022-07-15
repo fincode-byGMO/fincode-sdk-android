@@ -6,9 +6,9 @@ package jp.gmopg.japanpost.fincodesdk.entities.api;
 public class FincodeErrorResponse {
 
     public final Integer statusCode;
-    public final FincodeErrorInfo errorInfo;
+    public final FincodeErrorInfoList errorInfo;
 
-    public FincodeErrorResponse(int statusCode, FincodeErrorInfo errorInfo) {
+    public FincodeErrorResponse(int statusCode, FincodeErrorInfoList errorInfo) {
         this.statusCode = statusCode;
         this.errorInfo = errorInfo;
     }
