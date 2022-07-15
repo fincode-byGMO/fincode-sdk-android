@@ -20,10 +20,10 @@ import jp.gmopg.japanpost.fincodesdk.viewmodel.partdata.FincodeSelectCardNoPart;
  */
 public class FincodeOptViewModel extends FincodeNotifyCallbacks {
 
-    private boolean isHeadingVisibility = true;
-    private boolean isDynamicLogDisplayVisibility = true;
-    private boolean isHolderNameVisibility = true;
-    private boolean isPayTimesVisibility = true;
+    private boolean isHeadingVisibility = false;
+    private boolean isDynamicLogDisplayVisibility = false;
+    private boolean isHolderNameVisibility = false;
+    private boolean isPayTimesVisibility = false;
 
     private String labelCardNo = "カード番号";
     private String labelExpire = "有効期限";

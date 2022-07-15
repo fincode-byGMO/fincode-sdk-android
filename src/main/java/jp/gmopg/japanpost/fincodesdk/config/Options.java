@@ -11,27 +11,27 @@ public class Options {
 
     /**
      * 見出しの表示・非表示 <br/>
-     * true: 表示, false: 非表示
+     * true: 非表示表示, false: 表示
      */
-    public boolean headingHidden = true;
+    public boolean headingHidden = false;
 
     /**
      * ブランド画像 動的切り替えの表示・非表示 <br/>
-     * true: 表示, false: 非表示
+     * true: 非表示表示, false: 表示
      */
-    public boolean dynamicLogDisplay = true;
+    public boolean dynamicLogDisplay = false;
 
     /**
      * 名義人名の表示・非表示 <br/>
-     * true: 表示, false: 非表示
+     * true: 非表示表示, false: 表示
      */
-    public boolean holderNameHidden = true;
+    public boolean holderNameHidden = false;
 
     /**
      * お支払い回数の表示・非表示
-     * true: 表示, false: 非表示
+     * true: 非表示表示, false: 表示
      */
-    public boolean payTimesHidden = true;
+    public boolean payTimesHidden = false;
 
     /**
      * ラベルテキストを設定 ( カード番号 )

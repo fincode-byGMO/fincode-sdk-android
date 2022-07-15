@@ -1,10 +1,15 @@
 package jp.gmopg.japanpost.fincodesdk.Repository;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.HashMap;
 
 import jp.gmopg.japanpost.fincodesdk.api.AsyncHttpClient;
 import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
 import jp.gmopg.japanpost.fincodesdk.api.PaymentApiInterface;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfoList;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
 import jp.gmopg.japanpost.fincodesdk.util.HttpUtil;
@@ -39,7 +44,11 @@ public class FincodePaymentRepository {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
-                            fincodeCallback.onFailure(HttpUtil.getErrorInfo(response));
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
                         }
                     }
 
