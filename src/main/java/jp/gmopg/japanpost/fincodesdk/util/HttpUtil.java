@@ -2,7 +2,10 @@ package jp.gmopg.japanpost.fincodesdk.util;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfo;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfoList;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -14,20 +17,9 @@ public class HttpUtil {
 
     private static Gson gson = new Gson();
 
-    public static <T> FincodeErrorResponse getErrorInfo(Response<T> response) {
+    public static <T> FincodeErrorResponse getErrorInfo(Response<T> response, String value) {
 
-        FincodeErrorInfo errorInfo = null;
-        try {
-            ResponseBody b = response.errorBody();
-            if (b != null) {
-
-                errorInfo = gson.fromJson(b.toString(), FincodeErrorInfo.class);
-            }
-        } catch (Exception ex) {
-            // do nothing
-        }
-
-        return new FincodeErrorResponse(response.code(), errorInfo);
+        return new FincodeErrorResponse(response.code(), gson.fromJson(value, FincodeErrorInfoList.class));
     }
 
 }
