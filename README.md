@@ -30,117 +30,113 @@ FincodeSDKは、Android SDK 11以降/API Level 21以降が必要です。
 FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェクトを組み込むことが必要です。
 
 - aarの組み込み
-    1. Android　StudioでSDKを使用したいプロジェクト内の任意のフォルダにFincodeSDK.aarを配置します。
-    2. build.gradleの設定
+1. Android　StudioでSDKを使用したいプロジェクト内の任意のフォルダにFincodeSDK.aarを配置します。
+2. build.gradleの設定
 
-        2-1. build.gradleのandroid内にDataBindingを利用する定義を追加する。
-        ```
+    2-1. build.gradleのandroid内にDataBindingを利用する定義を追加する。
+
         dataBinding {
             enabled = true
         }
-        ```
 
-        2-2. build.gradleのdependencies内に以下の記述を追加します。（括弧内のパスは、手順1でaarファイルを配置したファイルのパス）
-        ```
+    2-2. build.gradleのdependencies内に以下の記述を追加します。（括弧内のパスは、手順1でaarファイルを配置したファイルのパス）
+
         implementation files ('○○/FincodeSDK.aar')
-        ```
 
-        2-3. build.gradleのdependencies内に以下OSSの記述を追加し、右上の「Sync Now」を押下します。
-        ```
+    2-3. build.gradleのdependencies内に以下OSSの記述を追加し、右上の「Sync Now」を押下します。
+
         implementation 'com.squareup.okhttp3:okhttp:4.10.0'
         implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
         implementation 'com.squareup.retrofit2:retrofit:2.9.0'
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
         implementation 'com.google.code.gson:gson:2.9.0'
-        ```
 
-    3. AndroidManifest.xmlに以下の定義を追加します。
-    ```
-    <uses-permission android:name="android.permission.INTERNET" />
-    ```
 
-    4. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
+3. AndroidManifest.xmlに以下の定義を追加します。
+```
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+4. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
 
 
 - プロジェクトの組み込み
-    1. SDKを使用したいプロジェクトのルートフォルダと同じ階層にソースを配置してください。
-    2. SDKを使用したいプロジェクトのsettings.gradleに以下の記述を追加し、右上の「Sync Now」を押下します。
-        ```
-        includeFlat 'FincodeSDK'
-        ```
-    3. Android Studio左上にあるAndroidビューに、プロジェクトの他にFincodeSDKが追加されます。
-    4. SDKを使用したいプロジェクトのbuild.gradle設定
+1. SDKを使用したいプロジェクトのルートフォルダと同じ階層にソースを配置してください。
+2. SDKを使用したいプロジェクトのsettings.gradleに以下の記述を追加し、右上の「Sync Now」を押下します。
+    ```
+    includeFlat 'FincodeSDK'
+    ```
+3. Android Studio左上にあるAndroidビューに、プロジェクトの他にFincodeSDKが追加されます。
+4. SDKを使用したいプロジェクトのbuild.gradle設定
 
-        4-1. build.gradleのandroid内にDataBindingを利用する定義を追加する。
-        ```
+    4-1. build.gradleのandroid内にDataBindingを利用する定義を追加する。
+
         dataBinding {
             enabled = true
         }
-        ```
 
-        4-2. build.gradleのdependencies内に以下の記述を追加する。
-        ```
+    4-2. build.gradleのdependencies内に以下の記述を追加する。
+
         implementation project(':FincodeSDK')
-        ```
 
+    4-3. build.gradleのdependencies内に以下OSSの記述を追加し、右上の「Sync Now」を押下します。
 
-        4-3. build.gradleのdependencies内に以下OSSの記述を追加し、右上の「Sync Now」を押下します。
-        ```
         implementation 'com.squareup.okhttp3:okhttp:4.10.0'
         implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
         implementation 'com.squareup.retrofit2:retrofit:2.9.0'
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
         implementation 'com.google.code.gson:gson:2.9.0'
-        ```
 
-    5. AndroidManifest.xmlに以下の定義を追加します。
-    ```
-    <uses-permission android:name="android.permission.INTERNET" />
-    ```
-    6. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
+5. AndroidManifest.xmlに以下の定義を追加します。
+```
+<uses-permission android:name="android.permission.INTERNET" />
+```
+6. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
 
 ## コンポーネント
-- 配置
+配置
 
-    - xmlに配置
-    コンポーネントの配置は、ActivityのxmlにSDKを配置するレイアウト(※)を追加する。
-    ※ViewGroupを継承しているレイアウト
+- xmlに配置
+コンポーネントの配置は、ActivityのxmlにSDKを配置するレイアウト(※)を追加する。
+※ViewGroupを継承しているレイアウト
 
-      例
-        ```
-        <FrameLayout
-            android:id="@+id/replace_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        ```
+    例
+    ```
+    <FrameLayout
+        android:id="@+id/replace_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    ```
 
-    - Activityの設定
+- Activityの設定
 
-        - SDKを使用するActivity内で「FincodeVerticalView」または「FincodeHorizontalView」のオブジェクトを生成します。
+    - SDKを使用するActivity内で「FincodeVerticalView」または「FincodeHorizontalView」のオブジェクトを生成します。
 
-        例
-        - Vertical Layout
-        ```
-        FincodeVerticalView view = new FincodeVerticalView(this, new Options(), vg);
-        ```
+    例
 
-        - Horizontal Layout
-        ```
-        FincodeHorizontalView view = new FincodeHorizontalView(this, new Options(), vg);
-        ```
+    - Vertical Layout
+    ```
+    FincodeVerticalView view = new FincodeVerticalView(this, new Options(), vg);
+    ```
 
-        - SDKを置き換える箇所のレイアウトを取得する以下の記述を追加。（手順：xmlに配置 で追加したレイアウトのIDで指定する）
+    - Horizontal Layout
+    ```
+    FincodeHorizontalView view = new FincodeHorizontalView(this, new Options(), vg);
+    ```
 
-        例
-        - DataBindingを使用する場合
-        ```
-        ViewGroup vg = binding.replaceView;
-        ```
+    - SDKを置き換える箇所のレイアウトを取得する以下の記述を追加。（手順：xmlに配置 で追加したレイアウトのIDで指定する）
 
-        - findViewByIdを使用する場合
-        ```
-        ViewGroup vg = findViewById(R.id.replace_view);
-        ```
+    例
+
+    - DataBindingを使用する場合
+    ```
+    ViewGroup vg = binding.replaceView;
+    ```
+
+    - findViewByIdを使用する場合
+    ```
+    ViewGroup vg = findViewById(R.id.replace_view);
+    ```
 
 
 - 初期化
@@ -149,11 +145,13 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 
 
     ・決済の場合
+
     ```
     view.initForPayment(new FincodePaymentConfiguration(), this);
     ```
 
     ・カード登録の場合
+
     ```
     view.initForCardRegister(new FincodeCardRegisterConfiguration(), this);
     ```
