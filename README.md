@@ -151,24 +151,25 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
     |dynamicLogDisplay|boolean|カードブランド画像 動的切り替えの表示・非表示|false|true: 非表示, false: 表示|
     |holderNameHidden|boolean|名義人名の表示・非表示|false|true: 非表示, false: 表示|
     |payTimesHidden|boolean|お支払い回数の表示・非表示|false|true: 非表示, false: 表示|
-    |labelCardNo|String|ラベルテキストを設定 (カード番号)|カード番号||
-    |labelExpire|String|ラベルテキストを設定 (有効期限)|有効期限||
-    |labelCvc|String|ラベルテキストを設定 (セキュリティコード)|セキュリティコード||
-    |labelHolderName|String|ラベルテキストを設定 (カード名義人名)|カード名義人||
-    |labelPaymentMethod|String|ラベルテキストを設定 (お支払い方法)|お支払い方法||
-    |placeCardNo|String|プレースホルダーの設定 (カード番号)|1234 5678 9012 3456||
-    |placeExpireMonth|String|プレースホルダーの設定 (有効期限 [月])|01||
-    |placeExpireYear|String|プレースホルダーの設定 (有効期限 [年])|25||
-    |placeCvc|String|プレースホルダーの設定 (セキュリティコード)|001||
-    |placeHolderName|String|プレースホルダーの設定 (カード名義人名)|TARO YAMADA||
+    |labelCardNo|String|ラベルテキストを設定 (カード番号)|カード番号| |
+    |labelExpire|String|ラベルテキストを設定 (有効期限)|有効期限| |
+    |labelCvc|String|ラベルテキストを設定 (セキュリティコード)|セキュリティコード| |
+    |labelHolderName|String|ラベルテキストを設定 (カード名義人名)|カード名義人| |
+    |labelPaymentMethod|String|ラベルテキストを設定 (お支払い方法)|お支払い方法| |
+    |placeCardNo|String|プレースホルダーの設定 (カード番号)|1234 5678 9012 3456| |
+    |placeExpireMonth|String|プレースホルダーの設定 (有効期限 [月])|01| |
+    |placeExpireYear|String|プレースホルダーの設定 (有効期限 [年])|25| |
+    |placeCvc|String|プレースホルダーの設定 (セキュリティコード)|001| |
+    |placeHolderName|String|プレースホルダーの設定 (カード名義人名)|TARO YAMADA| |
     |colorBackground|String|フォーム全体の背景色|""|16進数 (例: #0125af)|
     |colorBackgroundInput|String|インプットフィールドの背景色|""|16進数 (例: #0125af)|
     |colorText|String|インプットの文字色|""|16進数 (例: #0125af)|
     |colorLabelText|String|ラベルの文字色|""|16進数 (例: #0125af)|
     |colorBorder|String|インプットのボーダーの色|""|16進数 (例: #0125af)|
-    |fontFamily|Typeface|フォントの種類|null||
+    |fontFamily|Typeface|フォントの種類|null| |
 
     第3引数
+
     |Class|
     |----|
     |ViewGroup|
@@ -187,7 +188,6 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
     ```
     ViewGroup vg = findViewById(R.id.replace_view);
     ```
-
 
 3. 初期化
 
@@ -228,11 +228,11 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 |----|:--:|----|----|
 |authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
 |apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
-|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
-|customerId||顧客ID||
-|payType|〇|決済種別||
-|accessId|〇|取引ID||
-|id|〇|オーダーID||
+|apiVersion| |マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId| |顧客ID| |
+|payType|〇|決済種別| |
+|accessId|〇|取引ID| |
+|id|〇|オーダーID| |
 
 #### 第2引数
 |Interface|説明|
@@ -342,8 +342,8 @@ class MainActivity : AppCompatActivity() {
 |----|:--:|----|----|
 |authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
 |apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
-|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
-|customerId|〇|顧客ID||
+|apiVersion| |マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId|〇|顧客ID| |
 |defaultFlg|〇|デフォルトフラグ|ONまたはOFF|
 
 #### 第2引数
@@ -446,10 +446,10 @@ class MainActivity : AppCompatActivity() {
 |----|:--:|----|----|
 |authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
 |apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
-|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
-|customerId|〇|顧客ID||
+|apiVersion| |マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId|〇|顧客ID| |
 |defaultFlg|〇|デフォルトフラグ|ONまたはOFF|
-|cardId|〇|カードID||
+|cardId|〇|カードID| |
 
 #### 第2引数
 |Interface|説明|
