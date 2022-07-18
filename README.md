@@ -16,7 +16,7 @@ FincodeSDKを使用すると、Androidアプリで決済、カード登録・更
 
 ## リリース
 
-FincodeSDを手動でリンクするには、 [リリース ※TODO タグ付けページのリンクに置き換える](https://www.google.com) ページのバージョンを使用して、aarまたはFincodeSDKプロジェクトを追加してください。
+FincodeSDKを手動でリンクするには、 [リリース ※TODO タグ付けページのリンクに置き換える](https://www.google.com) ページのバージョンを使用して、aarまたはFincodeSDKプロジェクトを追加してください。
 
 - FincodeSDK.aar
 
@@ -24,7 +24,7 @@ FincodeSDを手動でリンクするには、 [リリース ※TODO タグ付け
 
 ## 要件
 
-FincodeSDKは、Android SDK 11以降/API Level 21以降が必要です。
+FincodeSDKは、Android OS 5.0以降/API Level 21以降が必要です。
 
 ## 導入
 FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェクトを組み込むことが必要です。
@@ -41,7 +41,7 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 
     2-2. build.gradleのdependencies内に以下の記述を追加します。（括弧内のパスは、手順1でaarファイルを配置したファイルのパス）
 
-        implementation files ('○○/FincodeSDK.aar')
+        implementation files ('libs/FincodeSDK.aar')
 
     2-3. build.gradleのdependencies内に以下OSSの記述を追加し、右上の「Sync Now」を押下します。
 
@@ -59,6 +59,7 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 
 4. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
 
+<br/>
 
 - プロジェクトの組み込み
 1. SDKを使用したいプロジェクトのルートフォルダと同じ階層にソースを配置してください。
@@ -66,7 +67,7 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
     ```
     includeFlat 'FincodeSDK'
     ```
-3. Android Studio左上にあるAndroidビューに、プロジェクトの他にFincodeSDKが追加されます。
+3. Android Studio左上にあるAndroidビューに、FincodeSDKのプロジェクトが追加されます。
 4. SDKを使用したいプロジェクトのbuild.gradle設定
 
     4-1. build.gradleのandroid内にDataBindingを利用する定義を追加する。
@@ -94,11 +95,11 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
 6. プロジェクト内のクラスでimportすることにより、SDKを使用することができます。
 
 ## コンポーネント
-配置
+コンポーネントの配置および初期化
 
-- xmlに配置
-コンポーネントの配置は、ActivityのxmlにSDKを配置するレイアウト(※)を追加する。
-※ViewGroupを継承しているレイアウト
+1. ActivityのxmlにSDKを配置するレイアウト(※)を追加する。
+
+    ※ViewGroupを継承しているレイアウト
 
     例
     ```
@@ -108,23 +109,72 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
         android:layout_height="match_parent"/>
     ```
 
-- Activityの設定
-
-    - SDKを使用するActivity内で「FincodeVerticalView」または「FincodeHorizontalView」のオブジェクトを生成します。
+2. SDKを使用するActivity内で「FincodeVerticalView」または「FincodeHorizontalView」のオブジェクトを生成します。
 
     例
 
     - Vertical Layout
     ```
-    FincodeVerticalView view = new FincodeVerticalView(this, new Options(), vg);
+    ・Java
+    　　FincodeVerticalView view = new FincodeVerticalView(this, new Options(), vg);
+    ```
+    ```
+    ・Kotlin
+    　　val view = FincodeVerticalView(this, Options(), vg)
     ```
 
     - Horizontal Layout
     ```
-    FincodeHorizontalView view = new FincodeHorizontalView(this, new Options(), vg);
+    ・Java
+    　　FincodeHorizontalView view = new FincodeHorizontalView(this, new Options(), vg);
+    ```
+    ```
+    ・Kotlin
+    　　val view = FincodeHorizontalView(this, Options(), vg)
     ```
 
-    - SDKを置き換える箇所のレイアウトを取得する以下の記述を追加。（手順：xmlに配置 で追加したレイアウトのIDで指定する）
+    第1引数
+
+    |Class|
+    |----|
+    |Activity|
+
+    第2引数
+    
+    |Class|
+    |----|
+    |Options|
+
+    |変数名|型|説明|デフォルト値|備考|
+    |----|----|----|----|----|
+    |headingHidden|boolean|見出しの表示・非表示|false|true: 非表示, false: 表示|
+    |dynamicLogDisplay|boolean|カードブランド画像 動的切り替えの表示・非表示|false|true: 非表示, false: 表示|
+    |holderNameHidden|boolean|名義人名の表示・非表示|false|true: 非表示, false: 表示|
+    |payTimesHidden|boolean|お支払い回数の表示・非表示|false|true: 非表示, false: 表示|
+    |labelCardNo|String|ラベルテキストを設定 (カード番号)|カード番号||
+    |labelExpire|String|ラベルテキストを設定 (有効期限)|有効期限||
+    |labelCvc|String|ラベルテキストを設定 (セキュリティコード)|セキュリティコード||
+    |labelHolderName|String|ラベルテキストを設定 (カード名義人名)|カード名義人||
+    |labelPaymentMethod|String|ラベルテキストを設定 (お支払い方法)|お支払い方法||
+    |placeCardNo|String|プレースホルダーの設定 (カード番号)|1234 5678 9012 3456||
+    |placeExpireMonth|String|プレースホルダーの設定 (有効期限 [月])|01||
+    |placeExpireYear|String|プレースホルダーの設定 (有効期限 [年])|25||
+    |placeCvc|String|プレースホルダーの設定 (セキュリティコード)|001||
+    |placeHolderName|String|プレースホルダーの設定 (カード名義人名)|TARO YAMADA||
+    |colorBackground|String|フォーム全体の背景色|""|16進数 (例: #0125af)|
+    |colorBackgroundInput|String|インプットフィールドの背景色|""|16進数 (例: #0125af)|
+    |colorText|String|インプットの文字色|""|16進数 (例: #0125af)|
+    |colorLabelText|String|ラベルの文字色|""|16進数 (例: #0125af)|
+    |colorBorder|String|インプットのボーダーの色|""|16進数 (例: #0125af)|
+    |fontFamily|Typeface|フォントの種類|null||
+
+    第3引数
+    |Class|
+    |----|
+    |ViewGroup|
+
+    SDKを置き換える箇所のレイアウトのオブジェクトを指定します。
+
 
     例
 
@@ -139,7 +189,7 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
     ```
 
 
-- 初期化
+3. 初期化
 
     各機能に応じた初期化処理を実行します。
 
@@ -158,8 +208,43 @@ FincodeSDKを利用するには、FincodeSDK.aarまたはFincodeSDKプロジェ�
     view.initForCardUpdate(new FincodeCardUpdateConfiguration(), this);
     ```
 
+4. アプリを起動することで、設定に応じたLayoutが表示されます。
 
-- 決済実行 - 例
+## 初期化 詳細
+
+### 決済実行
+
+#### 定義
+|Method|説明|
+|----|----|
+|public void initForPayment(FincodePaymentConfiguration config, FincodeCallback\<FincodePaymentResponse> callback)|コンポーネントの初期化を行い、決済実行APIを実行します|
+
+#### 第1引数
+|Class|説明|
+|----|----|
+|FincodePaymentConfiguration|初期化情報|
+
+|変数名|必須|説明|備考|
+|----|:--:|----|----|
+|authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
+|apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
+|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId||顧客ID||
+|payType|〇|決済種別||
+|accessId|〇|取引ID||
+|id|〇|オーダーID||
+
+#### 第2引数
+|Interface|説明|
+|----|----|
+|FincodeCallback\<FincodePaymentResponse>|決済の実行結果を返すコールバック|
+
+|Method|説明|
+|----|----|
+|onResponse|決済実行APIの正常Response|
+|onFailure|決済実行APIの異常Response|
+
+#### 実装例 (Java)
 
 ```
 import fincodesdk;
@@ -188,8 +273,8 @@ public class MainActivity extends Activity implements FincodeCallback<Fincod
         config.apiVersion = "20211001";
         config.customerId = "c_HSZkCAxNS2_Sample";
         config.payType = "Card";
-        config.accessId = "";
-        config.id = "";
+        config.accessId = "qazWSXedcSample";
+        config.id = "12345Sample";
 
         view.initForPayment(config, this);
     }
@@ -206,35 +291,83 @@ public class MainActivity extends Activity implements FincodeCallback<Fincod
 }
 ```
 
-処理成功時の結果は、以下のClassでキャストすることで参照することができます。
+#### 実装例 (Kotlin)
 
+```
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val vg = findViewById<ViewGroup>(R.id.replace_view)
+
+        val fin = FincodeVerticalView(this, vg)
+
+        val config = FincodePaymentConfiguration()
+
+        config.authorization = Authorization.BEARER
+        config.apiKey = "p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        config.apiVersion = "20211001"
+        config.customerId = "c_HSZkCAxNS2_Sample"
+        config.payType = "Card"
+        config.accessId = "qazWSXedcSample"
+        config.id = "12345Sample"
+
+        fin.initForPayment(config, object : FincodeCallback<FincodePaymentResponse?> {
+            override fun onResponse(fincodePaymentResponse: FincodePaymentResponse?) {
+                // 正常
+            }
+
+            override fun onFailure(fincodeErrorResponse: FincodeErrorResponse) {
+                // 異常
+            }
+        })
+    }
+```
+
+
+### カード登録
+
+#### 定義
+|Method|説明|
+|----|----|
+|public void initForCardRegister(FincodeCardRegisterConfiguration config, FincodeCallback\<FincodeCardRegisterResponse> callback)|コンポーネントの初期化を行い、カード登録APIを実行します|
+
+#### 第1引数
 |Class|説明|
-|:--|:--|
-|FincodePaymentResponse|決済実行APIのResponse情報を保持|
+|----|----|
+|FincodeCardRegisterResponse|初期化情報|
 
+|変数名|必須|説明|備考|
+|----|:--:|----|----|
+|authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
+|apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
+|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId|〇|顧客ID||
+|defaultFlg|〇|デフォルトフラグ|ONまたはOFF|
 
-- カード登録 - 例
+#### 第2引数
+|Interface|説明|
+|----|----|
+|FincodeCallback\<FincodeCardRegisterResponse>|カード登録の実行結果を返すコールバック|
+
+|Method|説明|
+|----|----|
+|onResponse|カード登録APIの正常Response|
+|onFailure|カード登録APIの異常Response|
+
+#### 実装例 (Java)
 
 ```
 import fincodesdk;
 
 public class CardRegisterView extends Activity implements FincodeCallback<FincodeCardRegisterResponse> {
 
-    private static final String VIEW_TYPE = "viewType";
-
-    public static Intent createIntent(Context context, ViewType viewType){
-        Intent intent = new Intent(context, CardRegisterView.class);
-        intent.putExtra(VIEW_TYPE, viewType);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        ViewType viewType = (ViewType)getIntent().getSerializableExtra(VIEW_TYPE);
         setContentView(R.layout.activity_payment_replace);
-
         ViewGroup vg = findViewById(R.id.replace_view);
 
         cardRegisterVertical(vg);
@@ -255,7 +388,7 @@ public class CardRegisterView extends Activity implements FincodeCallback<Fi
 
 
     @Override
-    public void onResponse(FincodeCardRegisterResponse fincodePaymentResponse) {
+    public void onResponse(FincodeCardRegisterResponse fincodeCardRegisterResponse) {
         // 正常
     }
 
@@ -266,34 +399,80 @@ public class CardRegisterView extends Activity implements FincodeCallback<Fi
 }
 ```
 
-処理成功時の結果は、以下のClassでキャストすることで参照することができます。
+#### 実装例 (Kotlin)
 
+```
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val vg = findViewById<ViewGroup>(R.id.replace_view)
+
+        val fin = FincodeVerticalView(this, vg)
+
+        val config = FincodeCardRegisterConfiguration()
+        config.authorization = Authorization.BEARER;
+        config.apiKey = "p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        config.apiVersion = "20211001";
+        config.customerId = "c_HSZkCAxNS2_Sample";
+        config.defaultFlg = DefaultFlg.ON;
+
+        fin.initForCardRegister(config, object : FincodeCallback<FincodeCardRegisterResponse?> {
+            override fun onResponse(fincodeCardRegisterResponse: FincodeCardRegisterResponse?) {
+                // 正常
+            }
+
+            override fun onFailure(fincodeErrorResponse: FincodeErrorResponse) {
+                // 異常
+            }
+        })
+    }
+```
+
+### カード更新
+
+#### 定義
+|Method|説明|
+|----|----|
+|public void initForCardUpdate(FincodeCardUpdateConfiguration config, FincodeCallback\<FincodeCardUpdateResponse> callback)|コンポーネントの初期化を行い、カード更新APIを実行します|
+
+#### 第1引数
 |Class|説明|
-|:--|:--|
-|FincodeCardRegisterResponse|カード登録APIのResponse情報を保持|
+|----|----|
+|FincodeCardUpdateConfiguration|初期化情報|
 
-- カード更新 - 例
+|変数名|必須|説明|備考|
+|----|:--:|----|----|
+|authorization|〇|認証方式|BASIC: Basic認証、BEARER: Bearer認証|
+|apiKey|〇|パブリックキー|Basic認証の場合は、Base64でエンコード|
+|apiVersion||マイナーバージョン|書式: YYYYMMDD (例) 20211001|
+|customerId|〇|顧客ID||
+|defaultFlg|〇|デフォルトフラグ|ONまたはOFF|
+|cardId|〇|カードID||
+
+#### 第2引数
+|Interface|説明|
+|----|----|
+|FincodeCallback\<FincodeCardUpdateResponse>|カード更新の実行結果を返すコールバック|
+
+|Method|説明|
+|----|----|
+|onResponse|カード更新APIの正常Response|
+|onFailure|カード更新APIの異常Response|
+
+#### 実装例 (Java)
 
 ```
 import fincodesdk;
 
 public class CardUpdateView extends Activity implements FincodeCallback<FincodeCardUpdateResponse> {
 
-    private static final String VIEW_TYPE = "viewType";
-
-    public static Intent createIntent(Context context, ViewType viewType){
-        Intent intent = new Intent(context, CardUpdateView.class);
-        intent.putExtra(VIEW_TYPE, viewType);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        ViewType viewType = (ViewType)getIntent().getSerializableExtra(VIEW_TYPE);
         setContentView(R.layout.activity_payment_replace);
-
         ViewGroup vg = findViewById(R.id.replace_view);
 
         cardUpdateVertical(vg);
@@ -303,7 +482,6 @@ public class CardUpdateView extends Activity implements FincodeCallback<Finc
         FincodeVerticalView view = new FincodeVerticalView(this,  new Options(), vg);
 
         FincodeCardUpdateConfiguration config = new FincodeCardUpdateConfiguration();
-
         config.authorization = Authorization.BEARER;
         config.apiKey = "p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         config.apiVersion = "20211001";
@@ -326,53 +504,54 @@ public class CardUpdateView extends Activity implements FincodeCallback<Finc
 }
 ```
 
-処理成功時の結果は、以下のClassでキャストすることで参照することができます。
+#### 実装例 (Kotlin)
 
-|Class|説明|
-|:--|:--|
-|FincodeCardUpdateResponse|カード更新APIのResponse情報を保持
+```
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
+        val vg = findViewById<ViewGroup>(R.id.replace_view)
 
-## 表示設定
-SDKのOptionsクラスの値を変更することで表示・非表示を切り替えます。
+        val fin = FincodeVerticalView(this, vg)
 
-|Property|説明|
-|:--|:--|
-|HeadingHidden|各欄の見出しをtrue：非表示、false：表示|
-|DynamicLogDisplay|ブランド画像 動的切り替えをtrue：非表示、false：表示|
-|HolderNameHidden|名義人名欄をtrue：非表示、false：表示|
-|PayTimesHidden|お支払い回数欄をtrue：非表示、false：表示|
-|labelCardNo|ラベルテキストを設定 ( カード番号 )|
-|labelExpire|ラベルテキストを設定 ( 有効期限 )|
-|labelCvc|ラベルテキストを設定 ( セキュリティコード )|
-|labelHolderName|ラベルテキストを設定 ( カード名義人名 )|
-|labelPaymentMethod|ラベルテキストを設定 ( お支払い方法 )|
-|placeCardNo|プレースホルダーを設定 ( カード番号 )|
-|placeExpireMonth|プレースホルダーを設定 ( 有効期限 [月] )|
-|placeExpireYear|プレースホルダーを設定 ( 有効期限 [年] )|
-|placeCvc|プレースホルダーを設定 ( セキュリティコード )|
-|placeHolderName|プレースホルダーを設定 ( カード名義人名 )|
-|colorBackground|フォーム全体の背景色|
-|colorBackgroundInput|インプットフィールドの背景色|
-|colorText|インプットの文字色|
-|colorLabelText|ラベルの文字色|
-|colorBorder|インプットのボーダーの色|
-|fontFamily|フォントの種類|
+        val config = FincodeCardUpdateConfiguration()
+        config.authorization = Authorization.BEARER;
+        config.apiKey = "p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        config.apiVersion = "20211001";
+        config.customerId = "c_HSZkCAxNS2_Sample";
+        config.defaultFlg = DefaultFlg.ON;
+        config.cardId = "cs_UrDeMDBlQ_Sample"
+
+        fin.initForCardUpdate(config, object : FincodeCallback<FincodeCardUpdateResponse?> {
+            override fun onResponse(fincodeCardUpdateResponse: FincodeCardUpdateResponse?) {
+                // 正常
+            }
+
+            override fun onFailure(fincodeErrorResponse: FincodeErrorResponse) {
+                // 異常
+            }
+        })
+    }
+```
 
 ## Repository
 FincodeSDKは、以下のAPIを実行するメソッドを用意しています。
 
 |API|Class|Method|
 |:--|:--|:--|
-|決済実行|FincodePaymentRepository|public void payment(HashMap<String, String> header, String orderId, FincodePaymentRequest request, FincodeCallback<FincodePaymentResponse> fincodeCallback)|
-|カード_一覧取得|FincodeCardOperateRepository|public void getCardInfoList(HashMap<String, String> header, String customerId, FincodeCallback<FincodeCardInfoListResponse> fincodeCallback)|
-|カード_登録|FincodeCardOperateRepository|public void cardRegister(HashMap<String, String> header, String customerId, FincodeCardRegisterRequest cardInfoRequest, FincodeCallback<FincodeCardRegisterResponse> fincodeCallback)|
-|カード_更新|FincodeCardOperateRepository|public void cardUpdate(HashMap<String, String> header, String customerId, String cardId, FincodeCardUpdateRequest cardInfoRequest, FincodeCallback<FincodeCardUpdateResponse> fincodeCallback)|
+|決済実行|FincodePaymentRepository|public void payment(HashMap\<String, String> header, String orderId, FincodePaymentRequest request, FincodeCallback\<FincodePaymentResponse> fincodeCallback)|
+|カード_一覧取得|FincodeCardOperateRepository|public void getCardInfoList(HashMap\<String, String> header, String customerId, FincodeCallback\<FincodeCardInfoListResponse> fincodeCallback)|
+|カード_登録|FincodeCardOperateRepository|public void cardRegister(HashMap\<String, String> header, String customerId, FincodeCardRegisterRequest cardInfoRequest, FincodeCallback\<FincodeCardRegisterResponse> fincodeCallback)|
+|カード_更新|FincodeCardOperateRepository|public void cardUpdate(HashMap\<String, String> header, String customerId, String cardId, FincodeCardUpdateRequest cardInfoRequest, FincodeCallback\<FincodeCardUpdateResponse> fincodeCallback)|
 
 
 ---
 
-- 決済実行 - 例
+### 決済実行
+
+#### 実装例 (Java)
 
 ```
 HashMap<String, String> header = new HashMap<String, String>();
@@ -392,46 +571,74 @@ String orderId = "o_20adN6n-SpSO78oz5Sample";
 FincodePaymentRepository.getInstance().payment(header, orderId, req, new FincodeCallback<FincodePaymentResponse>() {
     @Override
     public void onResponse(FincodePaymentResponse fincodePaymentResponse) {
-        Log.d("Success", "");
+        // 正常
     }
 
     @Override
     public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
-        Log.d("Failure", "");
+        // 異常
     }
 });
 ```
 
-- FincodePaymentRequest プロパティ一覧
+#### 実装例 (Kotlin)
 
-|項目名|プロパティ名|必須|型|最小桁数|最大桁数|マスク対象|備考|
-|:--|:--|:--|:--|:--|:--|:--|:--|
-|決済種別|payType|〇|String|1|50| | |
-|取引ID|accessId|〇|String|24|24| | |
-|オーダーID|id|〇|String|1|30| | |
-|トークン|token|△|String|1|512| |カード番号入力方式：トークン方式の場合 必須|
-|カード番号|cardNo|△|String|10|16|〇|カード番号入力方式：直接方式の場合 必須|
-|有効期限|expire|△|String|4|4| |カード番号入力方式：直接方式の場合 必須|
-|顧客ID|customerId|△|String|1|60| |カード番号入力方式：顧客ID方式の場合 必須|
-|カードID|cardId|△|String|25|25| |カード番号入力方式：顧客ID方式の場合 必須|
-|支払方法|method| |String|1|1| |1：一括  2：分割|
-|支払回数|payTimes| |String|1|2| |支払方法にて、分割を指定していた場合  必須|
-|セキュリティコード|securityCode| |String|4|4|〇| |
-|カード名義人|holderName| |String|1|50|〇|カード番号入力方式：顧客ID方式の場合 は登録時のカード名義人が優先されます|
+```
+var header = HashMap<String, String>()
+header.put("Content-Type", "application/json")
+header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
-- 引数一覧
+var req = FincodePaymentRequest()
+req.payType = "Card"
+req.accessId = "a_D21rkF_CTxyrxwju-rSample"
+req.orderId = "o_20adN6n-SpSO78oz5Sample"
+req.cardNo = "1234567890123456"
+req.expire = "2510"
+req.method = MethodType.ONE_TIME.value
+
+FincodePaymentRepository.getInstance().payment(header, "o_20adN6n-SpSO78oz5Sample", req, object : FincodeCallback<FincodePaymentResponse?> {
+    override fun onResponse(p0: FincodePaymentResponse?) {
+        // 正常
+    }
+
+    override fun onFailure(p0: FincodeErrorResponse?) {
+        // 異常
+    }
+})
+```
+
+#### FincodePaymentRequest プロパティ一覧
+
+|項目名|プロパティ名|必須|型|最小桁数|最大桁数|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|決済種別|payType|〇|String|1|50| |
+|取引ID|accessId|〇|String|24|24| |
+|オーダーID|id|〇|String|1|30| |
+|トークン|token|△|String|1|512|カード番号入力方式：トークン方式の場合 必須|
+|カード番号|cardNo|△|String|10|16|ード番号入力方式：直接方式の場合 必須|
+|有効期限|expire|△|String|4|4|カード番号入力方式：直接方式の場合 必須|
+|顧客ID|customerId|△|String|1|60|カード番号入力方式：顧客ID方式の場合 必須|
+|カードID|cardId|△|String|25|25|カード番号入力方式：顧客ID方式の場合 必須|
+|支払方法|method| |String|1|1|1：一括  2：分割|
+|支払回数|payTimes| |String|1|2|支払方法にて、分割を指定していた場合  必須|
+|セキュリティコード|securityCode| |String|4|4| |
+|カード名義人|holderName| |String|1|50|カード番号入力方式：顧客ID方式の場合 は登録時のカード名義人が優先されます|
+
+#### 引数一覧
 
 |引数|説明|
 |:--|:--|
-|header|リクエスト ヘッダー|
-|orderId|FincodePaymentRequestのorderIdと同値|
-|req|リクエスト パラメータ|
-|FincodeCallback|API実行結果を処理するインターフェース|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String orderId|FincodePaymentRequestのorderIdと同値|
+|FincodePaymentRequest request|リクエスト パラメータ|
+|FincodeCallback\<FincodePaymentResponse>|API実行結果を処理するインターフェース|
 
 
 ---
 
-- カード_一覧取得 - 例
+### カード_一覧取得
+
+#### 実装例 (Java)
 
 ```
 HashMap<String, String> header = new HashMap<String, String>();
@@ -443,27 +650,47 @@ String customerId = "Sample1";
 FincodeCardOperateRepository.getInstance().getCardInfoList(header, customerId, new FincodeCallback<FincodeCardInfoListResponse>() {
     @Override
     public void onResponse(FincodeCardInfoListResponse fincodeCardInfoListResponse) {
-        Log.d("Success", "");
+        // 正常
     }
 
     @Override
     public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
-        Log.d("Failure", "");
+        // 異常
     }
 });
 ```
 
-- 引数一覧
+#### 実装例 (Kotlin)
+
+```
+var header = HashMap<String, String>()
+header.put("Content-Type", "application/json")
+header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+FincodeCardOperateRepository.getInstance().getCardInfoList(header, "Sample1", object : FincodeCallback<FincodeCardInfoListResponse?> {
+    override fun onResponse(response: FincodeCardInfoListResponse?) {
+        // 正常
+    }
+
+    override fun onFailure(errorInfo: FincodeErrorResponse) {
+        // 異常
+    }
+})
+```
+
+- 引数一覧
 
 |引数|説明|
 |:--|:--|
-|header|リクエスト ヘッダー|
-|customerId|顧客ID|
-|FincodeCallback|API実行結果を処理するインターフェース|
+|HashMap\<String, String>|リクエスト ヘッダー|
+|String customerId|顧客ID|
+|FincodeCallback\<FincodeCardInfoListResponse>|API実行結果を処理するインターフェース|
 
 ---
 
-- カード_登録 - 例
+### カード_登録
+
+#### 実装例 (Java)
 
 ```
 HashMap<String, String> header = new HashMap<String, String>();
@@ -480,39 +707,64 @@ String customerId = "Sample1";
 FincodeCardOperateRepository.getInstance().cardRegister(header, customerId, req, new FincodeCallback<FincodeCardRegisterResponse>() {
     @Override
     public void onResponse(FincodeCardRegisterResponse fincodeCardRegisterResponse) {
-        Log.d("Success", "");
+        // 正常
     }
 
     @Override
     public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
-        Log.d("Failure", "");
+        // 異常
     }
 });
 ```
 
-- FincodeCardRegisterRequestプロパティ一覧
+#### 実装例 (Kotlin)
 
-|項目名|プロパティ名|必須|型|最小桁数|最大桁数|マスク対象|備考|
-|:--|:--|:--|:--|:--|:--|:--|:--|
-|デフォルトフラグ|defaultFlag|〇|String|1|1| |1：ON　0：OFF|
-|カード番号|cardNo|△|String|10|16|〇|トークンに入力がある場合は無視、なしの場合は必須。|
-|有効期限|expire|△|String|4|4| |トークンに入力がある場合は無視、なしの場合は必須。( YYMM形式 )|
-|カード名義人|holderName| |String|1|50|〇|トークンに入力がある場合は無視。|
-|セキュリティコード|securityCode| |String|3|4|〇|トークンに入力がある場合は無視。|
-|トークン|token| |String|1|512| | |
+```
+var header = HashMap<String, String>()
+header.put("Content-Type", "application/json")
+header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
-- 引数一覧
+var req = FincodeCardRegisterRequest()
+req.cardNo = "1234567890123456"
+req.expire = "2510"
+req.defaltFlag = "1"
+
+FincodeCardOperateRepository.getInstance().cardRegister(header, "Sample1", req, object : FincodeCallback<FincodeCardRegisterResponse?> {
+        override fun onResponse(response: FincodeCardRegisterResponse?) {
+            // 正常
+        }
+
+        override fun onFailure(errorInfo: FincodeErrorResponse) {
+            // 異常
+        }
+})
+```
+
+- FincodeCardRegisterRequestプロパティ一覧
+
+|項目名|プロパティ名|必須|型|最小桁数|最大桁数|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|デフォルトフラグ|defaultFlag|〇|String|1|1|1：ON　0：OFF|
+|カード番号|cardNo|△|String|10|16|トークンに入力がある場合は無視、なしの場合は必須。|
+|有効期限|expire|△|String|4|4|トークンに入力がある場合は無視、なしの場合は必須。( YYMM形式 )|
+|カード名義人|holderName| |String|1|50|トークンに入力がある場合は無視。|
+|セキュリティコード|securityCode| |String|3|4|トークンに入力がある場合は無視。|
+|トークン|token| |String|1|512| |
+
+- 引数一覧
 
 |引数|説明|
 |:--|:--|
-|header|リクエスト ヘッダー|
-|customerId|顧客ID|
-|req|リクエスト パラメータ|
-|FincodeCallback|API実行結果を処理するインターフェース|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String customerId|顧客ID|
+|FincodeCardRegisterRequest cardInfoRequest|リクエスト パラメータ|
+|FincodeCallback\<FincodeCardRegisterResponse>|API実行結果を処理するインターフェース|
 
 ---
 
-- カード_更新 - 例
+### カード_更新
+
+#### 実装例 (Java)
 
 ```
 HashMap<String, String> header = new HashMap<String, String>();
@@ -528,35 +780,56 @@ String cardId = "cs_1a4TiE_eT0GQ2QB7Sample";
 FincodeCardOperateRepository.getInstance().cardUpdate(header, customerId, cardId, req, new FincodeCallback<FincodeCardUpdateResponse>() {
     @Override
     public void onResponse(FincodeCardUpdateResponse fincodeCardUpdateResponse) {
-        Log.d("Success", "");
+        // 正常
     }
 
     @Override
     public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
-        Log.d("Failure", "");
+        // 異常
     }
 });
 ```
 
-- FincodeCardUpdateRequestプロパティ一覧
+#### 実装例 (Kotlin)
 
-|項目名|プロパティ名|必須|型|最小桁数|最大桁数|マスク対象|備考|
-|:--|:--|:--|:--|:--|:--|:--|:--|
-|デフォルトフラグ|defaultFlag|〇|String|1|1| |パラメータありの場合のみ更新。  1：ON　（0：OFFは設定不可）|
-|有効期限|expire|△|String|4|4| |トークンに入力がある場合は無視。  パラメータありの場合のみ更新。 ( YYMM形式 )|
-|カード名義人|holderName| |String|1|50|〇|トークンに入力がある場合は無視。  パラメータありの場合のみ更新。|
-|セキュリティコード|securityCode| |String|3|4|〇|トークンに入力がある場合は無視。|
-|トークン|token| |String|1|512| | |
+```
+var header = HashMap<String, String>()
+header.put("Content-Type", "application/json")
+header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
-- 引数一覧
+val req = FincodeCardUpdateRequest()
+req.expire = "2501"
+
+FincodeCardOperateRepository.getInstance().cardUpdate(header, "Sample1", "cs_1a4TiE_eT0GQ2QB7Sample", req, object : FincodeCallback<FincodeCardUpdateResponse?> {
+    override fun onResponse(response: FincodeCardUpdateResponse?) {
+        // 正常
+    }
+
+    override fun onFailure(errorInfo: FincodeErrorResponse) {
+        // 異常
+    }
+})
+```
+
+- FincodeCardUpdateRequestプロパティ一覧
+
+|項目名|プロパティ名|必須|型|最小桁数|最大桁数|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|デフォルトフラグ|defaultFlag|〇|String|1|1|パラメータありの場合のみ更新。  1：ON　（0：OFFは設定不可）|
+|有効期限|expire|△|String|4|4|トークンに入力がある場合は無視。  パラメータありの場合のみ更新。 ( YYMM形式 )|
+|カード名義人|holderName| |String|1|50|トークンに入力がある場合は無視。  パラメータありの場合のみ更新。|
+|セキュリティコード|securityCode| |String|3|4|トークンに入力がある場合は無視。|
+|トークン|token| |String|1|512| |
+
+- 引数一覧
 
 |引数|説明|
 |:--|:--|
-|header|リクエスト ヘッダー|
-|customerId|顧客ID|
-|cardId|カードID|
-|req|リクエスト パラメータ|
-|FincodeCallback|API実行結果を処理するインターフェース|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String customerId|顧客ID|
+|String cardId|カードID|
+|FincodeCardUpdateRequest cardInfoRequest|リクエスト パラメータ|
+|FincodeCallback\<FincodeCardUpdateResponse> fincodeCallback|API実行結果を処理するインターフェース|
 
 ## Licenses
 
