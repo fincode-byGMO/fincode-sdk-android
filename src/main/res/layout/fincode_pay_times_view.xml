@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelPaymentMethod}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
             app:fontFamily="@{optViewModel.fontFamily}"/>
 
@@ -31,18 +31,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/partPadding">
+            android:paddingTop="@dimen/partPadding">
 
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:paddingBottom="@dimen/partPadding">
 
                 <RadioButton
                     android:id="@+id/oneTimePayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="30dp"
+                    android:paddingEnd="10dp"
                     android:buttonTint="@color/submitButtonBackground"
                     android:checked="@={dataViewModel.payTimesPart.isOneTime}"
                     android:text="@string/one_time_payment"
@@ -54,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/submitButtonBackground"
-                    android:paddingEnd="30dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/installment_payment"
                     app:colorText="@{optViewModel.colorLabelText}"
                     app:fontFamily="@{optViewModel.fontFamily}"/>
@@ -64,11 +66,11 @@
             <Spinner
                 android:id="@+id/planets_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="40dp"
                 android:background="@drawable/frame_border_default"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="2dp"
                 tools:visibility="@{installmentPayment.checked ? View.VISIBLE : View.GONE}"
                 app:viewModelForSpinner="@{dataViewModel}"
                 app:dataSourceForSpinner="@{@stringArray/payment_times_array}"/>
