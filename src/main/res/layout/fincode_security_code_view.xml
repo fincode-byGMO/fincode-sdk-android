@@ -47,6 +47,7 @@
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.securityCodePart.value}"
                     android:textSize="@dimen/textFieldFontSize"
+                    android:imeOptions="flagNoFullscreen"
                     app:colorText="@{optViewModel.colorText}"
                     app:partsTypeForSecurityCode="@{PartsType.SECURITY_CODE}"
                     app:selectedBorderForSecurityCode="@{@drawable/frame_border_selected}"
