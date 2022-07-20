@@ -49,6 +49,7 @@
                     android:enabled="@{!dataViewModel.radioSelect}"
                     android:hint="@{optViewModel.placeCardNo}"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:nextFocusForward="@id/expireMonth"
                     android:padding="@dimen/textFieldPadding"
                     android:textSize="@dimen/textFieldFontSize"
