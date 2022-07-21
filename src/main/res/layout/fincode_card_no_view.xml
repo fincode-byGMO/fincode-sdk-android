@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelCardNo}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
             app:fontFamily="@{optViewModel.fontFamily}"/>
 
@@ -49,6 +49,7 @@
                     android:enabled="@{!dataViewModel.radioSelect}"
                     android:hint="@{optViewModel.placeCardNo}"
                     android:inputType="number"
+                    android:imeOptions="actionNext|flagNoFullscreen"
                     android:nextFocusForward="@id/expireMonth"
                     android:padding="@dimen/textFieldPadding"
                     android:textSize="@dimen/textFieldFontSize"
