@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@{optViewModel.labelExpire}"
             android:textSize="@dimen/titleFontSize"
-            android:visibility="@{optViewModel.isHeadingVisibility ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
             app:fontFamily="@{optViewModel.fontFamily}"/>
 
@@ -48,6 +48,8 @@
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireMonthPart.value}"
                     android:textSize="@dimen/textFieldFontSize"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/expireYear"
                     android:background="@{dataViewModel.expireMonthPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_MONTH}"
@@ -89,6 +91,8 @@
                     android:padding="@dimen/textFieldPadding"
                     android:text="@={dataViewModel.expireYearPart.value}"
                     android:textSize="@dimen/textFieldFontSize"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/securityCode"
                     android:background="@{dataViewModel.expireYearPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     app:viewModelForExpire="@{dataViewModel}"
                     app:partsTypeForExpire="@{PartsType.EXPIRE_YEAR}"

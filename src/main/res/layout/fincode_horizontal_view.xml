@@ -66,7 +66,7 @@
                     layout="@layout/fincode_card_no_view"
                     android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     app:actionViewModel="@{actionViewModel}"
                     app:dataViewModel="@={dataViewModel}"
                     app:optViewModel="@{optViewModel}"
@@ -74,18 +74,18 @@
 
                 <include
                     layout="@layout/fincode_expir_horizontal_view"
-                    android:layout_weight="0.35"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"/>
 
                 <include
                     layout="@layout/fincode_security_code_view"
-                    android:layout_weight="0.35"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"/>
@@ -99,9 +99,9 @@
 
                 <include
                     layout="@layout/fincode_holder_name_view"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
@@ -109,9 +109,9 @@
 
                 <include
                     layout="@layout/fincode_pay_times_view"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.7"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
