@@ -115,7 +115,7 @@
                     app:dataViewModel="@={dataViewModel}"
                     app:actionViewModel="@{actionViewModel}"
                     app:optViewModel="@{optViewModel}"
-                    android:visibility="@{dataViewModel.buttonType == SubmitButtonType.PAYMENT &amp;&amp; optViewModel.isPayTimesVisibility ? View.GONE : View.VISIBLE}"/>
+                    android:visibility="@{optViewModel.isPayTimesVisibility ? View.GONE : View.VISIBLE}"/>
 
             </LinearLayout>
 
