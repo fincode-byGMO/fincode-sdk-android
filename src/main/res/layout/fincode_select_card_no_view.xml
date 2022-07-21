@@ -7,20 +7,29 @@
         <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/partPadding">
 
         <Spinner
+            android:id="@+id/cardNumberList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_border_default"
             android:enabled="@{dataViewModel.radioSelect}"
             app:dataSource="@{dataViewModel.selectCardNoPart.selectCardNoList}"
-            app:viewModelForSelectCardNo="@{dataViewModel}"/>
+            app:viewModelForSelectCardNo="@{dataViewModel}" />
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignEnd="@+id/cardNumberList"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/icon" />
+
+    </RelativeLayout>
 
 </layout>
