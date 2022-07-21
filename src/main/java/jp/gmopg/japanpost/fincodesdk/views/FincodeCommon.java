@@ -21,6 +21,7 @@ import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardRegisterResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeCardUpdateResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
+import jp.gmopg.japanpost.fincodesdk.enumeration.SubmitButtonType;
 import jp.gmopg.japanpost.fincodesdk.usecase.CardOperateUseCase;
 import jp.gmopg.japanpost.fincodesdk.util.ResourceUtil;
 import jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel;
@@ -77,7 +78,7 @@ abstract class FincodeCommon extends LinearLayout {
         DataHolder.getInstance().setOptions(opt);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
-        setOpt(opt);
+        setOpt(opt, config.getSubmitButtonType());
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
         FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
@@ -108,7 +109,7 @@ abstract class FincodeCommon extends LinearLayout {
         }
     }
 
-    private void setOpt(Options opt) {
+    private void setOpt(Options opt, SubmitButtonType type) {
 
         if(opt == null) {
             return;
@@ -119,7 +120,12 @@ abstract class FincodeCommon extends LinearLayout {
         vm.setIsHeadingVisibility(opt.headingHidden);
         vm.setIsDynamicLogDisplayVisibility(opt.dynamicLogDisplay);
         vm.setIsHolderNameVisibility(opt.holderNameHidden);
-        vm.setIsPayTimesVisibility(opt.payTimesHidden);
+
+        if(type == SubmitButtonType.PAYMENT) {
+            vm.setIsPayTimesVisibility(opt.payTimesHidden);
+        } else {
+            vm.setIsPayTimesVisibility(true);
+        }
 
         vm.setLabelCardNo(opt.labelCardNo);
         vm.setLabelExpire(opt.labelExpire);
