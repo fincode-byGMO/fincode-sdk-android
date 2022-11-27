@@ -1,18 +1,14 @@
 package jp.gmopg.japanpost.fincodesdk.Repository;
 
-import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.util.HashMap;
 
 import jp.gmopg.japanpost.fincodesdk.api.AsyncHttpClient;
 import jp.gmopg.japanpost.fincodesdk.api.AuthenticationApiInterface;
 import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
-import jp.gmopg.japanpost.fincodesdk.api.PaymentApiInterface;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfoList;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
-import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeAuthRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeAuthResponse;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeGetResultResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureResponse;
 import jp.gmopg.japanpost.fincodesdk.util.HttpUtil;
@@ -21,29 +17,29 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by m.ohkawa on 2022/06/23.
+ * Created by m.sakaida on 2022/10/28.
  */
-public class FincodePaymentRepository {
+public class FincodeAuthRepository {
 
-    private static FincodePaymentRepository instance;
+    private static FincodeAuthRepository instance;
 
-    private FincodePaymentRepository() {
+    private FincodeAuthRepository() {
     }
 
-    public static FincodePaymentRepository getInstance() {
+    public static FincodeAuthRepository getInstance() {
         if(instance == null) {
-            instance = new FincodePaymentRepository();
+            instance = new FincodeAuthRepository();
         }
         return instance;
     }
 
-    public void payment(HashMap<String, String> header, String orderId, FincodePaymentRequest request, FincodeCallback<FincodePaymentResponse> fincodeCallback) {
-        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
+    public void authentication(HashMap<String, String> header, String id, FincodeAuthRequest request, FincodeCallback<FincodeAuthResponse> fincodeCallback) {
+        AuthenticationApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(AuthenticationApiInterface.class);
 
-        api.payment(header, request, orderId)
-                .enqueue(new Callback<FincodePaymentResponse>() {
+        api.authentication(header, request, id)
+                .enqueue(new Callback<FincodeAuthResponse>() {
                     @Override
-                    public void onResponse(Call<FincodePaymentResponse> call, Response<FincodePaymentResponse> response) {
+                    public void onResponse(Call<FincodeAuthResponse> call, Response<FincodeAuthResponse> response) {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
@@ -56,19 +52,19 @@ public class FincodePaymentRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<FincodePaymentResponse> call, Throwable t) {
+                    public void onFailure(Call<FincodeAuthResponse> call, Throwable t) {
                         // do nothing
                     }
                 });
     }
 
-    public void paymentSecure(HashMap<String, String> header, String id, FincodePaymentSecureRequest request, FincodeCallback<FincodePaymentSecureResponse> fincodeCallback) {
-        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
+    public void getResult(HashMap<String, String> header, String id, FincodeCallback<FincodeGetResultResponse> fincodeCallback) {
+        AuthenticationApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(AuthenticationApiInterface.class);
 
-        api.paymentSecure(header, request, id)
-                .enqueue(new Callback<FincodePaymentSecureResponse>() {
+        api.getResult(header, id)
+                .enqueue(new Callback<FincodeGetResultResponse>() {
                     @Override
-                    public void onResponse(Call<FincodePaymentSecureResponse> call, Response<FincodePaymentSecureResponse> response) {
+                    public void onResponse(Call<FincodeGetResultResponse> call, Response<FincodeGetResultResponse> response) {
                         if(response.isSuccessful()) {
                             fincodeCallback.onResponse(response.body());
                         } else {
@@ -81,7 +77,7 @@ public class FincodePaymentRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<FincodePaymentSecureResponse> call, Throwable t) {
+                    public void onFailure(Call<FincodeGetResultResponse> call, Throwable t) {
                         // do nothing
                     }
                 });

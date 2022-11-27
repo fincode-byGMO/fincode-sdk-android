@@ -1,20 +1,17 @@
 package jp.gmopg.japanpost.fincodesdk.entities.api;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by m.ohkawa on 2022/06/23.
- */
-public class FincodePaymentResponse {
+import java.sql.Timestamp;
+import java.util.Date;
 
-    @SerializedName("acs")
-    private String acs;
-
+public class FincodePaymentSecureResponse {
     @SerializedName("shop_id")
     private String shopId;
 
     @SerializedName("id")
-    private String orderId;
+    private String id;
 
     @SerializedName("pay_type")
     private String payType;
@@ -68,7 +65,7 @@ public class FincodePaymentResponse {
     private String method;
 
     @SerializedName("pay_times")
-    private Long payTimes;
+    private Integer payTimes;
 
     @SerializedName("forward")
     private String forward;
@@ -115,23 +112,44 @@ public class FincodePaymentResponse {
     @SerializedName("subscription_id")
     private String subscriptionId;
 
+    @SerializedName("bulk_payment_id")
+    private String bulkPaymentId;
+
     @SerializedName("brand")
-    private String cardBrand;
+    private String brand;
 
     @SerializedName("error_code")
     private String errorCode;
-
-    @SerializedName("acs_url")
-    private String acsUrl;
-
-    @SerializedName("pa_req")
-    private String paReq;
 
     @SerializedName("created")
     private String created;
 
     @SerializedName("updated")
     private String updated;
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
 
     public String getStatus() {
         return status;
@@ -261,11 +279,11 @@ public class FincodePaymentResponse {
         this.method = method;
     }
 
-    public Long getPayTimes() {
+    public Integer getPayTimes() {
         return payTimes;
     }
 
-    public void setPayTimes(Long payTimes) {
+    public void setPayTimes(Integer payTimes) {
         this.payTimes = payTimes;
     }
 
@@ -389,12 +407,20 @@ public class FincodePaymentResponse {
         this.subscriptionId = subscriptionId;
     }
 
-    public String getCardBrand() {
-        return cardBrand;
+    public String getBulkPaymentId() {
+        return bulkPaymentId;
     }
 
-    public void setCardBrand(String cardBrand) {
-        this.cardBrand = cardBrand;
+    public void setBulkPaymentId(String bulkPaymentId) {
+        this.bulkPaymentId = bulkPaymentId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getErrorCode() {
@@ -403,22 +429,6 @@ public class FincodePaymentResponse {
 
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
-    }
-
-    public String getAcsUrl() {
-        return acsUrl;
-    }
-
-    public void setAcsUrl(String acsUrl) {
-        this.acsUrl = acsUrl;
-    }
-
-    public String getPaReq() {
-        return paReq;
-    }
-
-    public void setPaReq(String paReq) {
-        this.paReq = paReq;
     }
 
     public String getCreated() {
@@ -436,5 +446,4 @@ public class FincodePaymentResponse {
     public void setUpdated(String updated) {
         this.updated = updated;
     }
-
 }

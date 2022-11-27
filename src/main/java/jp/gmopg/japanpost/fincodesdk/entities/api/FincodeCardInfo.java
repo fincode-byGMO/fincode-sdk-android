@@ -32,13 +32,11 @@ public class FincodeCardInfo {
     @SerializedName("card_no_hash")
     private String cardNoHash;
 
-    @Expose
     @SerializedName("created")
-    private Date created;
+    private String created;
 
-    @Expose
     @SerializedName("updated")
-    private Date updated;
+    private String updated;
 
     @SerializedName("type")
     private String cardType;
@@ -102,19 +100,19 @@ public class FincodeCardInfo {
         this.cardNoHash = cardNoHash;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public Date getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 
