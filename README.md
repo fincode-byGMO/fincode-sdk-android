@@ -542,6 +542,9 @@ FincodeSDKは、以下のAPIを実行するメソッドを用意しています�
 |API|Class|Method|
 |:--|:--|:--|
 |決済実行|FincodePaymentRepository|public void payment(HashMap\<String, String> header, String orderId, FincodePaymentRequest request, FincodeCallback\<FincodePaymentResponse> fincodeCallback)|
+|認証後決済|FincodePaymentRepository|public void paymentSecure(HashMap<String, String> header, String id, FincodePaymentSecureRequest request, FincodeCallback<FincodePaymentSecureResponse> fincodeCallback)|
+|3DS2.0認証実行|FincodeAuthRepository|public void authentication(HashMap<String, String> header, String id, FincodeAuthRequest request, FincodeCallback<FincodeAuthResponse> fincodeCallback)|
+|3DS2.0認証結果取得|FincodeAuthRepository|public void getResult(HashMap<String, String> header, String id, FincodeCallback<FincodeGetResultResponse> fincodeCallback)|
 |カード_一覧取得|FincodeCardOperateRepository|public void getCardInfoList(HashMap\<String, String> header, String customerId, FincodeCallback\<FincodeCardInfoListResponse> fincodeCallback)|
 |カード_登録|FincodeCardOperateRepository|public void cardRegister(HashMap\<String, String> header, String customerId, FincodeCardRegisterRequest cardInfoRequest, FincodeCallback\<FincodeCardRegisterResponse> fincodeCallback)|
 |カード_更新|FincodeCardOperateRepository|public void cardUpdate(HashMap\<String, String> header, String customerId, String cardId, FincodeCardUpdateRequest cardInfoRequest, FincodeCallback\<FincodeCardUpdateResponse> fincodeCallback)|
@@ -554,30 +557,31 @@ FincodeSDKは、以下のAPIを実行するメソッドを用意しています�
 #### 実装例 (Java)
 
 ```
-HashMap<String, String> header = new HashMap<String, String>();
-header.put("Content-Type", "application/json");
-header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+HashMap<String, String> header = new HashMap<String, String>();
+    header.put("Content-Type", "application/json");
+    header.put("Authorization", "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-FincodePaymentRequest req = new FincodePaymentRequest();
-req.setPayType("Card");
-req.setAccessId("a_D21rkF_CTxyrxwju-rSample");
-req.setOrderId("o_20adN6n-SpSO78oz5Sample");
-req.setCardNo("1234567890123456");
-req.setExpire("2501");
-req.setMethod(MethodType.ONE_TIME.getValue());
+    FincodePaymentRequest req = new FincodePaymentRequest();
+    req.setPayType("Card");
+    req.setAccessId("a_Ck1ASkYXRimtmgla4YIHgg");
+    req.setOrderId("o_u1xu3m6VREu3CJsF7Csoxg");
+    req.setHolderName("Test Card");
+    req.setMethod("1");
+    req.setSecurityCode("123");
+    req.setTds2RetUrl("https://pt01.mul-pay.jp/st/payment/test/postReceiver.jsp");
+    req.setCardNo("4100000000005000");
+    req.setExpire("2508");
 
-String orderId = "o_20adN6n-SpSO78oz5Sample";
+    FincodePaymentRepository.getInstance().payment(header, "o_u1xu3m6VREu3CJsF7Csoxg", req, new FincodeCallback<FincodePaymentResponse>() {
+        @Override
+        public void onResponse(FincodePaymentResponse fincodePaymentResponse) {
+            Log.d("Success", "");
+        }
 
-FincodePaymentRepository.getInstance().payment(header, orderId, req, new FincodeCallback<FincodePaymentResponse>() {
-    @Override
-    public void onResponse(FincodePaymentResponse fincodePaymentResponse) {
-        // 正常
-    }
-
-    @Override
-    public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
-        // 異常
-    }
+        @Override
+        public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
+            Log.d("Failure", "");
+        }
 });
 ```
 
@@ -585,25 +589,31 @@ FincodePaymentRepository.getInstance().payment(header, orderId, req, new Fin
 
 ```
 var header = HashMap<String, String>()
-header.put("Content-Type", "application/json")
-header.put("Authorization", "Bearer p_prod_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    header.put("Content-Type", "application/json")
+    header.put(
+        "Authorization",
+        "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    )
 
-var req = FincodePaymentRequest()
-req.payType = "Card"
-req.accessId = "a_D21rkF_CTxyrxwju-rSample"
-req.orderId = "o_20adN6n-SpSO78oz5Sample"
-req.cardNo = "1234567890123456"
-req.expire = "2510"
-req.method = MethodType.ONE_TIME.value
+    var req = FincodePaymentRequest()
+    req.payType = "Card"
+    req.accessId = "a_Ck1ASkYXRimtmgla4YIHgg"
+    req.orderId = "o_u1xu3m6VREu3CJsF7Csoxg"
+    req.holderName = "Test Card"
+    req.method = "1"
+    req.securityCode = "123"
+    req.tds2RetUrl = "https://pt01.mul-pay.jp/st/payment/test/postReceiver.jsp"
+    req.cardNo = "4100000000005000"
+    req.expire = "2508"
 
-FincodePaymentRepository.getInstance().payment(header, "o_20adN6n-SpSO78oz5Sample", req, object : FincodeCallback<FincodePaymentResponse?> {
-    override fun onResponse(p0: FincodePaymentResponse?) {
-        // 正常
-    }
+    FincodePaymentRepository.getInstance().payment(header, "o_9nLaTocJRUeC9Fp8gpUZ-A", req, object : FincodeCallback<FincodePaymentResponse?> {
+        override fun onResponse(p0: FincodePaymentResponse?) {
+            Log.d("Success", "")
+        }
 
-    override fun onFailure(p0: FincodeErrorResponse?) {
-        // 異常
-    }
+        override fun onFailure(p0: FincodeErrorResponse?) {
+            Log.d("Failure", "")
+        }
 })
 ```
 
@@ -623,6 +633,54 @@ FincodePaymentRepository.getInstance().payment(header, "o_20adN6n-SpSO78oz5Sampl
 |支払回数|payTimes| |String|1|2|支払方法にて、分割を指定していた場合  必須|
 |セキュリティコード|securityCode| |String|4|4| |
 |カード名義人|holderName| |String|1|50|カード番号入力方式：顧客ID方式の場合 は登録時のカード名義人が優先されます|
+|加盟店戻りURL|tds2RetUrl| |String|1|256|"ここから、3DS2.0の項目<br>tds_type が 2 ：行う（3DS2.0を利用）の場合のみ入力チェックを行う"|
+|3DSリクエスター アカウント最終更新日|tds2ChAccChange| |String|8|8|yyyyMMdd形式|
+|3DSリクエスター アカウント開設日|tds2ChAccDate| |String|8|8|yyyyMMdd形式|
+|3DSリクエスター アカウントパスワード変更日|tds2ChAccPwChange| |String|8|8|yyyyMMdd形式|
+|過去6ヶ月間の購入回数|tds2NbPurchaseAccount| |String|1|4| |
+|カード登録日|tds2PaymentAccAge| |String|8|8|yyyyMMdd形式|
+|過去24時間のカード追加の試行回数|tds2ProvisionAttemptsDay| |String|1|3| |
+|出荷先住所の最初の使用日|tds2ShipAddressUsage| |String|8|8|yyyyMMdd形式|
+|カード顧客名と出荷先名の一致/不一致情報|tds2ShipNameInd| |String|2|2|"カード顧客の顧客名と取引に使用される配送先名の一致/不一致を設定<br>01 = カード顧客名と配送先名が一致<br>02 = カード顧客名と配送先名が不一致"|
+|アカウントの不審行為情報|tds2SuspiciousAccActivity| |String|2|2|"カード顧客で、不審な行動（過去の不正行為を含む）を加盟店様が発見したかどうかを設定<br>01 = 不審な行動は見られなかった<br>02 = 不審な行動が見られた"|
+|過去24時間の取引回数|tds2TxnActivityDay| |String|1|3| |
+|前年の取引回数|tds2TxnActivityYear| |String|1|3| |
+|ログイン証跡|tds2ThreeDsReqAuthData|△|String|1|2048|"ログイン証跡を設定した場合<br><br>ログイン方法/ログイン日時の設定が必要"|
+|ログイン方法|tds2ThreeDsReqAuthMethod|△|String|2|2|"ログイン方法を設定した場合<br><br>ログイン証跡/ログイン日時の設定が必要<br><br>01 = 認証なし（ゲストとしてログイン）<br>02 = 加盟店様自身の認証情報<br>03 = SSO(シングルサインオン)<br>04 = イシュアーの認証情報<br>05 = サードパーティ認証<br>06 = FIDO認証"|
+|ログイン日時|tds2ThreeDsReqAuthTimestamp|△|String|12|12|"ログイン日時を設定した場合<br>ログイン証跡/ログイン方法の設定が必要<br><br>YYYYMMDDHHMM形式"|
+|請求先住所と配送先住所の一致/不一致情報|tds2AddrMatch| |String|1|1|"カード顧客の配送先住所とカード顧客の請求先住所の一致/不一致の設定が必要<br>Y=一致<br>N=不一致"|
+|カード顧客の請求先住所の都市|tds2BillAddrCity| |String|1|50| |
+|カード顧客の請求先住所の国コード|tds2BillAddrCountry| |String|1|3| |
+|カード顧客の請求先住所の区域部分の１行目|tds2BillAddrLine1| |String|1|50| |
+|カード顧客の請求先住所の区域部分の２行目|tds2BillAddrLine2| |String|1|50| |
+|カード顧客の請求先住所の区域部分の３行目|tds2BillAddrLine3| |String|1|50| |
+|カード顧客の請求先住所の郵便番号|tds2BillAddrPostCode| |String|1|16| |
+|カード顧客の請求先住所の州または都道府県コード|tds2BillAddrState| |String|1|3| |
+|カード顧客のメールアドレス|tds2Email| |String|1|254| |
+|自宅電話の国コード|tds2HomePhoneCc|△|String|1|3|"自宅電話の国コードを設定した場合<br>自宅電話番号の設定が必要"|
+|自宅電話番号|tds2HomePhoneNo|△|String|1|15|"自宅電話番号を設定した場合<br><br>自宅電話の国コードの設定が必要<br><br>ハイフン（-）なし、数字のみ"|
+|携帯電話の国コード|tds2MobilePhoneCc|△|String|1|3|"携帯電話の国コードを設定した場合<br><br>携帯電話番号の設定が必要"|
+|携帯電話番号|tds2MobilePhoneNo|△|String|1|15|"携帯電話番号の国コードを設定した場合<br><br>携帯電話の国コードの設定が必要<br><br>ハイフン（-）なし、数字のみ"|
+|職場電話の国コード|tds2WorkPhoneCc|△|String|1|3|"職場電話の国コードを設定した場合<br><br>職場電話番号の設定が必要"|
+|職場電話番号|tds2WorkPhoneNo|△|String|1|15|"職場電話番号を設定した場合<br><br>職場電話の国コードの設定が必要<br><br>ハイフン（-）なし、数字のみ"|
+|出荷先住所の都市|tds2ShipAddrCity| |String|1|50| |
+|出荷先住所の国コード|tds2ShipAddrCountry| |String|1|3| |
+|出荷先住所の区域部分の１行目|tds2ShipAddrLine1| |String|1|50| |
+|出荷先住所の区域部分の２行目|tds2ShipAddrLine2| |String|1|50| |
+|出荷先住所の区域部分の３行目|tds2ShipAddrLine3| |String|1|50| |
+|出荷先住所の郵便番号|tds2ShipAddrPostCode| |String|1|16| |
+|出荷先住所の州または都道府県コード|tds2ShipAddrState| |String|1|3| |
+|納品先電子メールアドレス|tds2DeliveryEmailAddress| |String|1|254| |
+|商品納品時間枠|tds2DeliveryTimeframe| |String|2|2|"01 = 電子デリバリー<br>02 = 当日出荷<br>03 = 翌日出荷<br>04 = 2日目以降の出荷"|
+|プリペイドカードまたはギフトカードの総購入金額|tds2GiftCardAmount| |String|1|15| |
+|購入されたプリペイドカードまたはギフトカード / コードの総数|tds2GiftCardCount| |String|2|2|0埋め2桁の数字|
+|通貨コード|tds2GiftCardCurr| |String|3|3|"※以下のコードは対象外<br>955, 956, 957, 958, 959, 960, 961, 962,<br>963, 964, 999"|
+|商品の発売予定日|tds2PreOrderDate| |String|8|8|YYYYMMDD形式|
+|商品の販売時期情報|tds2PreOrderPurchaseInd| |String|2|2|"01 = 発売済み商品<br>02 = 先行予約商品"|
+|商品の注文情報|tds2ReorderItemsInd| |String|2|2|"01 = 初回注文<br>02 = 再注文"|
+|取引の出荷方法|tds2ShipInd| |String|2|2|"01 = カード顧客の請求先住所に配送する<br>02 = 加盟店様が保持している別の、確認済み住所に配送する<br>03 = カード顧客の請求先住所と異なる住所に配送する<br>04 = 店舗へ配送 / 近所の店舗での受け取り（店舗の住所は配送先住所で指定する）<br>05 = デジタル商品（オンラインサービス、電子ギフトカードおよび償還コードを含む）<br>06 = 配送なし（旅行およびイベントのチケット）<br>07 = その他（ゲーム、配送されないデジタルサービス、電子メディアの購読料など）"|
+|継続課金の期限|tds2RecurringExpiry| |String|8|8|YYYYMMDD形式|
+|継続課金の課金最小間隔日数|tds2RecurringFrequency| |String|1|4| |
 
 #### 引数一覧
 
@@ -633,9 +691,201 @@ FincodePaymentRepository.getInstance().payment(header, "o_20adN6n-SpSO78oz5Sampl
 |FincodePaymentRequest request|リクエスト パラメータ|
 |FincodeCallback\<FincodePaymentResponse>|API実行結果を処理するインターフェース|
 
+---
+
+### 3DS2.0認証実行
+
+#### 実装例 (Java)
+
+```
+HashMap<String, String> header = new HashMap<String, String>();
+    header.put("Content-Type", "application/json");
+    header.put("Authorization", "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    FincodeAuthRequest req = new FincodeAuthRequest();
+    req.setParam("p");
+    req.setOrderId("a_ZhohAxsTSQG_TPT3agWNlA");
+
+    FincodeAuthRepository.getInstance().authentication(header, "a_ZhohAxsTSQG_TPT3agWNlA", req, new FincodeCallback<FincodeAuthResponse>() {
+        @Override
+        public void onResponse(FincodeAuthResponse fincodeAuthResponse) {
+            Log.d("Success", "");
+        }
+
+        @Override
+        public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
+            Log.d("Failure", "");
+        }
+});
+```
+
+#### 実装例 (Kotlin)
+
+```
+var header = HashMap<String, String>()
+    header.put("Content-Type", "application/json")
+    header.put(
+        "Authorization",
+        "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    )
+
+    var req = FincodeAuthRequest()
+    req.setParam("p")
+    req.setOrderId("a_p7cRDyDkRxuyG-1fHReFVg")
+
+    FincodeAuthRepository.getInstance().authentication(header, "a_p7cRDyDkRxuyG-1fHReFVg", req, object : FincodeCallback<FincodeAuthResponse?> {
+            override fun onResponse(p0: FincodeAuthResponse?) {
+                Log.d("Success", "")
+            }
+
+            override fun onFailure(p0: FincodeErrorResponse?) {
+                Log.d("Failure", "")
+            }
+})
+```
+
+#### FincodeAuthRequest プロパティ一覧
+
+|項目名|プロパティ名|必須|型|最小桁数|最大桁数|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|取引ID|id|〇|String|24|24| |
+|ブラウザ情報|param|〇|String|1|2000| |
+
+#### 引数一覧
+
+|引数|説明|
+|:--|:--|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String id|FincodeAuthRequestのidと同値|
+|FincodeAuthRequest request|リクエスト パラメータ|
+|FincodeCallback\<FincodeAuthResponse>|API実行結果を処理するインターフェース|
 
 ---
 
+### 3DS2.0認証結果取得
+
+#### 実装例 (Java)
+
+```
+HashMap<String, String> header = new HashMap<String, String>();
+    header.put("Content-Type", "application/json");
+    header.put("Authorization", "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    FincodeAuthRepository.getInstance().getResult(header, "a_ahJ8Cda8TRuUwV1v0zFFTg", new FincodeCallback<FincodeGetResultResponse>() {
+        @Override
+        public void onResponse(FincodeGetResultResponse fincodeGetResultResponse) {
+            Log.d("Success", "");
+        }
+
+        @Override
+        public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
+            Log.d("Failure", "");
+        }
+});
+```
+
+#### 実装例 (Kotlin)
+
+```
+var header = HashMap<String, String>()
+    header.put("Content-Type", "application/json")
+    header.put(
+        "Authorization",
+        "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    )
+
+    FincodeAuthRepository.getInstance().getResult(header, "a_ahJ8Cda8TRuUwV1v0zFFTg-A", object : FincodeCallback<FincodeGetResultResponse?> {
+            override fun onResponse(p0: FincodeGetResultResponse?) {
+                Log.d("Success", "")
+            }
+
+            override fun onFailure(p0: FincodeErrorResponse?) {
+                Log.d("Failure", "")
+            }
+})
+```
+
+#### 引数一覧
+
+|引数|説明|
+|:--|:--|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String id|FincodeAuthRequestのidと同値|
+|FincodeCallback\<FincodeGetResultResponse>|API実行結果を処理するインターフェース|
+
+---
+
+### 認証後決済
+
+#### 実装例 (Java)
+
+```
+HashMap<String, String> header = new HashMap<String, String>();
+    header.put("Content-Type", "application/json");
+    header.put("Authorization", "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    FincodePaymentSecureRequest req = new FincodePaymentSecureRequest();
+    req.setPayType("Card");
+    req.setId("o_u1xu3m6VREu3CJsF7Csoxg");
+    req.setAccessId("a_Ck1ASkYXRimtmgla4YIHgg");
+
+    FincodePaymentRepository.getInstance().paymentSecure(header, "o_u1xu3m6VREu3CJsF7Csoxg", req, new FincodeCallback<FincodePaymentSecureResponse>() {
+        @Override
+        public void onResponse(FincodePaymentSecureResponse fincodePaymentSecureResponse) {
+            Log.d("Success", "");
+        }
+
+        @Override
+        public void onFailure(FincodeErrorResponse fincodeErrorResponse) {
+            Log.d("Failure", "");
+        }
+});
+```
+
+#### 実装例 (Kotlin)
+
+```
+var header = HashMap<String, String>()
+    header.put("Content-Type", "application/json")
+    header.put(
+        "Authorization",
+        "Bearer m_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    )
+
+    val req = FincodePaymentSecureRequest()
+    req.setPayType("Card")
+    req.setId("o_u1xu3m6VREu3CJsF7Csoxg")
+    req.setAccessId("a_Ck1ASkYXRimtmgla4YIHgg")
+
+        FincodePaymentRepository.getInstance().paymentSecure(header, "o_u1xu3m6VREu3CJsF7Csoxg", req, object : FincodeCallback<FincodePaymentSecureResponse?> {
+            override fun onResponse(p0: FincodePaymentSecureResponse?) {
+                Log.d("Success", "")
+            }
+
+            override fun onFailure(p0: FincodeErrorResponse?) {
+                Log.d("Failure", "")
+            }
+})
+```
+
+#### FincodePaymentSecureRequest プロパティ一覧
+
+|項目名|プロパティ名|必須|型|最小桁数|最大桁数|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|決済種別|payType|〇|String|1|50| |
+|取引ID|accessId|〇|String|24|24| |
+|オーダーID|id|〇|String|1|30| |
+
+#### 引数一覧
+
+|引数|説明|
+|:--|:--|
+|HashMap\<String, String> header|リクエスト ヘッダー|
+|String id|FincodePaymentSecureRequestのidと同値|
+|FincodePaymentSecureRequest request|リクエスト パラメータ|
+|FincodeCallback\<FincodePaymentSecureResponse>|API実行結果を処理するインターフェース|
+
+---
 ### カード_一覧取得
 
 #### 実装例 (Java)
