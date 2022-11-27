@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import jp.gmopg.japanpost.fincodesdk.api.AsyncHttpClient;
+import jp.gmopg.japanpost.fincodesdk.api.AuthenticationApiInterface;
 import jp.gmopg.japanpost.fincodesdk.api.FincodeCallback;
 import jp.gmopg.japanpost.fincodesdk.api.PaymentApiInterface;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorInfoList;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodeErrorResponse;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureResponse;
 import jp.gmopg.japanpost.fincodesdk.util.HttpUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,6 +57,31 @@ public class FincodePaymentRepository {
 
                     @Override
                     public void onFailure(Call<FincodePaymentResponse> call, Throwable t) {
+                        // do nothing
+                    }
+                });
+    }
+
+    public void paymentSecure(HashMap<String, String> header, String id, FincodePaymentSecureRequest request, FincodeCallback<FincodePaymentSecureResponse> fincodeCallback) {
+        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
+
+        api.paymentSecure(header, request, id)
+                .enqueue(new Callback<FincodePaymentSecureResponse>() {
+                    @Override
+                    public void onResponse(Call<FincodePaymentSecureResponse> call, Response<FincodePaymentSecureResponse> response) {
+                        if(response.isSuccessful()) {
+                            fincodeCallback.onResponse(response.body());
+                        } else {
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FincodePaymentSecureResponse> call, Throwable t) {
                         // do nothing
                     }
                 });

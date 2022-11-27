@@ -4,6 +4,8 @@ import java.util.Map;
 
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentRequest;
 import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentResponse;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureRequest;
+import jp.gmopg.japanpost.fincodesdk.entities.api.FincodePaymentSecureResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.HeaderMap;
@@ -19,4 +21,8 @@ public interface PaymentApiInterface {
     Call<FincodePaymentResponse> payment(@HeaderMap Map<String, String> headers,
                                          @Body FincodePaymentRequest request,
                                          @Path("id") String orderId);
+    @PUT("/v1/payments/{id}/secure")
+    Call<FincodePaymentSecureResponse> paymentSecure(@HeaderMap Map<String, String> headers,
+                                                     @Body FincodePaymentSecureRequest request,
+                                                     @Path("id") String id);
 }
