@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="dataViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeDataViewModel"/>
-        <variable name="actionViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeActionViewModel"/>
-        <variable name="optViewModel" type="jp.gmopg.japanpost.fincodesdk.viewmodel.FincodeOptViewModel"/>
-        <import type="jp.gmopg.japanpost.fincodesdk.enumeration.PartsType"/>
+        <variable name="dataViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeOptViewModel"/>
+        <import type="com.epsilon.fincode.fincodesdk.enumeration.PartsType"/>
         <import type="android.view.View" />
         <import type="android.graphics.Color"/>
     </data>

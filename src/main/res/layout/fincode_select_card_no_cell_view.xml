@@ -2,8 +2,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="item" type="jp.gmopg.japanpost.fincodesdk.entities.SelectCardNoItem"/>
-        <import type="jp.gmopg.japanpost.fincodesdk.converter.SelectCardNoConverter"/>
+        <variable name="item" type="com.epsilon.fincode.fincodesdk.entities.SelectCardNoItem"/>
+        <import type="com.epsilon.fincode.fincodesdk.converter.SelectCardNoConverter"/>
     </data>
 
     <LinearLayout
