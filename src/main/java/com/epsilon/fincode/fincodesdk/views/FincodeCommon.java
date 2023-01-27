@@ -1,21 +1,22 @@
 package com.epsilon.fincode.fincodesdk.views;
 
-import android.app.Activity;
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 
 import androidx.databinding.ViewDataBinding;
+
 import com.epsilon.fincode.fincodesdk.api.FincodeCallback;
 import com.epsilon.fincode.fincodesdk.config.DataHolder;
 import com.epsilon.fincode.fincodesdk.config.FincodeCardRegisterConfiguration;
 import com.epsilon.fincode.fincodesdk.config.FincodeCardUpdateConfiguration;
 import com.epsilon.fincode.fincodesdk.config.FincodeConfiguration;
 import com.epsilon.fincode.fincodesdk.config.FincodePaymentConfiguration;
-import com.epsilon.fincode.fincodesdk.config.Options;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardInfoListResponse;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardRegisterResponse;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardUpdateResponse;
@@ -23,6 +24,8 @@ import com.epsilon.fincode.fincodesdk.entities.api.FincodeErrorResponse;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodePaymentResponse;
 import com.epsilon.fincode.fincodesdk.enumeration.SubmitButtonType;
 import com.epsilon.fincode.fincodesdk.usecase.CardOperateUseCase;
+import com.epsilon.fincode.fincodesdk.util.LayoutUtil;
+import com.epsilon.fincode.fincodesdk.util.OptUtil;
 import com.epsilon.fincode.fincodesdk.util.ResourceUtil;
 import com.epsilon.fincode.fincodesdk.viewmodel.FincodeOptViewModel;
 import com.epsilon.fincode.fincodesdk.viewmodel.FincodeViewModelHolder;
@@ -30,26 +33,27 @@ import com.epsilon.fincode.fincodesdk.viewmodel.FincodeViewModelHolder;
 /**
  * Created by a.nakajima on 2022/05/19.
  */
-abstract class FincodeCommon extends LinearLayout {
+public abstract class FincodeCommon extends LinearLayout {
 
-    private final Options opt;
+    private final Context context;
+    private final AttributeSet attrs;
+    private final int layoutId;
 
-    protected FincodeCommon(Activity context, int layoutId, ViewGroup replace, Options options, boolean isVertical) {
-        super((Context)context);
+    public FincodeCommon(@NonNull Context context, @Nullable AttributeSet attrs, int layoutId) {
+        super(context, attrs);
 
-        opt = options;
+        this.context = context;
+        this.attrs = attrs;
+        this.layoutId = layoutId;
 
         FincodeViewModelHolder.getInstance().init();
+        FincodeViewModelHolder.getInstance().getDataViewModel().setIsDirection(LayoutUtil.isVertical(layoutId));
 
-        FincodeViewModelHolder.getInstance().getDataViewModel().setIsDirection(isVertical);
-
-        if(opt != null) {
-            ResourceUtil.replaceFrameBackground(getContext(), opt.colorBackgroundInput);
-            ResourceUtil.replaceFrameBorder(getContext(), opt.colorBorder);
-        }
+        ResourceUtil.replaceFrameBackground(getContext(),OptUtil.colorBackgroundInput(context, attrs, layoutId, ""));
+        ResourceUtil.replaceFrameBorder(getContext(), OptUtil.colorBorder(context, attrs, layoutId, ""));
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        initBinding(DataBindingUtil.inflate(inflater, layoutId, replace, true),
+        initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),
                 FincodeViewModelHolder.getInstance());
     }
 
@@ -75,10 +79,10 @@ abstract class FincodeCommon extends LinearLayout {
 
     private void initCommon(FincodeConfiguration config) {
         DataHolder.getInstance().setConfig(config);
-        DataHolder.getInstance().setOptions(opt);
+//        DataHolder.getInstance().setOptions(opt);
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setButtonType(config.getSubmitButtonType());
-        setOpt(opt, config.getSubmitButtonType());
+        setOpt(config.getSubmitButtonType());
 
         FincodeViewModelHolder.getInstance().getDataViewModel().setIsCardListField(false);
         FincodeViewModelHolder.getInstance().getDataViewModel().setRadioSelect(false);
@@ -109,41 +113,37 @@ abstract class FincodeCommon extends LinearLayout {
         }
     }
 
-    private void setOpt(Options opt, SubmitButtonType type) {
-
-        if(opt == null) {
-            return;
-        }
+    private void setOpt(SubmitButtonType type) {
 
         FincodeOptViewModel vm = FincodeViewModelHolder.getInstance().getOptViewModel();
 
-        vm.setIsHeadingVisibility(opt.headingHidden);
-        vm.setIsDynamicLogDisplayVisibility(opt.dynamicLogDisplay);
-        vm.setIsHolderNameVisibility(opt.holderNameHidden);
+        vm.setIsHeadingVisibility(OptUtil.headingHidden(context, attrs, layoutId, false));
+        vm.setIsDynamicLogDisplayVisibility(OptUtil.dynamicLogDisplay(context, attrs, layoutId, false));
+        vm.setIsHolderNameVisibility(OptUtil.holderNameHidden(context, attrs, layoutId, false));
 
         if(type == SubmitButtonType.PAYMENT) {
-            vm.setIsPayTimesVisibility(opt.payTimesHidden);
+            vm.setIsPayTimesVisibility(OptUtil.payTimesHidden(context, attrs, layoutId, false));
         } else {
             vm.setIsPayTimesVisibility(true);
         }
 
-        vm.setLabelCardNo(opt.labelCardNo);
-        vm.setLabelExpire(opt.labelExpire);
-        vm.setLabelCvc(opt.labelCvc);
-        vm.setLabelHolderName(opt.labelHolderName);
-        vm.setLabelPaymentMethod(opt.labelPaymentMethod);
-        vm.setPlaceCardNo(opt.placeCardNo);
-        vm.setPlaceExpireMonth(opt.placeExpireMonth);
-        vm.setPlaceExpireYear(opt.placeExpireYear);
-        vm.setPlaceCvc(opt.placeCvc);
-        vm.setPlaceHolderName(opt.placeHolderName);
+        vm.setLabelCardNo(OptUtil.labelCardNo(context, attrs, layoutId, "カード番号"));
+        vm.setLabelExpire(OptUtil.labelExpire(context, attrs, layoutId, "有効期限"));
+        vm.setLabelCvc(OptUtil.labelCvc(context, attrs, layoutId, "セキュリティコード"));
+        vm.setLabelHolderName(OptUtil.labelHolderName(context, attrs, layoutId, "カード名義人"));
+        vm.setLabelPaymentMethod(OptUtil.labelPaymentMethod(context, attrs, layoutId, "お支払方法"));
+        vm.setPlaceCardNo(OptUtil.placeCardNo(context, attrs, layoutId, "1234 5678 9012 3456"));
+        vm.setPlaceExpireMonth(OptUtil.placeExpireMonth(context, attrs, layoutId, "01"));
+        vm.setPlaceExpireYear(OptUtil.placeExpireYear(context, attrs, layoutId, "25"));
+        vm.setPlaceCvc(OptUtil.placeCvc(context, attrs, layoutId, "001"));
+        vm.setPlaceHolderName(OptUtil.placeHolderName(context, attrs, layoutId, "TARO YAMADA"));
 
-        vm.setColorBackground(opt.colorBackground);
-        vm.setColorBackgroundInput(opt.colorBackgroundInput);
-        vm.setColorText(opt.colorText);
-        vm.setColorLabelText(opt.colorLabelText);
-        vm.setColorBorder(opt.colorBorder);
-        vm.setFontFamily(opt.fontFamily);
+        vm.setColorBackground(OptUtil.colorBackground(context, attrs, layoutId, ""));
+        vm.setColorBackgroundInput(OptUtil.colorBackgroundInput(context, attrs, layoutId, ""));
+        vm.setColorText(OptUtil.colorText(context, attrs, layoutId, ""));
+        vm.setColorLabelText(OptUtil.colorLabelText(context, attrs, layoutId, ""));
+        vm.setColorBorder(OptUtil.colorBorder(context, attrs, layoutId, ""));
+//        vm.setFontFamily(OptUtil.fontFamily(context, attrs, layoutId, ""));
     }
 
     abstract void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder);

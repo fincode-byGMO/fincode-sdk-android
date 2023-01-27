@@ -2,8 +2,11 @@ package com.epsilon.fincode.fincodesdk.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 import com.epsilon.fincode.fincodesdk.R;
 import com.epsilon.fincode.fincodesdk.config.FincodeConfiguration;
@@ -16,12 +19,12 @@ import com.epsilon.fincode.fincodesdk.viewmodel.FincodeViewModelHolder;
  */
 public class FincodeHorizontalView extends FincodeCommon {
 
-    public FincodeHorizontalView(Activity context, ViewGroup replace) {
-        this(context, null, replace);
+    public FincodeHorizontalView(@NonNull Context context) {
+        this(context, null);
     }
 
-    public FincodeHorizontalView(Activity context, Options options, ViewGroup replace) {
-        super(context, R.layout.fincode_horizontal_view, replace, options, false);
+    public FincodeHorizontalView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs, R.layout.fincode_horizontal_view);
     }
 
     protected void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder) {
