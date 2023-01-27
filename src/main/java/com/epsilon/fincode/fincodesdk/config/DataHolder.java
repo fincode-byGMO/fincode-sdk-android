@@ -16,7 +16,7 @@ public class DataHolder {
     private static DataHolder dataHolder;
 
     private FincodeConfiguration config;
-    private Options options;
+//    private Options options;
 
     private FincodeCallback<FincodePaymentResponse> callbackForPayment;
     private FincodeCallback<FincodeCardRegisterResponse> callbackForCardRegister;
@@ -40,13 +40,13 @@ public class DataHolder {
         this.config = config;
     }
 
-    public Options getOptions() {
-        return this.options;
-    }
-
-    public void setOptions(Options options) {
-        this.options = options;
-    }
+//    public Options getOptions() {
+//        return this.options;
+//    }
+//
+//    public void setOptions(Options options) {
+//        this.options = options;
+//    }
 
     public FincodePaymentConfiguration getPaymentConfig() {
         if(config instanceof FincodePaymentConfiguration) {
