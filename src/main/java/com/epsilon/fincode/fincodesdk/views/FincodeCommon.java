@@ -148,4 +148,27 @@ public abstract class FincodeCommon extends LinearLayout {
 
     abstract void initBinding(ViewDataBinding binding, FincodeViewModelHolder holder);
 
+    /** 見出しの表示・非表示を設定 */
+    public void headingHidden(boolean value) {
+        FincodeViewModelHolder.getInstance().getOptViewModel().setIsHeadingVisibility(value);
+    }
+
+    /** ブランド画像 動的切り替えの表示・非表示を設定 */
+    public void dynamicLogDisplay(boolean value) {
+        FincodeViewModelHolder.getInstance().getOptViewModel().setIsDynamicLogDisplayVisibility(value);
+    }
+
+    /** 名義人名の表示・非表示を設定 */
+    public void holderNameHidden(boolean value) {
+        FincodeViewModelHolder.getInstance().getOptViewModel().setIsHolderNameVisibility(value);
+    }
+
+    /** お支払い回数の表示・非表示を設定 */
+    public void payTimesHidden(boolean value) {
+        if(DataHolder.getInstance().getConfig().getSubmitButtonType() == SubmitButtonType.PAYMENT) {
+            FincodeViewModelHolder.getInstance().getOptViewModel().setIsPayTimesVisibility(value);
+        } else {
+            FincodeViewModelHolder.getInstance().getOptViewModel().setIsPayTimesVisibility(false);
+        }
+    }
 }

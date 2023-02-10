@@ -133,6 +133,22 @@ public class FincodePaymentResponse {
     @SerializedName("updated")
     private String updated;
 
+    public String getAcs() { return this.acs; }
+
+    public void setAcs(String acs) { this.acs = acs; }
+
+    public String getShopId() { return this.shopId; }
+
+    public void setShopId(String shopId) { this.shopId = shopId; }
+
+    public String getOrderId() { return this.orderId; }
+
+    public void setOrderId(String orderId) { this.orderId = orderId; }
+
+    public String getPayType() { return this.payType; }
+
+    public void setPayType(String payType) { this.payType = payType; }
+
     public String getStatus() {
         return status;
     }
