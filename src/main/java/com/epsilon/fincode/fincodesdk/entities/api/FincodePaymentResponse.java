@@ -115,6 +115,9 @@ public class FincodePaymentResponse {
     @SerializedName("subscription_id")
     private String subscriptionId;
 
+    @SerializedName("bulk_payment_id")
+    private String bulkPaymentId;
+
     @SerializedName("brand")
     private String cardBrand;
 
@@ -403,6 +406,14 @@ public class FincodePaymentResponse {
 
     public void setSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
+    }
+
+    public String getBulkPaymentId() {
+        return bulkPaymentId;
+    }
+
+    public void setBulkPaymentId(String cardBrand) {
+        this.bulkPaymentId = bulkPaymentId;
     }
 
     public String getCardBrand() {
