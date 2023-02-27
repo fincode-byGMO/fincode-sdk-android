@@ -17,10 +17,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.test.fincode.jp\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.dev2.fincode.jp\"")
         }
         release {
-            buildConfigField("String", "BASE_URL", "\"https://api.test.fincode.jp\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.dev2.fincode.jp\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
