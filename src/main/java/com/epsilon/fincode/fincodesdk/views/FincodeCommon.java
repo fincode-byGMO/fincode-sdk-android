@@ -39,6 +39,27 @@ public abstract class FincodeCommon extends LinearLayout {
     private final AttributeSet attrs;
     private final int layoutId;
 
+    private final boolean headingHidden;
+    private final boolean dynamicLogDisplay;
+    private final boolean holderNameHidden;
+    private final boolean payTimesHidden;
+    private final String labelCardNo;
+    private final String labelExpire;
+    private final String labelCvc;
+    private final String labelHolderName;
+    private final String labelPaymentMethod;
+    private final String placeCardNo;
+    private final String placeExpireMonth;
+    private final String placeExpireYear;
+    private final String placeCvc;
+    private final String placeHolderName;
+    private final String colorBackground;
+    private final String colorBackgroundInput;
+    private final String colorText;
+    private final String colorLabelText;
+    private final String colorBorder;
+
+
     public FincodeCommon(@NonNull Context context, @Nullable AttributeSet attrs, int layoutId) {
         super(context, attrs);
 
@@ -51,6 +72,26 @@ public abstract class FincodeCommon extends LinearLayout {
 
         ResourceUtil.replaceFrameBackground(getContext(),OptUtil.colorBackgroundInput(context, attrs, layoutId, ""));
         ResourceUtil.replaceFrameBorder(getContext(), OptUtil.colorBorder(context, attrs, layoutId, ""));
+
+        headingHidden = OptUtil.headingHidden(context, attrs, layoutId, false);
+        dynamicLogDisplay = OptUtil.dynamicLogDisplay(context, attrs, layoutId, false);
+        holderNameHidden = OptUtil.holderNameHidden(context, attrs, layoutId, false);
+        payTimesHidden = OptUtil.payTimesHidden(context, attrs, layoutId, false);
+        labelCardNo = OptUtil.labelCardNo(context, attrs, layoutId, "カード番号");
+        labelExpire = OptUtil.labelExpire(context, attrs, layoutId, "有効期限");
+        labelCvc = OptUtil.labelCvc(context, attrs, layoutId, "セキュリティコード");
+        labelHolderName = OptUtil.labelHolderName(context, attrs, layoutId, "カード名義人");
+        labelPaymentMethod = OptUtil.labelPaymentMethod(context, attrs, layoutId, "お支払方法");
+        placeCardNo = OptUtil.placeCardNo(context, attrs, layoutId, "1234 5678 9012 3456");
+        placeExpireMonth = OptUtil.placeExpireMonth(context, attrs, layoutId, "01");
+        placeExpireYear = OptUtil.placeExpireYear(context, attrs, layoutId, "25");
+        placeCvc = OptUtil.placeCvc(context, attrs, layoutId, "001");
+        placeHolderName = OptUtil.placeHolderName(context, attrs, layoutId, "TARO YAMADA");
+        colorBackground = OptUtil.colorBackground(context, attrs, layoutId, "");
+        colorBackgroundInput = OptUtil.colorBackgroundInput(context, attrs, layoutId, "");
+        colorText = OptUtil.colorText(context, attrs, layoutId, "");
+        colorLabelText = OptUtil.colorLabelText(context, attrs, layoutId, "");
+        colorBorder = OptUtil.colorBorder(context, attrs, layoutId, "");
 
         LayoutInflater inflater = LayoutInflater.from(context);
         initBinding(DataBindingUtil.inflate(inflater, layoutId, this, true),
@@ -117,32 +158,32 @@ public abstract class FincodeCommon extends LinearLayout {
 
         FincodeOptViewModel vm = FincodeViewModelHolder.getInstance().getOptViewModel();
 
-        vm.setIsHeadingVisibility(OptUtil.headingHidden(context, attrs, layoutId, false));
-        vm.setIsDynamicLogDisplayVisibility(OptUtil.dynamicLogDisplay(context, attrs, layoutId, false));
-        vm.setIsHolderNameVisibility(OptUtil.holderNameHidden(context, attrs, layoutId, false));
+        vm.setIsHeadingVisibility(headingHidden);
+        vm.setIsDynamicLogDisplayVisibility(dynamicLogDisplay);
+        vm.setIsHolderNameVisibility(holderNameHidden);
 
         if(type == SubmitButtonType.PAYMENT) {
-            vm.setIsPayTimesVisibility(OptUtil.payTimesHidden(context, attrs, layoutId, false));
+            vm.setIsPayTimesVisibility(payTimesHidden);
         } else {
             vm.setIsPayTimesVisibility(true);
         }
 
-        vm.setLabelCardNo(OptUtil.labelCardNo(context, attrs, layoutId, "カード番号"));
-        vm.setLabelExpire(OptUtil.labelExpire(context, attrs, layoutId, "有効期限"));
-        vm.setLabelCvc(OptUtil.labelCvc(context, attrs, layoutId, "セキュリティコード"));
-        vm.setLabelHolderName(OptUtil.labelHolderName(context, attrs, layoutId, "カード名義人"));
-        vm.setLabelPaymentMethod(OptUtil.labelPaymentMethod(context, attrs, layoutId, "お支払方法"));
-        vm.setPlaceCardNo(OptUtil.placeCardNo(context, attrs, layoutId, "1234 5678 9012 3456"));
-        vm.setPlaceExpireMonth(OptUtil.placeExpireMonth(context, attrs, layoutId, "01"));
-        vm.setPlaceExpireYear(OptUtil.placeExpireYear(context, attrs, layoutId, "25"));
-        vm.setPlaceCvc(OptUtil.placeCvc(context, attrs, layoutId, "001"));
-        vm.setPlaceHolderName(OptUtil.placeHolderName(context, attrs, layoutId, "TARO YAMADA"));
+        vm.setLabelCardNo(labelCardNo);
+        vm.setLabelExpire(labelExpire);
+        vm.setLabelCvc(labelCvc);
+        vm.setLabelHolderName(labelHolderName);
+        vm.setLabelPaymentMethod(labelPaymentMethod);
+        vm.setPlaceCardNo(placeCardNo);
+        vm.setPlaceExpireMonth(placeExpireMonth);
+        vm.setPlaceExpireYear(placeExpireYear);
+        vm.setPlaceCvc(placeCvc);
+        vm.setPlaceHolderName(placeHolderName);
 
-        vm.setColorBackground(OptUtil.colorBackground(context, attrs, layoutId, ""));
-        vm.setColorBackgroundInput(OptUtil.colorBackgroundInput(context, attrs, layoutId, ""));
-        vm.setColorText(OptUtil.colorText(context, attrs, layoutId, ""));
-        vm.setColorLabelText(OptUtil.colorLabelText(context, attrs, layoutId, ""));
-        vm.setColorBorder(OptUtil.colorBorder(context, attrs, layoutId, ""));
+        vm.setColorBackground(colorBackground);
+        vm.setColorBackgroundInput(colorBackgroundInput);
+        vm.setColorText(colorText);
+        vm.setColorLabelText(colorLabelText);
+        vm.setColorBorder(colorBorder);
 //        vm.setFontFamily(OptUtil.fontFamily(context, attrs, layoutId, ""));
     }
 
