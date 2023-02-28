@@ -205,11 +205,11 @@ public abstract class FincodeCommon extends LinearLayout {
     }
 
     /** お支払い回数の表示・非表示を設定 */
-    public void payTimesHidden(boolean value) {
-        if(DataHolder.getInstance().getConfig().getSubmitButtonType() == SubmitButtonType.PAYMENT) {
+    public void payTimesHidden(boolean value, SubmitButtonType type) {
+        if(type == SubmitButtonType.PAYMENT) {
             FincodeViewModelHolder.getInstance().getOptViewModel().setIsPayTimesVisibility(value);
         } else {
-            FincodeViewModelHolder.getInstance().getOptViewModel().setIsPayTimesVisibility(false);
+            FincodeViewModelHolder.getInstance().getOptViewModel().setIsPayTimesVisibility(true);
         }
     }
 }
