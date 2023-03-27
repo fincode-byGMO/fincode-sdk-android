@@ -115,6 +115,9 @@ public class FincodePaymentResponse {
     @SerializedName("subscription_id")
     private String subscriptionId;
 
+    @SerializedName("bulk_payment_id")
+    private String bulkPaymentId;
+
     @SerializedName("brand")
     private String cardBrand;
 
@@ -132,6 +135,22 @@ public class FincodePaymentResponse {
 
     @SerializedName("updated")
     private String updated;
+
+    public String getAcs() { return this.acs; }
+
+    public void setAcs(String acs) { this.acs = acs; }
+
+    public String getShopId() { return this.shopId; }
+
+    public void setShopId(String shopId) { this.shopId = shopId; }
+
+    public String getOrderId() { return this.orderId; }
+
+    public void setOrderId(String orderId) { this.orderId = orderId; }
+
+    public String getPayType() { return this.payType; }
+
+    public void setPayType(String payType) { this.payType = payType; }
 
     public String getStatus() {
         return status;
@@ -387,6 +406,14 @@ public class FincodePaymentResponse {
 
     public void setSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
+    }
+
+    public String getBulkPaymentId() {
+        return bulkPaymentId;
+    }
+
+    public void setBulkPaymentId(String cardBrand) {
+        this.bulkPaymentId = bulkPaymentId;
     }
 
     public String getCardBrand() {
