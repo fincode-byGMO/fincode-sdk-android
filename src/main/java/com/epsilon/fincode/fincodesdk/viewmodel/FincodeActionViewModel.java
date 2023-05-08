@@ -8,7 +8,6 @@ import com.epsilon.fincode.fincodesdk.config.DataHolder;
 import com.epsilon.fincode.fincodesdk.config.FincodeCardRegisterConfiguration;
 import com.epsilon.fincode.fincodesdk.config.FincodeCardUpdateConfiguration;
 import com.epsilon.fincode.fincodesdk.config.FincodePaymentConfiguration;
-import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardInfo;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardRegisterRequest;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardRegisterResponse;
 import com.epsilon.fincode.fincodesdk.entities.api.FincodeCardUpdateRequest;
@@ -183,11 +182,18 @@ public class FincodeActionViewModel extends ViewModel {
         }
 
         req.setExpire(vm.expireYearPart.getValue() + vm.expireMonthPart.getValue());
-        if(vm.payTimesPart.getIsOneTime()) {
-            req.setMethod(MethodType.ONE_TIME.getValue());
-        } else {
-            req.setMethod(MethodType.INSTALLMENT.getValue());
-            req.setPayTimes(vm.payTimesPart.getValue());
+
+        switch (vm.payTimesPart.getValue()){
+            case "一括払い" :
+                req.setMethod(MethodType.ONE_TIME.getValue());
+                break;
+            case "リボ払い":
+                req.setMethod(MethodType.REVO.getValue());
+                break;
+            default:
+                // 分割払い
+                req.setMethod(MethodType.INSTALLMENT.getValue());
+                req.setPayTimes(vm.payTimesPart.getValue());
         }
         if(!vm.securityCodePart.getValue().isEmpty()) {
             req.setSecurityCode(vm.securityCodePart.getValue());
@@ -207,12 +213,18 @@ public class FincodeActionViewModel extends ViewModel {
         req.setOrderId(config.id);
         req.setCustomerId(config.customerId);
         req.setCardId(vm.selectCardNoPart.getValue());
-        if(vm.payTimesPart.getIsOneTime()) {
-            req.setMethod(MethodType.ONE_TIME.getValue());
-//            req.setPayTimes("");
-        } else {
-            req.setMethod(MethodType.INSTALLMENT.getValue());
-            req.setPayTimes(vm.payTimesPart.getValue());
+
+        switch (vm.payTimesPart.getValue()){
+            case "一括払い" :
+                req.setMethod(MethodType.ONE_TIME.getValue());
+                break;
+            case "リボ払い":
+                req.setMethod(MethodType.REVO.getValue());
+                break;
+            default:
+                // 分割払い
+                req.setMethod(MethodType.INSTALLMENT.getValue());
+                req.setPayTimes(vm.payTimesPart.getValue());
         }
 //        if(!vm.securityCodePart.getValue().isEmpty()) {
 //            req.setSecurityCode(vm.securityCodePart.getValue());
