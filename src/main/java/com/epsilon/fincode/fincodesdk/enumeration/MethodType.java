@@ -5,8 +5,8 @@ package com.epsilon.fincode.fincodesdk.enumeration;
  */
 public enum MethodType {
     ONE_TIME("1"),
-    INSTALLMENT("2");
-
+    INSTALLMENT("2"),
+    REVO("5");
     private String value;
 
     private MethodType(String value) {

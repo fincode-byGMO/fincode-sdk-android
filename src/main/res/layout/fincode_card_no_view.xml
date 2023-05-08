@@ -71,9 +71,6 @@
 
             </RelativeLayout>
 
-            <include layout="@layout/fincode_card_image_list"
-                android:visibility="@{dataViewModel.isDirection ? View.VISIBLE : View.GONE}"/>
-
         </LinearLayout>
 
         <TextView

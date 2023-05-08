@@ -12,7 +12,7 @@
             android:id="@+id/pay_times_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:layout_gravity="center"
             android:textSize="@dimen/titleFontSize"/>
 
