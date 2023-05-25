@@ -36,6 +36,8 @@ public class SpinnerSelectAdapter {
                         String withoutUnit = val.replace(spinner.getContext().getString(R.string.payment_times_unit), "");
                         withoutUnit = withoutUnit.replace(spinner.getContext().getString(R.string.payment_times_installment), "");
                         dataViewModel.payTimesPart.setValue(withoutUnit.trim());
+                    }else{
+                        dataViewModel.payTimesPart.setValue(val);
                     }
                 }
             }
