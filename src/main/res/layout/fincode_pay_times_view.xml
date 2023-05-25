@@ -25,23 +25,32 @@
             android:textSize="@dimen/titleFontSize"
             android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
             app:colorText="@{optViewModel.colorLabelText}"
-            app:fontFamily="@{optViewModel.fontFamily}"/>
+            app:fontFamily="@{optViewModel.fontFamily}"
+            android:paddingBottom="5dp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/partPadding">
+            >
 
             <Spinner
                 android:id="@+id/planets_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/frame_border_default"
                 app:dataSourceForSpinner="@{@stringArray/payment_times_array}"
                 app:viewModelForSpinner="@{dataViewModel}" />
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignEnd="@+id/planets_spinner"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/icon" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

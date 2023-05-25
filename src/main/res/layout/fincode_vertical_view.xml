@@ -104,15 +104,25 @@
                     app:optViewModel="@{optViewModel}"
                     android:visibility="@{optViewModel.isHolderNameVisibility ? View.GONE : View.VISIBLE}"/>
 
-                <include
-                    layout="@layout/fincode_pay_times_view"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include
+                        layout="@layout/fincode_pay_times_view"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{optViewModel.isPayTimesVisibility ? View.GONE : View.VISIBLE}"
+                        app:actionViewModel="@{actionViewModel}"
+                        app:dataViewModel="@={dataViewModel}"
+                        app:optViewModel="@{optViewModel}" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"/>
 
-                    android:visibility="@{optViewModel.isPayTimesVisibility ? View.GONE : View.VISIBLE}"
-                    app:actionViewModel="@{actionViewModel}"
-                    app:dataViewModel="@={dataViewModel}"
-                    app:optViewModel="@{optViewModel}" />
+                </LinearLayout>
 
                 <include
                     layout="@layout/fincode_submit_view"
