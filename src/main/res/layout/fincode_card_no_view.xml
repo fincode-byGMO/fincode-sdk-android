@@ -44,7 +44,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
                     android:background="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
                     android:enabled="@{!dataViewModel.radioSelect}"
                     android:hint="@{optViewModel.placeCardNo}"
