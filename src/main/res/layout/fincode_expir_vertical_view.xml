@@ -33,7 +33,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.45"
                 android:orientation="vertical">
 
                 <EditText
@@ -41,7 +41,7 @@
                     android:layout_marginTop="@dimen/textFieldMarginTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+
                     android:hint="@{optViewModel.placeExpireMonth}"
                     android:inputType="number"
                     android:maxLength="2"
@@ -72,11 +72,18 @@
                     app:fontFamily="@{optViewModel.fontFamily}"/>
 
             </LinearLayout>
-
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:gravity="center"
+                android:text="@string/oblique_line"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.45"
                 android:orientation="vertical">
 
                 <EditText

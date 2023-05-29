@@ -6,8 +6,6 @@
     <!--radio_button-->
     <string name="registered_card">登録済みのカード</string>
     <string name="new_card">新しいクレジットカード</string>
-    <string name="one_time_payment">一括払い</string>
-    <string name="installment_payment">分割</string>
 
     <!--oblique_line-->
     <string name="oblique_line">/</string>

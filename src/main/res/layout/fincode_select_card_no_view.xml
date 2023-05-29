@@ -28,7 +28,7 @@
             android:layout_alignEnd="@+id/cardNumberList"
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/icon" />
+            android:src="@drawable/baseline_arrow_forward" />
 
     </RelativeLayout>
 

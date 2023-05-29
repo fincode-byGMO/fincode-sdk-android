@@ -13,15 +13,15 @@ import com.epsilon.fincode.fincodesdk.R;
  */
 public class FincodePayTimesPart extends FincodeBasePart {
 
-    private boolean isOneTime = true;
-
-    @Bindable
-    public boolean getIsOneTime() {
-        return this.isOneTime;
-    }
-
-    public void setIsOneTime(boolean value) {
-        this.isOneTime = value;
-        notifyPropertyChanged(BR.isOneTime);
-    }
+//    private boolean isOneTime = true;
+//
+//    @Bindable
+//    public boolean getIsOneTime() {
+//        return this.isOneTime;
+//    }
+//
+//    public void setIsOneTime(boolean value) {
+//        this.isOneTime = value;
+//        notifyPropertyChanged(BR.isOneTime);
+//    }
 }

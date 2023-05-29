@@ -31,8 +31,14 @@ public class SpinnerSelectAdapter {
                 Spinner spinner = getSpinner(parent);
                 if(spinner != null && spinner.getSelectedItem() instanceof String) {
                     String val = (String)spinner.getSelectedItem();
-                    String withoutUnit = val.replace(spinner.getContext().getString(R.string.payment_times_unit), "");
-                    dataViewModel.payTimesPart.setValue(withoutUnit);
+                    if(!"一括払い".equals(val) && !"リボ払い".equals(val)){
+                        // 分割指定の場合
+                        String withoutUnit = val.replace(spinner.getContext().getString(R.string.payment_times_unit), "");
+                        withoutUnit = withoutUnit.replace(spinner.getContext().getString(R.string.payment_times_installment), "");
+                        dataViewModel.payTimesPart.setValue(withoutUnit.trim());
+                    }else{
+                        dataViewModel.payTimesPart.setValue(val);
+                    }
                 }
             }
 
