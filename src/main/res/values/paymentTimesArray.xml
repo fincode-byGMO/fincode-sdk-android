@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="payment_times_array">
-        <item>3回</item>
-        <item>5回</item>
-        <item>6回</item>
-        <item>10回</item>
-        <item>12回</item>
-        <item>15回</item>
-        <item>18回</item>
-        <item>20回</item>
-        <item>24回</item>
+        <item>一括払い</item>
+        <item>リボ払い</item>
+        <item>分割 3回</item>
+        <item>分割 5回</item>
+        <item>分割 6回</item>
+        <item>分割 10回</item>
+        <item>分割 12回</item>
+        <item>分割 15回</item>
+        <item>分割 18回</item>
+        <item>分割 20回</item>
+        <item>分割 24回</item>
     </string-array>
+    <string name="payment_times_installment">分割</string>
     <string name="payment_times_unit">回</string>
 </resources>
