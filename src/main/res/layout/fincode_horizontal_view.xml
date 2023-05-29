@@ -99,7 +99,7 @@
 
                 <include
                     layout="@layout/fincode_holder_name_view"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
@@ -109,7 +109,7 @@
 
                 <include
                     layout="@layout/fincode_pay_times_view"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     app:dataViewModel="@={dataViewModel}"
