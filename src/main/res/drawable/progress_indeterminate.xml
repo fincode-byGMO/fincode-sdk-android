@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-rotate xmlns:android="http://schemas.Android.com/apk/res/Android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    tools:ignore="NamespaceTypo" />

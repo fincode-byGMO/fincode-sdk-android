@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  common (FincodeVerticalView / FincodeHorizontalView)  -->
+    <attr name="headingHidden" format="boolean" />
+    <attr name="dynamicLogDisplay" format="boolean" />
+    <attr name="holderNameHidden" format="boolean" />
+    <attr name="payTimesHidden" format="boolean" />
+    <attr name="labelCardNo" format="string" />
+    <attr name="labelExpire" format="string" />
+    <attr name="labelCvc" format="string" />
+    <attr name="labelHolderName" format="string" />
+    <attr name="labelPaymentMethod" format="string" />
+    <attr name="placeCardNo" format="string" />
+    <attr name="placeExpireMonth" format="string" />
+    <attr name="placeExpireYear" format="string" />
+    <attr name="placeCvc" format="string" />
+    <attr name="placeHolderName" format="string" />
+    <attr name="colorBackground" format="string" />
+    <attr name="colorBackgroundInput" format="string" />
+    <attr name="colorText" format="string" />
+    <attr name="colorLabelText" format="string" />
+    <attr name="colorBorder" format="string" />
+
+    <declare-styleable name="FincodeVerticalView">
+        <attr name="headingHidden" />
+        <attr name="dynamicLogDisplay" />
+        <attr name="holderNameHidden" />
+        <attr name="payTimesHidden" />
+        <attr name="labelCardNo" />
+        <attr name="labelExpire" />
+        <attr name="labelCvc" />
+        <attr name="labelHolderName" />
+        <attr name="labelPaymentMethod" />
+        <attr name="placeCardNo" />
+        <attr name="placeExpireMonth" />
+        <attr name="placeExpireYear" />
+        <attr name="placeCvc" />
+        <attr name="placeHolderName" />
+        <attr name="colorBackground" />
+        <attr name="colorBackgroundInput" />
+        <attr name="colorText" />
+        <attr name="colorLabelText" />
+        <attr name="colorBorder" />
+    </declare-styleable>
+    <declare-styleable name="FincodeHorizontalView">
+        <attr name="headingHidden" />
+        <attr name="dynamicLogDisplay" />
+        <attr name="holderNameHidden" />
+        <attr name="payTimesHidden" />
+        <attr name="labelCardNo" />
+        <attr name="labelExpire" />
+        <attr name="labelCvc" />
+        <attr name="labelHolderName" />
+        <attr name="labelPaymentMethod" />
+        <attr name="placeCardNo" />
+        <attr name="placeExpireMonth" />
+        <attr name="placeExpireYear" />
+        <attr name="placeCvc" />
+        <attr name="placeHolderName" />
+        <attr name="colorBackground" />
+        <attr name="colorBackgroundInput" />
+        <attr name="colorText" />
+        <attr name="colorLabelText" />
+        <attr name="colorBorder" />
+    </declare-styleable>
+</resources>

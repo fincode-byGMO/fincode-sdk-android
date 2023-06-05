@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- font size -->
+    <dimen name="titleFontSize">14dp</dimen>
+    <dimen name="textFieldFontSize">14dp</dimen>
+    <dimen name="errorMsgFontSize">12dp</dimen>
+
+    <!-- padding -->
+    <dimen name="partPadding">5dp</dimen>
+    <dimen name="textFieldPadding">10dp</dimen>
+    <dimen name="errorMsgTopPadding">5dp</dimen>
+
+    <!-- margin -->
+    <dimen name="textFieldMarginTop">5dp</dimen>
+</resources>
