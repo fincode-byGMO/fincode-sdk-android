@@ -1,0 +1,89 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="dataViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeDataViewModel"/>
+        <variable name="actionViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeActionViewModel"/>
+        <variable name="optViewModel" type="com.epsilon.fincode.fincodesdk.viewmodel.FincodeOptViewModel"/>
+        <import type="com.epsilon.fincode.fincodesdk.enumeration.CardBrandType"/>
+        <import type="com.epsilon.fincode.fincodesdk.enumeration.PartsType"/>
+        <import type="android.view.View"/>
+        <import type="com.epsilon.fincode.fincodesdk.util.ResourceUtil"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/partPadding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{optViewModel.labelCardNo}"
+            android:textSize="@dimen/titleFontSize"
+            android:visibility="@{optViewModel.isHeadingVisibility ? View.GONE : View.VISIBLE}"
+            app:colorText="@{optViewModel.colorLabelText}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/textFieldMarginTop">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/cardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect ? @drawable/frame_border_error : @drawable/frame_border_default}"
+                    android:enabled="@{!dataViewModel.radioSelect}"
+                    android:hint="@{optViewModel.placeCardNo}"
+                    android:inputType="number"
+                    android:imeOptions="actionNext|flagNoFullscreen"
+                    android:nextFocusForward="@id/expireMonth"
+                    android:padding="@dimen/textFieldPadding"
+                    android:textSize="@dimen/textFieldFontSize"
+                    app:colorText="@{optViewModel.colorText}"
+                    app:dynamicLength="@={dataViewModel.cardNoPart.value}"
+                    app:partsTypeForCardNo="@{PartsType.CARD_NUMBER}"
+                    app:selectedBorderForCardNo="@{@drawable/frame_border_selected}"
+                    app:viewModelForCardNo="@{dataViewModel}"
+                    app:fontFamily="@{optViewModel.fontFamily}"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/cardNumber"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    app:imageResource="@{CardBrandType.typeForNumber(dataViewModel.cardNoPart.value).getImage()}"
+                    android:visibility="@{optViewModel.isDynamicLogDisplayVisibility ? View.GONE : View.VISIBLE}"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="gone"
+            android:paddingTop="@dimen/errorMsgTopPadding"
+            android:textSize="@dimen/errorMsgFontSize"
+            android:textColor="#FF0000"
+            app:errorVisibile="@{dataViewModel.cardNoPart.isError &amp;&amp; !dataViewModel.radioSelect}"
+            app:formatErrorMsg="@{@string/card_number_no_format_message}"
+            app:noInputErrorMsg="@{@string/card_number_no_input_message}"
+            app:viewModelPart="@{dataViewModel.cardNoPart}"
+            app:fontFamily="@{optViewModel.fontFamily}"/>
+
+    </LinearLayout>
+</layout>
