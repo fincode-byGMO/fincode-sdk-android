@@ -1,5 +1,9 @@
 package com.epsilon.fincode.fincodesdk.Repository;
 
+import com.epsilon.fincode.fincodesdk.entities.api.FincodeKonbiniRequest;
+import com.epsilon.fincode.fincodesdk.entities.api.FincodeKonbiniResponse;
+import com.epsilon.fincode.fincodesdk.entities.api.FincodePaypayRequest;
+import com.epsilon.fincode.fincodesdk.entities.api.FincodePaypayResponse;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -57,6 +61,56 @@ public class FincodePaymentRepository {
 
                     @Override
                     public void onFailure(Call<FincodePaymentResponse> call, Throwable t) {
+                        // do nothing
+                    }
+                });
+    }
+
+    public void payment(HashMap<String, String> header, String orderId, FincodeKonbiniRequest request, FincodeCallback<FincodeKonbiniResponse> fincodeCallback) {
+        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
+
+        api.payment(header, request, orderId)
+                .enqueue(new Callback<FincodeKonbiniResponse>() {
+                    @Override
+                    public void onResponse(Call<FincodeKonbiniResponse> call, Response<FincodeKonbiniResponse> response) {
+                        if(response.isSuccessful()) {
+                            fincodeCallback.onResponse(response.body());
+                        } else {
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FincodeKonbiniResponse> call, Throwable t) {
+                        // do nothing
+                    }
+                });
+    }
+
+    public void payment(HashMap<String, String> header, String orderId, FincodePaypayRequest request, FincodeCallback<FincodePaypayResponse> fincodeCallback) {
+        PaymentApiInterface api = AsyncHttpClient.getInstance().getAsyncHttpClient(PaymentApiInterface.class);
+
+        api.payment(header, request, orderId)
+                .enqueue(new Callback<FincodePaypayResponse>() {
+                    @Override
+                    public void onResponse(Call<FincodePaypayResponse> call, Response<FincodePaypayResponse> response) {
+                        if(response.isSuccessful()) {
+                            fincodeCallback.onResponse(response.body());
+                        } else {
+                            try {
+                                String value = response.errorBody().string();
+                                fincodeCallback.onFailure(HttpUtil.getErrorInfo(response, value));
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FincodePaypayResponse> call, Throwable t) {
                         // do nothing
                     }
                 });
