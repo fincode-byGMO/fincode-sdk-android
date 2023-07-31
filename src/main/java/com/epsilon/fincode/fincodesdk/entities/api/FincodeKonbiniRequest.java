@@ -16,6 +16,9 @@ public class FincodeKonbiniRequest {
     @SerializedName("id")
     private String orderId;
 
+    @SerializedName("customer_id")
+    private String customerId;
+
     @SerializedName("payment_term_day")
     private String paymentTermDay;
 
@@ -56,6 +59,14 @@ public class FincodeKonbiniRequest {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getPaymentTermDay() {
