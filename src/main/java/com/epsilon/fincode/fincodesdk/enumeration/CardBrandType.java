@@ -15,8 +15,8 @@ public enum CardBrandType{
     MASTER("MASTER", "(^5[1-5][0-9]{0,15}$)|(^2[2-7][0-9]{0,15}$)"),
     JCB("JCB", "^35[0-9]{0,15}$"),
     DINERS("DINERS", "(^30[0-9]{0,13}$)|(^36[0-9]{0,13}$)|(^38[0-9]{0,13}$)|(^39[0-9]{0,13}$)"),
-    AMEX("AMEX", "(^34[0-9]{0,14}$)|(^37[0-9]{0,14}$)");
-
+    AMEX("AMEX", "(^34[0-9]{0,14}$)|(^37[0-9]{0,14}$)"),
+    DISCOVER("DISCOVER", "(^60[0-9]{0,15}$)|(^6[4-5][0-9]{0,15}$)");
     private String brandChar;
     private String regex;
 
@@ -43,6 +43,9 @@ public enum CardBrandType{
         }
         if (Pattern.compile(AMEX.regex).matcher(withOutSpace).matches()) {
             return AMEX;
+        }
+        if (Pattern.compile(DISCOVER.regex).matcher(withOutSpace).matches()) {
+            return DISCOVER;
         }
         return NONE;
     }
@@ -72,6 +75,8 @@ public enum CardBrandType{
                 return R.drawable.ic_diners;
             case AMEX:
                 return R.drawable.ic_amex;
+            case DISCOVER:
+                return R.drawable.ic_discover;
             case NONE:
             default:
                 return -1;
@@ -91,6 +96,8 @@ public enum CardBrandType{
                 return R.drawable.ic_diners;
             case "AMEX":
                 return R.drawable.ic_amex;
+            case "DISCOVER":
+                return R.drawable.ic_discover;
             case "NONE":
             default:
                 return -1;
@@ -106,6 +113,7 @@ public enum CardBrandType{
             case VISA:
             case MASTER:
             case JCB:
+            case DISCOVER:
             case NONE:
             default:
                 return 16;
@@ -121,6 +129,7 @@ public enum CardBrandType{
             case VISA:
             case MASTER:
             case JCB:
+            case DISCOVER:
             case NONE:
             default:
                 return 19;
@@ -136,6 +145,7 @@ public enum CardBrandType{
             case VISA:
             case MASTER:
             case JCB:
+            case DISCOVER:
             case NONE:
             default:
                 return StringUtil.allFourDelimit(value);
