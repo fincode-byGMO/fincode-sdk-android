@@ -1,7 +1,6 @@
 package com.epsilon.fincode.fincodesdk.enumeration;
 
 import java.util.regex.Pattern;
-
 import com.epsilon.fincode.fincodesdk.R;
 import com.epsilon.fincode.fincodesdk.util.StringUtil;
 
@@ -11,12 +10,12 @@ import com.epsilon.fincode.fincodesdk.util.StringUtil;
 public enum CardBrandType{
 
     NONE("", ""),
-    VISA("VISA", "^4[0-9]{0,16}$"),
-    MASTER("MASTER", "(^5[1-5][0-9]{0,15}$)|(^2[2-7][0-9]{0,15}$)"),
-    JCB("JCB", "^35[0-9]{0,15}$"),
-    DINERS("DINERS", "(^30[0-9]{0,13}$)|(^36[0-9]{0,13}$)|(^38[0-9]{0,13}$)|(^39[0-9]{0,13}$)"),
-    AMEX("AMEX", "(^34[0-9]{0,14}$)|(^37[0-9]{0,14}$)"),
-    DISCOVER("DISCOVER", "(^60[0-9]{0,15}$)|(^6[4-5][0-9]{0,15}$)");
+    VISA("VISA", "^4[0-9]{0,15}$"),
+    MASTER("MASTER", "^[25][0-9]{0,15}$"),
+    JCB("JCB", "^35[0-9]{0,14}$"),
+    DINERS("DINERS", "^3[0689][0-9]{0,12}$"),
+    AMEX("AMEX", "^3[47][0-9]{0,13}$"),
+    DISCOVER("DISCOVER", "^6[045][0-9]{0,14}$");
     private String brandChar;
     private String regex;
 
